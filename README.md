@@ -1,4 +1,4 @@
-Original App Design Project
+Original App Design Project - README Template
 ===
 
 # Good Eats
@@ -32,14 +32,17 @@ Keep track of and share with your friends the restaurants you're going to, what 
 * User can log in
 * User can search for and follow friends
 * User can check in to a restaurant
-* Users can view a list of places their friends have checked in at
+* Users can view a list of places their friends have checked in at both in a table view and map view, filtered by distance
 
 **Optional Nice-to-have Stories**
 
-* Users can add an image of what they ordered and rate the food
-*  Users can see a map view of restaurants
-* Users can filter and sort the list of restarants
-* Users can pick their top 3 places or foods they've tried
+* Users can upload an image of what they ordered and rate the food
+* Users can click to get directions to a restaurant
+* Users can filter and sort the list of restarants by rating, distance, frequency of vists, etc.
+* Users can star restaurants and view them in a seprate tab
+* Users can receive a custom generated "food tour" of the day based on friends' recommendations and distances
+* Users can receive recommendations periodically based on the types of food they generally enjoy as well as where friends who have similar tastes to them have enjoyed
+* Users can see how similar their tastes are to their friends
 
 ### 2. Screen Archetypes
 
@@ -47,7 +50,7 @@ Keep track of and share with your friends the restaurants you're going to, what 
     * User can register a new account
     * User can log in
 * Stream
-    * Users can view a list of places their friends have checked in at
+    * Users can view a list of places their friends have checked in at in a table view and map view
 * Detail
     * Users can click into and see more details about the friend's restaurant experience
 * Stream / Profile
@@ -77,9 +80,11 @@ Keep track of and share with your friends the restaurants you're going to, what 
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="https://i.imgur.com/6NwQxop.jpg" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
+![](https://i.imgur.com/2ynAN3j.png)
+
 
 ### [BONUS] Interactive Prototype
 
