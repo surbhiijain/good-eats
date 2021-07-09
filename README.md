@@ -89,10 +89,56 @@ Keep track of and share with your friends the restaurants you're going to, what 
 ### [BONUS] Interactive Prototype
 
 ## Schema 
-[This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+
+Post
+| Property    |     Type    |   Description  |
+| ----------- | ----------- |   -----------  |
+| objectID    | String      | unique id for the user post (default field) |
+|author| Pointer to User | author of post|
+| image | File | image that user posts|
+| rating | Number | number of stars for the meal |
+| restaurant | Restaurant model | the restaurant the user checked-in to |
+| food | String | name of the meal the user ordered|
+| tags | Array of Tags | tagged descriptions of meal |
+| createdAt | DateTime| date when post is created (default field) |
+
+Restaurant
+| Property | Type | Description |
+| ----------- | ----------- |   -----------  |
+| name | String | name of the restaurant|
+|location | Location model | where the restaurant is located |
+| tags | Array of Tags | tagged descriptions of the resturant |
+|posts | Array of Posts | all the posts at this restaurant |
+
+Location
+| Property | Type | Description |
+| ----------- | ----------- |   -----------  |
+| streetAdress | String | street address of location |
+| city | String | city located in|
+|state| String | state located in |
+| latitude| Number | latitude for pinning to a map and directions|
+| longitute | Number | longitude for pinning to a map and directions|
+
+Tag
+| Property | Type | Description |
+| ----------- | ----------- |   -----------  |
+| name | String | name of the tag|
+| description | String| short description explaining the tag|
+
+
 ### Networking
 - [Add list of network requests by screen ]
+- Home feed screen
+    - (Read/GET) Query all posts with different predicates depending on filters
+- Restaurant detail screen
+    - (Read/GET) Query all posts where restaurant field is the selected restaurant
+- Profile Screen
+    - (Read/GET) Query logged in user object
+    - (Update/PUT) Update user profile image
+    - (Read/GET) Query all posts where author is the logged in user
+- Create Post Screen
+    - (Create/POST) Create a new post object
+
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
