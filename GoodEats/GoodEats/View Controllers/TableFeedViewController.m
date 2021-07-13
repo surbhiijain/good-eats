@@ -9,7 +9,11 @@
 #import "PostCell.h"
 
 @interface TableFeedViewController () <UITableViewDelegate, UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) NSMutableArray *posts;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -19,15 +23,46 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    
+    [self getAllPosts];
+    
+    [self.refreshControl addTarget:self action:@selector(getAllPosts) forControlEvents:(UIControlEventValueChanged)];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void) getAllPosts {
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Post" predicate:nil];
+    [query includeKeys:@[@"author",@"image", @"dish"]];
+    [query orderByDescending:@"createdAt"];
+    query.limit = 20;
+    
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            self.posts = (NSMutableArray *) posts;
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+        [self.refreshControl endRefreshing];
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    return 10;
+    return self.posts.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    
+    Post *post = self.posts[indexPath.row];
+    
+    cell.post = post;
+    [cell refreshData];
+    
     return cell;
 }
 
