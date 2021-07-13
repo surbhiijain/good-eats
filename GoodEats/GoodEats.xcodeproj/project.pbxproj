@@ -26,6 +26,7 @@
 		76E49E6E269DFEE200617E4F /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E49E6D269DFEE200617E4F /* Post.m */; };
 		76E49E71269E00AC00617E4F /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E49E70269E00AC00617E4F /* Restaurant.m */; };
 		76E49E74269E012000617E4F /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E49E73269E012000617E4F /* Dish.m */; };
+		76E49E77269E0AF800617E4F /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E49E76269E0AF700617E4F /* ComposeViewController.m */; };
 		B1B23EDDB43B6EB5718B7F7F /* Pods_GoodEats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1437E886A076A38FA2C6B6A5 /* Pods_GoodEats.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,8 @@
 		76E49E70269E00AC00617E4F /* Restaurant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
 		76E49E72269E012000617E4F /* Dish.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
 		76E49E73269E012000617E4F /* Dish.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
+		76E49E75269E0AF700617E4F /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		76E49E76269E0AF700617E4F /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		814318AB1B9F6E3334A7D6EF /* Pods-GoodEatsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodEatsTests.debug.xcconfig"; path = "Target Support Files/Pods-GoodEatsTests/Pods-GoodEatsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A0E1AF08D6F7B85A11CD2C95 /* Pods-GoodEatsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodEatsTests.release.xcconfig"; path = "Target Support Files/Pods-GoodEatsTests/Pods-GoodEatsTests.release.xcconfig"; sourceTree = "<group>"; };
 		DFF1880454A69F6BD7FA8BF9 /* Pods_GoodEatsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodEatsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,6 +193,8 @@
 				76E49E67269D1A1800617E4F /* MapViewController.m */,
 				76E49E69269D1DBF00617E4F /* ProfileViewController.h */,
 				76E49E6A269D1DBF00617E4F /* ProfileViewController.m */,
+				76E49E75269E0AF700617E4F /* ComposeViewController.h */,
+				76E49E76269E0AF700617E4F /* ComposeViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -208,10 +213,10 @@
 			children = (
 				76E49E6C269DFEE200617E4F /* Post.h */,
 				76E49E6D269DFEE200617E4F /* Post.m */,
-				76E49E6F269E00AC00617E4F /* Restaurant.h */,
-				76E49E70269E00AC00617E4F /* Restaurant.m */,
 				76E49E72269E012000617E4F /* Dish.h */,
 				76E49E73269E012000617E4F /* Dish.m */,
+				76E49E6F269E00AC00617E4F /* Restaurant.h */,
+				76E49E70269E00AC00617E4F /* Restaurant.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -480,6 +485,7 @@
 				76D01CB3269CC89D00288EF2 /* AppDelegate.m in Sources */,
 				76290DA9269CD6F70045095D /* PostCell.m in Sources */,
 				76E49E6B269D1DBF00617E4F /* ProfileViewController.m in Sources */,
+				76E49E77269E0AF800617E4F /* ComposeViewController.m in Sources */,
 				76D01CC4269CC89D00288EF2 /* main.m in Sources */,
 				76E49E6E269DFEE200617E4F /* Post.m in Sources */,
 				76D01CB6269CC89D00288EF2 /* SceneDelegate.m in Sources */,
