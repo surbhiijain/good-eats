@@ -85,11 +85,10 @@
 }
 
 - (IBAction)didTapCancel:(id)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
-    [self performSegueWithIdentifier:@"feedSegue" sender:self];
-
-
+    self.tabBarController.selectedViewController
+        = [self.tabBarController.viewControllers objectAtIndex:0];
 }
+
 - (IBAction)didTapDone:(id)sender {
     if (![self.imageButton.imageView.image isEqual:nil]) {
         Restaurant *restaurant = [[Restaurant alloc] initWithName:self.restaurantField.text withLatitude:@37.783333 withLongitude:@-122.416667];
@@ -101,10 +100,12 @@
                 NSLog(@"imaged not posted");
             } else {
                 NSLog(@"IMAGE POSTED");
+                // todo: send this info to feed VC + map VC
             }
         }];
-        // dismiss compose view controller to go back to feed
-        [self dismissViewControllerAnimated:true completion:nil];
+        // go back to main map view
+        self.tabBarController.selectedViewController
+            = [self.tabBarController.viewControllers objectAtIndex:0];
     } else {
         NSLog(@"Please upload a photo");
     }
