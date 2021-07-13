@@ -11,7 +11,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -214,7 +214,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="peR-ED-TbW">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="juV-aM-NTc" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="juV-aM-NTc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="SMN-1n-PIT"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Zb6-8e-rnh">
@@ -254,7 +254,7 @@
         <!--Map View Controller-->
         <scene sceneID="w4h-Ox-gxV">
             <objects>
-                <viewController id="InW-DE-RzT" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="InW-DE-RzT" customClass="MapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u4r-aF-Giy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -268,8 +268,8 @@
                         <constraints>
                             <constraint firstItem="qHO-Xz-o5y" firstAttribute="leading" secondItem="kW7-um-lxu" secondAttribute="leading" id="Iyf-zs-6Ky"/>
                             <constraint firstItem="kW7-um-lxu" firstAttribute="trailing" secondItem="qHO-Xz-o5y" secondAttribute="trailing" id="Waf-Hg-TI9"/>
+                            <constraint firstAttribute="bottom" secondItem="qHO-Xz-o5y" secondAttribute="bottom" constant="83" id="cWP-Cx-cgx"/>
                             <constraint firstItem="qHO-Xz-o5y" firstAttribute="top" secondItem="kW7-um-lxu" secondAttribute="top" id="d4n-It-Eim"/>
-                            <constraint firstItem="kW7-um-lxu" firstAttribute="bottom" secondItem="qHO-Xz-o5y" secondAttribute="bottom" id="wlW-IN-rXD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fBs-jx-8MP">
@@ -328,10 +328,10 @@
                                 <rect key="frame" x="302" y="13" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="didTapLogout:" destination="tZg-sP-V0K" eventType="touchUpInside" id="7IY-ib-Y06"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <action selector="didTapLogout:" destination="tZg-sP-V0K" id="enP-fE-Tya"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>

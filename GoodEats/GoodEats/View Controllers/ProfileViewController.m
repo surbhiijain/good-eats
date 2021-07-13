@@ -6,6 +6,9 @@
 //
 
 #import "ProfileViewController.h"
+#import "Parse/Parse.h"
+#import "LoginViewController.h"
+#import "SceneDelegate.h"
 
 @interface ProfileViewController ()
 
@@ -16,6 +19,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (IBAction)didTapLogout:(id)sender {
+    // navigate back to login view controller
+    SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    sceneDelegate.window.rootViewController = loginViewController;
+    
+    // clear cached PFUser
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+    }];
 }
 
 /*
