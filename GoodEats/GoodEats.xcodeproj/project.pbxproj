@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		127DB6197D523FA09ED7C833 /* Pods_GoodEatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFF1880454A69F6BD7FA8BF9 /* Pods_GoodEatsTests.framework */; };
+		4FA0AE58DCA55D8206A3ED1C /* Pods_GoodEats_GoodEatsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E64CCCBC5731AF72615924 /* Pods_GoodEats_GoodEatsUITests.framework */; };
+		76290DA9269CD6F70045095D /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76290DA8269CD6F70045095D /* PostCell.m */; };
 		76D01CB3269CC89D00288EF2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CB2269CC89D00288EF2 /* AppDelegate.m */; };
 		76D01CB6269CC89D00288EF2 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CB5269CC89D00288EF2 /* SceneDelegate.m */; };
-		76D01CB9269CC89D00288EF2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CB8269CC89D00288EF2 /* ViewController.m */; };
 		76D01CBC269CC89D00288EF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76D01CBA269CC89D00288EF2 /* Main.storyboard */; };
 		76D01CBE269CC89D00288EF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76D01CBD269CC89D00288EF2 /* Assets.xcassets */; };
 		76D01CC1269CC89D00288EF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76D01CBF269CC89D00288EF2 /* LaunchScreen.storyboard */; };
 		76D01CC4269CC89D00288EF2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CC3269CC89D00288EF2 /* main.m */; };
 		76D01CCE269CC89E00288EF2 /* GoodEatsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CCD269CC89E00288EF2 /* GoodEatsTests.m */; };
 		76D01CD9269CC89E00288EF2 /* GoodEatsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CD8269CC89E00288EF2 /* GoodEatsUITests.m */; };
+		76D01CEB269CC9DD00288EF2 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CEA269CC9DD00288EF2 /* LoginViewController.m */; };
+		76D01CEE269CD53000288EF2 /* TableFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CED269CD53000288EF2 /* TableFeedViewController.m */; };
+		B1B23EDDB43B6EB5718B7F7F /* Pods_GoodEats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1437E886A076A38FA2C6B6A5 /* Pods_GoodEats.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,13 +41,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1437E886A076A38FA2C6B6A5 /* Pods_GoodEats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodEats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E7FEB9258F9684F4811C9E1 /* Pods-GoodEats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodEats.release.xcconfig"; path = "Target Support Files/Pods-GoodEats/Pods-GoodEats.release.xcconfig"; sourceTree = "<group>"; };
+		2260FB7CD2EB643806D5BF33 /* Pods-GoodEats-GoodEatsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodEats-GoodEatsUITests.release.xcconfig"; path = "Target Support Files/Pods-GoodEats-GoodEatsUITests/Pods-GoodEats-GoodEatsUITests.release.xcconfig"; sourceTree = "<group>"; };
+		67E64CCCBC5731AF72615924 /* Pods_GoodEats_GoodEatsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodEats_GoodEatsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76290DA7269CD6F70045095D /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
+		76290DA8269CD6F70045095D /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
 		76D01CAE269CC89D00288EF2 /* GoodEats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodEats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76D01CB1269CC89D00288EF2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		76D01CB2269CC89D00288EF2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		76D01CB4269CC89D00288EF2 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		76D01CB5269CC89D00288EF2 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		76D01CB7269CC89D00288EF2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		76D01CB8269CC89D00288EF2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		76D01CBB269CC89D00288EF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		76D01CBD269CC89D00288EF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76D01CC0269CC89D00288EF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +63,15 @@
 		76D01CD4269CC89E00288EF2 /* GoodEatsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoodEatsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		76D01CD8269CC89E00288EF2 /* GoodEatsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodEatsUITests.m; sourceTree = "<group>"; };
 		76D01CDA269CC89E00288EF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76D01CE9269CC9DD00288EF2 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		76D01CEA269CC9DD00288EF2 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		76D01CEC269CD53000288EF2 /* TableFeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableFeedViewController.h; sourceTree = "<group>"; };
+		76D01CED269CD53000288EF2 /* TableFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableFeedViewController.m; sourceTree = "<group>"; };
+		814318AB1B9F6E3334A7D6EF /* Pods-GoodEatsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodEatsTests.debug.xcconfig"; path = "Target Support Files/Pods-GoodEatsTests/Pods-GoodEatsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A0E1AF08D6F7B85A11CD2C95 /* Pods-GoodEatsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodEatsTests.release.xcconfig"; path = "Target Support Files/Pods-GoodEatsTests/Pods-GoodEatsTests.release.xcconfig"; sourceTree = "<group>"; };
+		DFF1880454A69F6BD7FA8BF9 /* Pods_GoodEatsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodEatsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E12611E26DD2D7D09F3AC0A0 /* Pods-GoodEats-GoodEatsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodEats-GoodEatsUITests.debug.xcconfig"; path = "Target Support Files/Pods-GoodEats-GoodEatsUITests/Pods-GoodEats-GoodEatsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F0B3E4351DE789EE4685B40D /* Pods-GoodEats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodEats.debug.xcconfig"; path = "Target Support Files/Pods-GoodEats/Pods-GoodEats.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1B23EDDB43B6EB5718B7F7F /* Pods_GoodEats.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				127DB6197D523FA09ED7C833 /* Pods_GoodEatsTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FA0AE58DCA55D8206A3ED1C /* Pods_GoodEats_GoodEatsUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +109,8 @@
 				76D01CCC269CC89E00288EF2 /* GoodEatsTests */,
 				76D01CD7269CC89E00288EF2 /* GoodEatsUITests */,
 				76D01CAF269CC89D00288EF2 /* Products */,
+				8194C5A482C318E9F7710FBF /* Pods */,
+				FB7CAFC1A465C601B446D61B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,12 +127,13 @@
 		76D01CB0269CC89D00288EF2 /* GoodEats */ = {
 			isa = PBXGroup;
 			children = (
+				76D01CE8269CC9D100288EF2 /* Models */,
+				76D01CE7269CC9CC00288EF2 /* Views */,
+				76D01CE6269CC9C000288EF2 /* View Controllers */,
 				76D01CB1269CC89D00288EF2 /* AppDelegate.h */,
 				76D01CB2269CC89D00288EF2 /* AppDelegate.m */,
 				76D01CB4269CC89D00288EF2 /* SceneDelegate.h */,
 				76D01CB5269CC89D00288EF2 /* SceneDelegate.m */,
-				76D01CB7269CC89D00288EF2 /* ViewController.h */,
-				76D01CB8269CC89D00288EF2 /* ViewController.m */,
 				76D01CBA269CC89D00288EF2 /* Main.storyboard */,
 				76D01CBD269CC89D00288EF2 /* Assets.xcassets */,
 				76D01CBF269CC89D00288EF2 /* LaunchScreen.storyboard */,
@@ -137,6 +161,57 @@
 			path = GoodEatsUITests;
 			sourceTree = "<group>";
 		};
+		76D01CE6269CC9C000288EF2 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				76D01CE9269CC9DD00288EF2 /* LoginViewController.h */,
+				76D01CEA269CC9DD00288EF2 /* LoginViewController.m */,
+				76D01CEC269CD53000288EF2 /* TableFeedViewController.h */,
+				76D01CED269CD53000288EF2 /* TableFeedViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		76D01CE7269CC9CC00288EF2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				76290DA7269CD6F70045095D /* PostCell.h */,
+				76290DA8269CD6F70045095D /* PostCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		76D01CE8269CC9D100288EF2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8194C5A482C318E9F7710FBF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F0B3E4351DE789EE4685B40D /* Pods-GoodEats.debug.xcconfig */,
+				1E7FEB9258F9684F4811C9E1 /* Pods-GoodEats.release.xcconfig */,
+				E12611E26DD2D7D09F3AC0A0 /* Pods-GoodEats-GoodEatsUITests.debug.xcconfig */,
+				2260FB7CD2EB643806D5BF33 /* Pods-GoodEats-GoodEatsUITests.release.xcconfig */,
+				814318AB1B9F6E3334A7D6EF /* Pods-GoodEatsTests.debug.xcconfig */,
+				A0E1AF08D6F7B85A11CD2C95 /* Pods-GoodEatsTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FB7CAFC1A465C601B446D61B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1437E886A076A38FA2C6B6A5 /* Pods_GoodEats.framework */,
+				67E64CCCBC5731AF72615924 /* Pods_GoodEats_GoodEatsUITests.framework */,
+				DFF1880454A69F6BD7FA8BF9 /* Pods_GoodEatsTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,9 +219,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 76D01CDD269CC89E00288EF2 /* Build configuration list for PBXNativeTarget "GoodEats" */;
 			buildPhases = (
+				3AE7099F086B3AA514C2C7EC /* [CP] Check Pods Manifest.lock */,
 				76D01CAA269CC89D00288EF2 /* Sources */,
 				76D01CAB269CC89D00288EF2 /* Frameworks */,
 				76D01CAC269CC89D00288EF2 /* Resources */,
+				CD886115C76F80D79C36D94A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -161,6 +238,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 76D01CE0269CC89E00288EF2 /* Build configuration list for PBXNativeTarget "GoodEatsTests" */;
 			buildPhases = (
+				4952723E78901F94AF0260CE /* [CP] Check Pods Manifest.lock */,
 				76D01CC5269CC89E00288EF2 /* Sources */,
 				76D01CC6269CC89E00288EF2 /* Frameworks */,
 				76D01CC7269CC89E00288EF2 /* Resources */,
@@ -179,9 +257,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 76D01CE3269CC89E00288EF2 /* Build configuration list for PBXNativeTarget "GoodEatsUITests" */;
 			buildPhases = (
+				1099EB8D82CD170C2F2BE648 /* [CP] Check Pods Manifest.lock */,
 				76D01CD0269CC89E00288EF2 /* Sources */,
 				76D01CD1269CC89E00288EF2 /* Frameworks */,
 				76D01CD2269CC89E00288EF2 /* Resources */,
+				274B664911E746579090AD5B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -261,15 +341,120 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1099EB8D82CD170C2F2BE648 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GoodEats-GoodEatsUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		274B664911E746579090AD5B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GoodEats-GoodEatsUITests/Pods-GoodEats-GoodEatsUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GoodEats-GoodEatsUITests/Pods-GoodEats-GoodEatsUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GoodEats-GoodEatsUITests/Pods-GoodEats-GoodEatsUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3AE7099F086B3AA514C2C7EC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GoodEats-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4952723E78901F94AF0260CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GoodEatsTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD886115C76F80D79C36D94A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GoodEats/Pods-GoodEats-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GoodEats/Pods-GoodEats-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GoodEats/Pods-GoodEats-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		76D01CAA269CC89D00288EF2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76D01CB9269CC89D00288EF2 /* ViewController.m in Sources */,
 				76D01CB3269CC89D00288EF2 /* AppDelegate.m in Sources */,
+				76290DA9269CD6F70045095D /* PostCell.m in Sources */,
 				76D01CC4269CC89D00288EF2 /* main.m in Sources */,
 				76D01CB6269CC89D00288EF2 /* SceneDelegate.m in Sources */,
+				76D01CEE269CD53000288EF2 /* TableFeedViewController.m in Sources */,
+				76D01CEB269CC9DD00288EF2 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +623,7 @@
 		};
 		76D01CDE269CC89E00288EF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0B3E4351DE789EE4685B40D /* Pods-GoodEats.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -456,6 +642,7 @@
 		};
 		76D01CDF269CC89E00288EF2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E7FEB9258F9684F4811C9E1 /* Pods-GoodEats.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -474,6 +661,7 @@
 		};
 		76D01CE1269CC89E00288EF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 814318AB1B9F6E3334A7D6EF /* Pods-GoodEatsTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -494,6 +682,7 @@
 		};
 		76D01CE2269CC89E00288EF2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0E1AF08D6F7B85A11CD2C95 /* Pods-GoodEatsTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -514,6 +703,7 @@
 		};
 		76D01CE4269CC89E00288EF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E12611E26DD2D7D09F3AC0A0 /* Pods-GoodEats-GoodEatsUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U4434QKULQ;
@@ -532,6 +722,7 @@
 		};
 		76D01CE5269CC89E00288EF2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2260FB7CD2EB643806D5BF33 /* Pods-GoodEats-GoodEatsUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U4434QKULQ;
