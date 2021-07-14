@@ -27,6 +27,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *reviewStar4;
 @property (weak, nonatomic) IBOutlet UIImageView *reviewStar5;
 
+@property (weak, nonatomic) IBOutlet UIButton *tagButton1;
+@property (weak, nonatomic) IBOutlet UIButton *tagButton2;
+@property (weak, nonatomic) IBOutlet UIButton *tagButton3;
+@property (weak, nonatomic) IBOutlet UIButton *tagButton4;
+@property (weak, nonatomic) IBOutlet UIButton *tagButton5;
+
+
 - (void)refreshData;
 
 @end

@@ -9,6 +9,7 @@
 
 @implementation PostCell
 
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -40,6 +41,7 @@
     self.captionLabel.text = self.post.caption;
     
     [self setStarFills];
+    [self setTags];
 
 }
 
@@ -51,6 +53,14 @@
     self.restaurantLabel.text = @"";
     self.captionLabel.text = @"";
     [self.dishButton setTitle:@"" forState:UIControlStateNormal];
+    
+    UIImage *star =  [UIImage systemImageNamed:@"star"];
+    
+    [self.reviewStar1 setImage:star];
+    [self.reviewStar2 setImage:star];
+    [self.reviewStar3 setImage:star];
+    [self.reviewStar4 setImage:star];
+    [self.reviewStar5 setImage:star];
 }
 
 - (void)setStarFills {
@@ -65,6 +75,7 @@
     UIImage *fill =  [UIImage systemImageNamed:@"star.fill"];
     UIImage *half = [UIImage systemImageNamed:@"star.leadinghalf.fill"];
 
+    // fill one star at a time until you reach the rating value
     while ([rating doubleValue] > [@0 doubleValue]) {
         UIImageView *star = stars[0];
         [stars removeObject:star];
@@ -76,6 +87,27 @@
             rating = @([rating doubleValue] + [@-1 doubleValue]);
         }
         [star setTintColor:[UIColor systemYellowColor]];
+    }
+}
+
+
+- (void)setTags {
+    NSMutableArray *tagButtons = [[NSMutableArray alloc] init];
+    [tagButtons addObject:self.tagButton1];
+    [tagButtons addObject:self.tagButton2];
+    [tagButtons addObject:self.tagButton3];
+    [tagButtons addObject:self.tagButton4];
+    [tagButtons addObject:self.tagButton5];
+        
+    // display tags starting from bottom left until there are no more and hide any remaining tag placeholders
+    for (int i = 0; i < tagButtons.count; i++) {
+        UIButton *tagButton = tagButtons[i];
+        if (i < self.post.tags.count) {
+            [tagButton setTitle:self.post.tags[i] forState:UIControlStateNormal];
+        } else {
+            [tagButton setTitle:@"" forState:UIControlStateNormal];
+            [tagButton setHidden:TRUE];
+        }
     }
 }
 

@@ -18,12 +18,15 @@
 @property (weak, nonatomic) IBOutlet UITextField *captionField;
 @property (weak, nonatomic) IBOutlet HCSStarRatingView *starRatingView;
 
+@property (nonatomic, strong) NSMutableArray *tags;
+
 @end
 
 @implementation ComposeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tags = [NSMutableArray new];
 //    [self.starRatingView setStarBorderColor:[UIColor lightGrayColor]];
     [self.starRatingView setTintColor:[UIColor lightGrayColor]];
     // Do any additional setup after loading the view.
@@ -101,7 +104,7 @@
         
         NSNumber *rating = [NSNumber numberWithFloat:self.starRatingView.value];
         
-        [Post postUserImage:self.imageButton.imageView.image withCaption:self.captionField.text withDish:dish withRating:rating withTags:[NSMutableArray new] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [Post postUserImage:self.imageButton.imageView.image withCaption:self.captionField.text withDish:dish withRating:rating withTags:self.tags withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (!succeeded) {
                 NSLog(@"imaged not posted");
             } else {
@@ -114,6 +117,19 @@
             = [self.tabBarController.viewControllers objectAtIndex:0];
     } else {
         NSLog(@"Please upload a photo");
+    }
+}
+- (IBAction)didTapTag:(UIButton *)sender {
+    
+    NSString *tagName = [sender currentTitle];
+    
+    if (![self.tags containsObject:tagName]) {
+        [self.tags addObject:tagName];
+        [sender setBackgroundColor:[UIColor colorWithRed:0/255.0 green:109/255.0 blue:119/255.0 alpha:1.0]];
+    } else if ([self.tags containsObject:tagName]) {
+        [self.tags removeObject:tagName];
+        [sender setBackgroundColor:[UIColor colorWithRed:211/255.0 green:229/255.0 blue:227/255.0 alpha:1.0]];
+
     }
 }
 
