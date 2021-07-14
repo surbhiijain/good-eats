@@ -28,7 +28,7 @@
     [super viewDidLoad];
     self.tags = [NSMutableArray new];
 //    [self.starRatingView setStarBorderColor:[UIColor lightGrayColor]];
-    [self.starRatingView setTintColor:[UIColor lightGrayColor]];
+    [self.starRatingView setTintColor:[UIColor systemYellowColor]];
     // Do any additional setup after loading the view.
 }
 - (IBAction)didTapPhoto:(id)sender {
