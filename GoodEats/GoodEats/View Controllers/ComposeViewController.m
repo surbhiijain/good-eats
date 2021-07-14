@@ -9,12 +9,14 @@
 #import "Post.h"
 #import "Dish.h"
 #import "Restaurant.h"
+#import "HCSStarRatingView.h"
 
 @interface ComposeViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *imageButton;
 @property (weak, nonatomic) IBOutlet UITextField *restaurantField;
 @property (weak, nonatomic) IBOutlet UITextField *dishField;
 @property (weak, nonatomic) IBOutlet UITextField *captionField;
+@property (weak, nonatomic) IBOutlet HCSStarRatingView *starRatingView;
 
 @end
 
@@ -22,6 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [self.starRatingView setStarBorderColor:[UIColor lightGrayColor]];
+    [self.starRatingView setTintColor:[UIColor lightGrayColor]];
     // Do any additional setup after loading the view.
 }
 - (IBAction)didTapPhoto:(id)sender {
@@ -60,7 +64,7 @@
     // Get the image captured by the UIImagePickerController
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-    UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(350, 350)];
+    UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(350, 200)];
     
     [self.imageButton setImage:nil forState:UIControlStateNormal];
     [self.imageButton setBackgroundImage:nil forState:UIControlStateNormal];
@@ -92,15 +96,17 @@
 - (IBAction)didTapDone:(id)sender {
     if (![self.imageButton.imageView.image isEqual:nil]) {
         Restaurant *restaurant = [[Restaurant alloc] initWithName:self.restaurantField.text withLatitude:@37.783333 withLongitude:@-122.416667];
-        Dish *dish = [[Dish alloc] initWithName:self.dishField.text withRestaurant:restaurant];
-//        [restaurant addDish:dish];
+        Dish *dish = [[Dish alloc] initWithName:self.dishField.text withRestaurant:restaurant.name];
+        [restaurant addDish:dish];
         
-        [Post postUserImage:self.imageButton.imageView.image withCaption:self.captionField.text withDish:dish withRating:@5 withTags:[NSMutableArray new] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        NSNumber *rating = [NSNumber numberWithFloat:self.starRatingView.value];
+        
+        [Post postUserImage:self.imageButton.imageView.image withCaption:self.captionField.text withDish:dish withRating:rating withTags:[NSMutableArray new] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (!succeeded) {
                 NSLog(@"imaged not posted");
             } else {
                 NSLog(@"IMAGE POSTED");
-                // todo: send this info to feed VC + map VC
+                // todo: send this info to map + feed VC
             }
         }];
         // go back to main map view

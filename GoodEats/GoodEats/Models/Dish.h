@@ -15,9 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *dishID;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) Restaurant *restaurant;
+@property (nonatomic, strong) NSString *restaurantName;
 
-- (instancetype) initWithName:(NSString *)name withRestaurant:(Restaurant *)restaurant;
+- (instancetype) initWithName:(NSString *)name withRestaurant:(NSString *)restaurant;
 
 @end
 

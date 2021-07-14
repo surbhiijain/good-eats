@@ -7,6 +7,8 @@ target 'GoodEats' do
 
   # Pods for GoodEats
   pod 'Parse'
+  pod 'HCSStarRatingView', '~> 1.5'
+
 
   target 'GoodEatsTests' do
     inherit! :search_paths

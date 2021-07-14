@@ -30,8 +30,8 @@
     return self;
 }
 
-//- (void)addDish:(Dish *)dish {
-//    [self.dishes addObject:dish];
-//}
+- (void)addDish:(Dish *)dish {
+    [self.dishes addObject:dish];
+}
 
 @end

@@ -5,7 +5,7 @@
 //  Created by Surbhi Jain on 7/13/21.
 //
 
-//@class Dish;
+@class Dish;
 #import <Parse/Parse.h>
 #import <Foundation/Foundation.h>
 
@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *longitude;
 
 - (instancetype) initWithName:(NSString *)name withLatitude:(NSNumber *)latitude withLongitude:(NSNumber *)longitude;
-//- (void) addDish:(Dish *)dish;
+- (void) addDish:(Dish *)dish;
 
 @end
 
