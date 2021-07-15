@@ -94,6 +94,7 @@
 - (IBAction)didTapCancel:(id)sender {
     self.tabBarController.selectedViewController
         = [self.tabBarController.viewControllers objectAtIndex:0];
+    [self clearField];
 }
 
 - (IBAction)didTapDone:(id)sender {
@@ -115,6 +116,7 @@
         // go back to main map view
         self.tabBarController.selectedViewController
             = [self.tabBarController.viewControllers objectAtIndex:0];
+        [self clearField];
     } else {
         NSLog(@"Please upload a photo");
     }
@@ -133,6 +135,12 @@
     }
 }
 
+- (void)clearField {
+    self.restaurantField.text = @"";
+    self.dishField.text = @"";
+    self.captionField.text = @"";
+    self.starRatingView.value = 0;
+}
 /*
 #pragma mark - Navigation
 

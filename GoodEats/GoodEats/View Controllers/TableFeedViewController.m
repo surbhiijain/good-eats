@@ -6,7 +6,8 @@
 //
 
 #import "TableFeedViewController.h"
-#import "PostCell.h"
+#import "FeedPostCell.h"
+#import "PostDetailViewController.h"
 
 @interface TableFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -42,6 +43,7 @@
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
+            NSLog(@"got all the posts");
             self.posts = (NSMutableArray *) posts;
             [self.tableView reloadData];
         } else {
@@ -56,7 +58,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    FeedPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     
     Post *post = self.posts[indexPath.row];
     
@@ -66,14 +68,18 @@
     return cell;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"postDetailsSegue"]) {
+        PostDetailViewController *detailsVC = [segue destinationViewController];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        detailsVC.post = self.posts[indexPath.row];
+    }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
 
 @end

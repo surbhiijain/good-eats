@@ -10,7 +10,9 @@
 		127DB6197D523FA09ED7C833 /* Pods_GoodEatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFF1880454A69F6BD7FA8BF9 /* Pods_GoodEatsTests.framework */; };
 		4FA0AE58DCA55D8206A3ED1C /* Pods_GoodEats_GoodEatsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E64CCCBC5731AF72615924 /* Pods_GoodEats_GoodEatsUITests.framework */; };
 		760B967F269FB74D00CB7F80 /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760B967E269FB74D00CB7F80 /* PostDetailViewController.m */; };
-		76290DA9269CD6F70045095D /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76290DA8269CD6F70045095D /* PostCell.m */; };
+		760B968226A0A9A900CB7F80 /* DishDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760B968126A0A9A900CB7F80 /* DishDetailsViewController.m */; };
+		760B968526A0AE1100CB7F80 /* DishPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760B968426A0AE1100CB7F80 /* DishPostCell.m */; };
+		76290DA9269CD6F70045095D /* FeedPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76290DA8269CD6F70045095D /* FeedPostCell.m */; };
 		76D01CB3269CC89D00288EF2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CB2269CC89D00288EF2 /* AppDelegate.m */; };
 		76D01CB6269CC89D00288EF2 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CB5269CC89D00288EF2 /* SceneDelegate.m */; };
 		76D01CBC269CC89D00288EF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76D01CBA269CC89D00288EF2 /* Main.storyboard */; };
@@ -55,8 +57,12 @@
 		67E64CCCBC5731AF72615924 /* Pods_GoodEats_GoodEatsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodEats_GoodEatsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		760B967D269FB74D00CB7F80 /* PostDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
 		760B967E269FB74D00CB7F80 /* PostDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
-		76290DA7269CD6F70045095D /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
-		76290DA8269CD6F70045095D /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
+		760B968026A0A9A900CB7F80 /* DishDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DishDetailsViewController.h; sourceTree = "<group>"; };
+		760B968126A0A9A900CB7F80 /* DishDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DishDetailsViewController.m; sourceTree = "<group>"; };
+		760B968326A0AE1100CB7F80 /* DishPostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DishPostCell.h; sourceTree = "<group>"; };
+		760B968426A0AE1100CB7F80 /* DishPostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DishPostCell.m; sourceTree = "<group>"; };
+		76290DA7269CD6F70045095D /* FeedPostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedPostCell.h; sourceTree = "<group>"; };
+		76290DA8269CD6F70045095D /* FeedPostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedPostCell.m; sourceTree = "<group>"; };
 		76D01CAE269CC89D00288EF2 /* GoodEats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodEats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76D01CB1269CC89D00288EF2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		76D01CB2269CC89D00288EF2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -200,6 +206,8 @@
 				76E49E76269E0AF700617E4F /* ComposeViewController.m */,
 				760B967D269FB74D00CB7F80 /* PostDetailViewController.h */,
 				760B967E269FB74D00CB7F80 /* PostDetailViewController.m */,
+				760B968026A0A9A900CB7F80 /* DishDetailsViewController.h */,
+				760B968126A0A9A900CB7F80 /* DishDetailsViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -207,8 +215,10 @@
 		76D01CE7269CC9CC00288EF2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				76290DA7269CD6F70045095D /* PostCell.h */,
-				76290DA8269CD6F70045095D /* PostCell.m */,
+				76290DA7269CD6F70045095D /* FeedPostCell.h */,
+				76290DA8269CD6F70045095D /* FeedPostCell.m */,
+				760B968326A0AE1100CB7F80 /* DishPostCell.h */,
+				760B968426A0AE1100CB7F80 /* DishPostCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -488,13 +498,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				76D01CB3269CC89D00288EF2 /* AppDelegate.m in Sources */,
-				76290DA9269CD6F70045095D /* PostCell.m in Sources */,
+				76290DA9269CD6F70045095D /* FeedPostCell.m in Sources */,
 				76E49E6B269D1DBF00617E4F /* ProfileViewController.m in Sources */,
+				760B968226A0A9A900CB7F80 /* DishDetailsViewController.m in Sources */,
 				760B967F269FB74D00CB7F80 /* PostDetailViewController.m in Sources */,
 				76E49E77269E0AF800617E4F /* ComposeViewController.m in Sources */,
 				76D01CC4269CC89D00288EF2 /* main.m in Sources */,
 				76E49E6E269DFEE200617E4F /* Post.m in Sources */,
 				76D01CB6269CC89D00288EF2 /* SceneDelegate.m in Sources */,
+				760B968526A0AE1100CB7F80 /* DishPostCell.m in Sources */,
 				76E49E71269E00AC00617E4F /* Restaurant.m in Sources */,
 				76D01CEE269CD53000288EF2 /* TableFeedViewController.m in Sources */,
 				76D01CEB269CC9DD00288EF2 /* LoginViewController.m in Sources */,
