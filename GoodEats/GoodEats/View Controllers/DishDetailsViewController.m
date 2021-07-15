@@ -56,10 +56,9 @@
 }
 
 - (void) getAllPosts {
-    // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query includeKeys:@[@"author",@"image"]];
     [query whereKey:@"dish" equalTo:self.dish];
-//    [query includeKeys:@[@"author",@"image", @"dish"]];
     [query orderByDescending:@"createdAt"];
     query.limit = 25;
     
@@ -69,7 +68,7 @@
             NSLog(@"got all the posts");
             self.posts = (NSMutableArray *) posts;
             [self refreshData];
-//            [self.tableView reloadData];
+            [self.tableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
@@ -82,14 +81,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    DishPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DishPostCell"];
-//
-//    Post *post = self.posts[indexPath.row];
-//
-//    cell.post = post;
-//    [cell refreshData];
-//
-    return nil;
+    DishPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DishPostCell"];
+
+    Post *post = self.posts[indexPath.row];
+
+    cell.post = post;
+    [cell refreshData];
+
+    return cell;
 }
 
 - (void) calculateAverageRating {
@@ -98,7 +97,7 @@
         sum = @([sum doubleValue] + [post.rating doubleValue]);
     }
     NSNumber *avgRating = @([sum doubleValue] / self.posts.count);
-    self.ratingLabel.text = [avgRating stringValue];
+    self.ratingLabel.text = [NSString stringWithFormat:@"Overall Rating: %@/5", [avgRating stringValue]];
     [self setRatingStarsWithRating:avgRating];
 }
 
@@ -139,7 +138,7 @@
     if ([numCheckIns isEqualToString:@"25"]) {
         numCheckIns = @"25+";
     }
-    self.numCheckInsLabel.text = numCheckIns;
+    self.numCheckInsLabel.text = [NSString stringWithFormat:@"%@ Total Check-Ins", numCheckIns];
     
 }
 
