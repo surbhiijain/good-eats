@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		127DB6197D523FA09ED7C833 /* Pods_GoodEatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFF1880454A69F6BD7FA8BF9 /* Pods_GoodEatsTests.framework */; };
 		4FA0AE58DCA55D8206A3ED1C /* Pods_GoodEats_GoodEatsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E64CCCBC5731AF72615924 /* Pods_GoodEats_GoodEatsUITests.framework */; };
+		760B967F269FB74D00CB7F80 /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760B967E269FB74D00CB7F80 /* PostDetailViewController.m */; };
 		76290DA9269CD6F70045095D /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76290DA8269CD6F70045095D /* PostCell.m */; };
 		76D01CB3269CC89D00288EF2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CB2269CC89D00288EF2 /* AppDelegate.m */; };
 		76D01CB6269CC89D00288EF2 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CB5269CC89D00288EF2 /* SceneDelegate.m */; };
@@ -52,6 +53,8 @@
 		1E7FEB9258F9684F4811C9E1 /* Pods-GoodEats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodEats.release.xcconfig"; path = "Target Support Files/Pods-GoodEats/Pods-GoodEats.release.xcconfig"; sourceTree = "<group>"; };
 		2260FB7CD2EB643806D5BF33 /* Pods-GoodEats-GoodEatsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodEats-GoodEatsUITests.release.xcconfig"; path = "Target Support Files/Pods-GoodEats-GoodEatsUITests/Pods-GoodEats-GoodEatsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		67E64CCCBC5731AF72615924 /* Pods_GoodEats_GoodEatsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodEats_GoodEatsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		760B967D269FB74D00CB7F80 /* PostDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
+		760B967E269FB74D00CB7F80 /* PostDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
 		76290DA7269CD6F70045095D /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
 		76290DA8269CD6F70045095D /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
 		76D01CAE269CC89D00288EF2 /* GoodEats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodEats.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +198,8 @@
 				76E49E6A269D1DBF00617E4F /* ProfileViewController.m */,
 				76E49E75269E0AF700617E4F /* ComposeViewController.h */,
 				76E49E76269E0AF700617E4F /* ComposeViewController.m */,
+				760B967D269FB74D00CB7F80 /* PostDetailViewController.h */,
+				760B967E269FB74D00CB7F80 /* PostDetailViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -485,6 +490,7 @@
 				76D01CB3269CC89D00288EF2 /* AppDelegate.m in Sources */,
 				76290DA9269CD6F70045095D /* PostCell.m in Sources */,
 				76E49E6B269D1DBF00617E4F /* ProfileViewController.m in Sources */,
+				760B967F269FB74D00CB7F80 /* PostDetailViewController.m in Sources */,
 				76E49E77269E0AF800617E4F /* ComposeViewController.m in Sources */,
 				76D01CC4269CC89D00288EF2 /* main.m in Sources */,
 				76E49E6E269DFEE200617E4F /* Post.m in Sources */,
