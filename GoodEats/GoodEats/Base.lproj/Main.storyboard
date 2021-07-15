@@ -92,7 +92,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="756"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="500" id="kkN-oO-Ibe" customClass="FeedPostCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedPostCell" rowHeight="500" id="kkN-oO-Ibe" customClass="FeedPostCell">
                                         <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="500"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kkN-oO-Ibe" id="B5P-Ka-I1m">
@@ -302,7 +302,7 @@
                                             <outlet property="tagButton4" destination="Oc3-rH-lVx" id="ryO-sv-Sp5"/>
                                             <outlet property="tagButton5" destination="50T-y9-NAS" id="fj5-Uc-Uku"/>
                                             <outlet property="usernameLabel" destination="9Is-qQ-V2L" id="mbo-JF-zJ7"/>
-                                            <segue destination="ySw-ZA-J9m" kind="showDetail" identifier="postDetailsSegue" id="Wff-nG-d0X"/>
+                                            <segue destination="rNf-yc-9wT" kind="showDetail" identifier="postDetailsSegue" id="FhP-aH-ncJ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -356,6 +356,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Dish Name"/>
+                                <connections>
+                                    <segue destination="0g2-bH-Xer" kind="presentation" identifier="dishDetailsSegue" id="eE6-rv-jqs"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bA-qh-hMz">
                                 <rect key="frame" x="33" y="184" width="361" height="44"/>
@@ -420,7 +423,7 @@
                                 <rect key="frame" x="-1" y="0.0" width="390" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="Dev-bY-LxN"/>
+                                    <navigationItem title="Post Detail" id="Dev-bY-LxN"/>
                                 </items>
                             </navigationBar>
                             <button opaque="NO" alpha="0.80000001192092896" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="65x-Py-8zD">
@@ -492,7 +495,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiJ-2X-jac" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2240" y="2139.0995260663508"/>
+            <point key="canvasLocation" x="1311" y="2139"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="peR-ED-TbW">
@@ -850,7 +853,7 @@
             <objects>
                 <viewController id="0g2-bH-Xer" customClass="DishDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xvO-lq-ZZM">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4k-T2-gB3">
@@ -870,7 +873,7 @@
                                 <rect key="frame" x="-1" y="0.0" width="390" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="06f-cs-g3e"/>
+                                    <navigationItem title="Dish Detail" id="06f-cs-g3e"/>
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dish Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Tt-LO-1fF">
@@ -969,7 +972,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="297" id="CBN-4S-CAX" customClass="DishPostCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DishPostCell" rowHeight="297" id="CBN-4S-CAX" customClass="DishPostCell">
                                         <rect key="frame" x="0.0" y="24.333333969116211" width="402" height="297"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CBN-4S-CAX" id="zpM-Df-IIC">
@@ -1073,6 +1076,7 @@
                         <outlet property="reviewStar3" destination="oN1-RJ-1LP" id="oCv-3y-EC9"/>
                         <outlet property="reviewStar4" destination="cle-vN-bd6" id="rgw-g0-cMV"/>
                         <outlet property="reviewStar5" destination="eIS-3J-HaC" id="GSE-mP-yFi"/>
+                        <outlet property="tableView" destination="a1E-ut-pKs" id="umR-1O-sCp"/>
                         <outlet property="tagButton1" destination="o8A-ID-RRw" id="tVa-Bq-Dit"/>
                         <outlet property="tagButton2" destination="OmL-jN-gju" id="VUy-gc-OJA"/>
                         <outlet property="tagButton3" destination="98Z-JP-RCG" id="Q0z-JD-F4U"/>
@@ -1082,43 +1086,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cSB-Iv-zV6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4009.2307692307691" y="2138.3886255924172"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="4WZ-m2-e1B">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BKV-Ce-OQ4" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NiE-Ba-da5">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="0g2-bH-Xer" kind="relationship" relationship="rootViewController" id="enj-fY-fxD"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WLd-l4-bmt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3078.4615384615386" y="2138.3886255924172"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="vcE-z3-GiY">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ySw-ZA-J9m" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PJs-cl-bnf">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="rNf-yc-9wT" kind="relationship" relationship="rootViewController" id="CLE-5p-QfX"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1Zi-gO-gFq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1310.7692307692307" y="2139.0995260663508"/>
+            <point key="canvasLocation" x="1311" y="2822"/>
         </scene>
     </scenes>
     <designables>

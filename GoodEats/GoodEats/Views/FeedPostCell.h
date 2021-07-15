@@ -19,8 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *postImage;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 
-@property (nonatomic, strong) Post *post;
-
 @property (weak, nonatomic) IBOutlet UIImageView *reviewStar1;
 @property (weak, nonatomic) IBOutlet UIImageView *reviewStar2;
 @property (weak, nonatomic) IBOutlet UIImageView *reviewStar3;
@@ -33,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *tagButton4;
 @property (weak, nonatomic) IBOutlet UIButton *tagButton5;
 
+@property (nonatomic, strong) Post *post;
 
 - (void)refreshData;
 

@@ -6,10 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Dish.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DishDetailsViewController : UIViewController
+
+@property (nonatomic, strong) Dish *dish;
 
 @end
 

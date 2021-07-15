@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,12 +18,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeStampLabel;
 
-
 @property (weak, nonatomic) IBOutlet UIImageView *reviewStar1;
 @property (weak, nonatomic) IBOutlet UIImageView *reviewStar2;
 @property (weak, nonatomic) IBOutlet UIImageView *reviewStar3;
 @property (weak, nonatomic) IBOutlet UIImageView *reviewStar4;
 @property (weak, nonatomic) IBOutlet UIImageView *reviewStar5;
+
+@property (nonatomic, strong) Post *post;
+
+- (void)refreshData;
 
 @end
 

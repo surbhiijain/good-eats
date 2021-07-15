@@ -35,10 +35,10 @@
 
 - (void) getAllPosts {
     // construct query
-    PFQuery *query = [PFQuery queryWithClassName:@"Post" predicate:nil];
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKeys:@[@"author",@"image", @"dish"]];
     [query orderByDescending:@"createdAt"];
-    query.limit = 20;
+    query.limit = 25;
     
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
@@ -58,7 +58,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    FeedPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    FeedPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedPostCell"];
     
     Post *post = self.posts[indexPath.row];
     
@@ -70,16 +70,12 @@
 
 
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"postDetailsSegue"]) {
         PostDetailViewController *detailsVC = [segue destinationViewController];
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         detailsVC.post = self.posts[indexPath.row];
     }
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
 
 @end
