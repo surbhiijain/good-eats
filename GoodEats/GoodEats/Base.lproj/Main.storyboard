@@ -644,7 +644,7 @@
             <objects>
                 <viewController id="zvO-tP-dNp" customClass="ComposeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7AL-9n-iPn">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="what'd you eat?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x1x-jE-Bfe">
@@ -931,7 +931,7 @@
             <objects>
                 <viewController id="0g2-bH-Xer" customClass="DishDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xvO-lq-ZZM">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4k-T2-gB3">
@@ -1137,7 +1137,6 @@
                                             <outlet property="reviewStar5" destination="zih-rK-FbJ" id="Lpf-kJ-GQF"/>
                                             <outlet property="timeStampLabel" destination="a2l-8q-Npg" id="QhW-Dh-OkR"/>
                                             <outlet property="usernameLabel" destination="YOK-Be-8xJ" id="6L2-XX-w2v"/>
-                                            <segue destination="rNf-yc-9wT" kind="showDetail" identifier="postDetailsSegue" id="rbk-kf-4CP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1234,9 +1233,8 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="eE6-rv-jqs"/>
+        <segue reference="fV2-J6-dkz"/>
         <segue reference="Xy6-ao-URM"/>
-        <segue reference="rbk-kf-4CP"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera" catalog="system" width="128" height="94"/>
