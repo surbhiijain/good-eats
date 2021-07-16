@@ -29,7 +29,7 @@
     
     [self getAllPosts];
     
-    [self.refreshControl addTarget:self action:@selector(getAllPosts) forControlEvents:(UIControlEventValueChanged)];
+    [self.refreshControl addTarget:self action:@selector(getAllPostsofDish) forControlEvents:(UIControlEventValueChanged)];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 

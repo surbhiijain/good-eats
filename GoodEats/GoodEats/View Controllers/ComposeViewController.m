@@ -99,28 +99,62 @@
 
 - (IBAction)didTapDone:(id)sender {
     if (![self.imageButton.imageView.image isEqual:nil]) {
-        Restaurant *restaurant = [[Restaurant alloc] initWithName:self.restaurantField.text withLatitude:@37.783333 withLongitude:@-122.416667];
-        Dish *dish = [[Dish alloc] initWithName:self.dishField.text withRestaurant:restaurant.name];
-        [restaurant addDish:dish];
-        
-        NSNumber *rating = [NSNumber numberWithFloat:self.starRatingView.value];
-        
-        [Post postUserImage:self.imageButton.imageView.image withCaption:self.captionField.text withDish:dish withRating:rating withTags:self.tags withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-            if (!succeeded) {
-                NSLog(@"imaged not posted");
-            } else {
-                NSLog(@"IMAGE POSTED");
-                // todo: send this info to map + feed VC
-            }
-        }];
-        // go back to main map view
-        self.tabBarController.selectedViewController
-            = [self.tabBarController.viewControllers objectAtIndex:0];
-        [self clearField];
+        [self getRestaurant];
     } else {
         NSLog(@"Please upload a photo");
     }
 }
+
+- (void)getRestaurant {
+    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
+    [query includeKeys:@[@"dishes"]];
+    [query whereKey:@"name" equalTo:self.restaurantField.text]; //TODO: add location as a parameter
+    __block Restaurant *restaurant;
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *restaurants, NSError *error) {
+        if (restaurants != nil && restaurants.count != 0) {
+            NSLog(@"found an existing restaurant in the database");
+            restaurant = restaurants[0];
+        } else {
+            NSLog(@"creating a new restaurant object");
+            restaurant = [[Restaurant alloc] initWithName:self.restaurantField.text withLatitude:@37.783333 withLongitude:@-122.416667]; //TODO: change these coordinates
+        }
+        [self getDish:restaurant];
+    }];
+}
+
+- (void) getDish:(Restaurant *) restaurant {
+    Dish *dish;
+    for (Dish *d in restaurant.dishes) {
+        if ([d.name isEqual:self.dishField.text]) {
+            dish = d;
+        }
+    }
+    if (!dish) {
+        dish = [[Dish alloc] initWithName:self.dishField.text withRestaurant:restaurant.name];
+    }
+    [restaurant addDish:dish];
+    [restaurant saveInBackground];
+    [self createPost:dish];
+}
+
+- (void) createPost:(Dish *)dish {
+    NSNumber *rating = [NSNumber numberWithFloat:self.starRatingView.value];
+    
+    [Post postUserImage:self.imageButton.imageView.image withCaption:self.captionField.text withDish:dish withRating:rating withTags:self.tags withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (!succeeded) {
+            NSLog(@"imaged not posted");
+        } else {
+            NSLog(@"IMAGE POSTED");
+            // todo: send this info to map + feed VC
+        }
+    }];
+    // go back to main map view
+    self.tabBarController.selectedViewController
+        = [self.tabBarController.viewControllers objectAtIndex:0];
+    [self clearField];
+}
+
 - (IBAction)didTapTag:(UIButton *)sender {
     
     NSString *tagName = [sender currentTitle];

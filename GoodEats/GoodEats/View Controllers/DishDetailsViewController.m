@@ -49,13 +49,13 @@
     self.dishLabel.text = self.dish.name;
     [self.restaurantButton setTitle:self.dish.restaurantName forState:UIControlStateNormal];
     
-    [self getAllPosts];
+    [self getAllPostsofDish];
     
-    [self.refreshControl addTarget:self action:@selector(getAllPosts) forControlEvents:(UIControlEventValueChanged)];
+    [self.refreshControl addTarget:self action:@selector(getAllPostsofDish) forControlEvents:(UIControlEventValueChanged)];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
-- (void) getAllPosts {
+- (void) getAllPostsofDish {
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKeys:@[@"author",@"image"]];
     [query whereKey:@"dish" equalTo:self.dish];

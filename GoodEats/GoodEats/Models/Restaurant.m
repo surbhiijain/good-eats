@@ -25,13 +25,15 @@
         self.name = name;
         self.latitude = latitude;
         self.longitude = longitude;
-        self.dishes = [NSMutableArray new];
+        self.dishes = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 - (void)addDish:(Dish *)dish {
-    [self.dishes addObject:dish];
+    [self addObject:dish forKey:@"dishes"];
+    [self saveInBackground];
+//    [self.dishes addObject:dish];
 }
 
 @end
