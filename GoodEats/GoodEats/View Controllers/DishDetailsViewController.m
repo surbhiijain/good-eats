@@ -73,7 +73,6 @@
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            NSLog(@"got all the posts");
             self.posts = (NSMutableArray *) posts;
             [self refreshData];
             [self.tableView reloadData];

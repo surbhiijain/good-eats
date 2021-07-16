@@ -738,13 +738,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLD-J3-3Zc">
-                                <rect key="frame" x="15" y="71.999999999999986" width="250" height="172.66666666666669"/>
+                                <rect key="frame" x="15" y="71.333333333333329" width="250" height="174.33333333333331"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="FmL-hu-Yhb"/>
                                     <constraint firstAttribute="height" constant="175" id="g9J-zc-mMz"/>
                                 </constraints>
                                 <color key="tintColor" red="0.92146253590000005" green="0.91786193849999997" blue="0.90588122609999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" backgroundImage="camera" catalog="system">
+                                <state key="normal" backgroundImage="photo.fill.on.rectangle.fill" catalog="system">
                                     <color key="titleColor" red="0.92146253590000005" green="0.91786193849999997" blue="0.90588122609999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
@@ -1242,7 +1242,6 @@
         <segue reference="Xy6-ao-URM"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="camera" catalog="system" width="128" height="94"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="homekit" catalog="system" width="128" height="106"/>
@@ -1250,6 +1249,7 @@
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="photo.fill.on.rectangle.fill" catalog="system" width="128" height="96"/>
         <image name="photo.on.rectangle" catalog="system" width="128" height="96"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="star" catalog="system" width="128" height="116"/>

@@ -98,11 +98,20 @@
 }
 
 - (IBAction)didTapDone:(id)sender {
-    if (![self.imageButton.imageView.image isEqual:nil]) {
+    if ([self validPost]) {
         [self getRestaurant];
     } else {
-        NSLog(@"Please upload a photo");
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Post not completed"
+                                                                                   message:@"Please upload an image and enter the restaurant and dish names"
+                                                                            preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
+}
+
+- (BOOL) validPost {
+    return (self.imageButton.imageView.image && self.restaurantField.text.length > 0 && self.dishField.text.length > 0);
 }
 
 - (void)getRestaurant {
@@ -113,10 +122,8 @@
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *restaurants, NSError *error) {
         if (restaurants != nil && restaurants.count != 0) {
-            NSLog(@"found an existing restaurant in the database");
             restaurant = restaurants[0];
         } else {
-            NSLog(@"creating a new restaurant object");
             restaurant = [[Restaurant alloc] initWithName:self.restaurantField.text withLatitude:@37.783333 withLongitude:@-122.416667]; //TODO: change these coordinates
         }
         [self getDish:restaurant];
@@ -145,7 +152,6 @@
         if (!succeeded) {
             NSLog(@"imaged not posted");
         } else {
-            NSLog(@"IMAGE POSTED");
             // todo: send this info to map + feed VC
         }
     }];
