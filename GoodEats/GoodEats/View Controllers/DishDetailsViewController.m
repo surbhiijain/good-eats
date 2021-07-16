@@ -103,12 +103,22 @@
             [tagCounts setObject:@([prevCount intValue] + [@1 intValue]) forKey:tag];
         }
     }
+    
     return tagCounts;
 }
 
 - (void)setTags {
     
     NSMutableDictionary *tagCounts = [self getTagCounts];
+    
+    NSArray* sortedKeys = [tagCounts keysSortedByValueUsingComparator:^(NSNumber *first, NSNumber *second) {
+       if ([first integerValue] > [second integerValue])
+           return (NSComparisonResult)NSOrderedDescending;
+
+       if ([first integerValue] < [second integerValue])
+           return (NSComparisonResult)NSOrderedAscending;
+       return (NSComparisonResult)NSOrderedSame;
+   }];
     
     NSMutableArray *tagButtons = [[NSMutableArray alloc] init];
     [tagButtons addObject:self.tagButton1];
@@ -118,19 +128,19 @@
     [tagButtons addObject:self.tagButton5];
         
     // display tags starting from top right left until there are no more and hide any remaining tag placeholders
-    for (NSString *tagName in tagCounts) {
+    int tagButtonIndex = 0;
+    for (NSString *tagName in sortedKeys) {
+        UIButton *tagButton = tagButtons[tagButtonIndex];
+        tagButtonIndex += 1;
         NSNumber *count = tagCounts[tagName];
-        
+        [tagButton setTitle:tagName forState:UIControlStateNormal];
+        // TODO: set count label
     }
 
-    for (int i = 0; i < tagButtons.count; i++) {
+    for (int i = tagButtonIndex; i < tagButtons.count; i++) {
         UIButton *tagButton = tagButtons[i];
-        if (i < tagCounts.count) {
-            [tagButton setTitle:self.post.tags[i] forState:UIControlStateNormal];
-        } else {
-            [tagButton setTitle:@"" forState:UIControlStateNormal];
-            [tagButton setHidden:TRUE];
-        }
+        [tagButton setTitle:@"" forState:UIControlStateNormal];
+        [tagButton setHidden:TRUE];
     }
 }
 
@@ -175,6 +185,7 @@
 
 - (void) refreshData {
     [self calculateAverageRating];
+    [self setTags];
     
     // calculate total number of checkins, accounting for how they may not have all been queried because the limit is 25
     NSString *numCheckIns = [@(self.posts.count) stringValue];

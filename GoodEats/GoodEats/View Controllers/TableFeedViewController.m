@@ -72,15 +72,17 @@
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-    Post *post = self.posts[indexPath.row];
-
+    
     if ([segue.identifier isEqualToString:@"postDetailsSegue"]) {
         PostDetailViewController *detailsVC = [segue destinationViewController];
-        detailsVC.post = post;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        detailsVC.post = self.posts[indexPath.row];
     }
     if ([segue.identifier isEqualToString:@"dishDetailsSegue"]) {
         DishDetailsViewController *detailsVC = [segue destinationViewController];
+        FeedPostCell* cell = (FeedPostCell*)[[sender superview] superview];
+        NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+        Post *post = self.posts[indexPath.row];
         detailsVC.dish = post.dish;
     }
 }
