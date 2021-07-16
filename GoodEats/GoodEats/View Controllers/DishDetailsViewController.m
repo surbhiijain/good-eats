@@ -24,6 +24,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *tagButton4;
 @property (weak, nonatomic) IBOutlet UIButton *tagButton5;
 
+@property (weak, nonatomic) IBOutlet UILabel *tagCountLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *tagCountLabel2;
+@property (weak, nonatomic) IBOutlet UILabel *tagCountLabel3;
+@property (weak, nonatomic) IBOutlet UILabel *tagCountLabel4;
+@property (weak, nonatomic) IBOutlet UILabel *tagCountLabel5;
+
+
 @property (weak, nonatomic) IBOutlet UIImageView *reviewStar1;
 @property (weak, nonatomic) IBOutlet UIImageView *reviewStar2;
 @property (weak, nonatomic) IBOutlet UIImageView *reviewStar3;
@@ -113,10 +120,10 @@
     
     NSArray* sortedKeys = [tagCounts keysSortedByValueUsingComparator:^(NSNumber *first, NSNumber *second) {
        if ([first integerValue] > [second integerValue])
-           return (NSComparisonResult)NSOrderedDescending;
+           return (NSComparisonResult)NSOrderedAscending;
 
        if ([first integerValue] < [second integerValue])
-           return (NSComparisonResult)NSOrderedAscending;
+           return (NSComparisonResult)NSOrderedDescending;
        return (NSComparisonResult)NSOrderedSame;
    }];
     
@@ -126,20 +133,31 @@
     [tagButtons addObject:self.tagButton3];
     [tagButtons addObject:self.tagButton4];
     [tagButtons addObject:self.tagButton5];
+    
+    NSMutableArray *tagLabels = [[NSMutableArray alloc] init];
+    [tagLabels addObject:self.tagCountLabel1];
+    [tagLabels addObject:self.tagCountLabel2];
+    [tagLabels addObject:self.tagCountLabel3];
+    [tagLabels addObject:self.tagCountLabel4];
+    [tagLabels addObject:self.tagCountLabel5];
         
     // display tags starting from top right left until there are no more and hide any remaining tag placeholders
     int tagButtonIndex = 0;
     for (NSString *tagName in sortedKeys) {
         UIButton *tagButton = tagButtons[tagButtonIndex];
+        UILabel *tagCountLabel = tagLabels[tagButtonIndex];
         tagButtonIndex += 1;
         NSNumber *count = tagCounts[tagName];
         [tagButton setTitle:tagName forState:UIControlStateNormal];
-        // TODO: set count label
+        tagCountLabel.text = [count stringValue];
     }
 
     for (int i = tagButtonIndex; i < tagButtons.count; i++) {
         UIButton *tagButton = tagButtons[i];
+        UILabel *tagCountLabel = tagLabels[i];
+
         [tagButton setTitle:@"" forState:UIControlStateNormal];
+        tagCountLabel.text = @"";
         [tagButton setHidden:TRUE];
     }
 }

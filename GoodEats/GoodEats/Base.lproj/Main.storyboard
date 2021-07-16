@@ -1220,6 +1220,11 @@
                         <outlet property="tagButton3" destination="98Z-JP-RCG" id="Q0z-JD-F4U"/>
                         <outlet property="tagButton4" destination="1q1-i3-KPu" id="blY-pE-z5i"/>
                         <outlet property="tagButton5" destination="f4a-jx-Qsf" id="LtT-AU-ZGq"/>
+                        <outlet property="tagCountLabel1" destination="Obk-AW-KVE" id="Elt-zi-igX"/>
+                        <outlet property="tagCountLabel2" destination="SCJ-So-2C9" id="qRw-zQ-coN"/>
+                        <outlet property="tagCountLabel3" destination="jgE-Dj-6KG" id="fvZ-4L-xPe"/>
+                        <outlet property="tagCountLabel4" destination="D3N-7C-RJH" id="Zh5-J2-8Fl"/>
+                        <outlet property="tagCountLabel5" destination="DfG-g5-k1b" id="KDM-gI-7UF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cSB-Iv-zV6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
