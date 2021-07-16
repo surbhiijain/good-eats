@@ -8,6 +8,7 @@
 #import "DishDetailsViewController.h"
 #import "DishPostCell.h"
 #import "Post.h"
+#import "PostDetailViewController.h"
 
 @interface DishDetailsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -57,7 +58,7 @@
 
 - (void) getAllPostsofDish {
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query includeKeys:@[@"author",@"image"]];
+    [query includeKeys:@[@"author",@"image", @"dish"]];
     [query whereKey:@"dish" equalTo:self.dish];
     [query orderByDescending:@"createdAt"];
     query.limit = 25;
@@ -89,6 +90,48 @@
     [cell refreshData];
 
     return cell;
+}
+
+- (NSMutableDictionary *) getTagCounts {
+    NSMutableDictionary *tagCounts = [NSMutableDictionary new];
+    for (Post *post in self.posts) {
+        for (NSString *tag in post.tags) {
+            NSNumber *prevCount = @0;
+            if ([tagCounts objectForKey:tag]) {
+                prevCount = tagCounts[tag];
+            }
+            [tagCounts setObject:@([prevCount intValue] + [@1 intValue]) forKey:tag];
+        }
+    }
+    return tagCounts;
+}
+
+- (void)setTags {
+    
+    NSMutableDictionary *tagCounts = [self getTagCounts];
+    
+    NSMutableArray *tagButtons = [[NSMutableArray alloc] init];
+    [tagButtons addObject:self.tagButton1];
+    [tagButtons addObject:self.tagButton2];
+    [tagButtons addObject:self.tagButton3];
+    [tagButtons addObject:self.tagButton4];
+    [tagButtons addObject:self.tagButton5];
+        
+    // display tags starting from top right left until there are no more and hide any remaining tag placeholders
+    for (NSString *tagName in tagCounts) {
+        NSNumber *count = tagCounts[tagName];
+        
+    }
+
+    for (int i = 0; i < tagButtons.count; i++) {
+        UIButton *tagButton = tagButtons[i];
+        if (i < tagCounts.count) {
+            [tagButton setTitle:self.post.tags[i] forState:UIControlStateNormal];
+        } else {
+            [tagButton setTitle:@"" forState:UIControlStateNormal];
+            [tagButton setHidden:TRUE];
+        }
+    }
 }
 
 - (void) calculateAverageRating {
@@ -142,14 +185,14 @@
     
 }
 
-/*
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"postDetailsSegue"]) {
+        PostDetailViewController *detailsVC = [segue destinationViewController];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        Post *post = self.posts[indexPath.row];
+        detailsVC.post = post;
+    }
 }
-*/
 
 @end

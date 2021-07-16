@@ -8,6 +8,7 @@
 #import "TableFeedViewController.h"
 #import "FeedPostCell.h"
 #import "PostDetailViewController.h"
+#import "DishDetailsViewController.h"
 
 @interface TableFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -29,7 +30,7 @@
     
     [self getAllPosts];
     
-    [self.refreshControl addTarget:self action:@selector(getAllPostsofDish) forControlEvents:(UIControlEventValueChanged)];
+    [self.refreshControl addTarget:self action:@selector(getAllPosts) forControlEvents:(UIControlEventValueChanged)];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
@@ -71,10 +72,16 @@
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    Post *post = self.posts[indexPath.row];
+
     if ([segue.identifier isEqualToString:@"postDetailsSegue"]) {
         PostDetailViewController *detailsVC = [segue destinationViewController];
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        detailsVC.post = self.posts[indexPath.row];
+        detailsVC.post = post;
+    }
+    if ([segue.identifier isEqualToString:@"dishDetailsSegue"]) {
+        DishDetailsViewController *detailsVC = [segue destinationViewController];
+        detailsVC.dish = post.dish;
     }
 }
 
