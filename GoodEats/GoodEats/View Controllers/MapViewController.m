@@ -25,7 +25,6 @@
     [self.mapView setRegion:sfRegion animated:false];
     self.mapView.delegate = self;
     self.tabBarController.delegate = self;
-    // Do any additional setup after loading the view.
 }
 
 - (void)ComposeViewController:(ComposeViewController *)controller didPickLocationWithLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude {
@@ -39,6 +38,7 @@
     [self.mapView addAnnotation:annotation];
 }
 
+// find and set compose view controller delegate
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         UINavigationController *viewControllers = (UINavigationController *) viewController;

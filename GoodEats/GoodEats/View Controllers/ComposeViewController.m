@@ -27,9 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tags = [NSMutableArray new];
-//    [self.starRatingView setStarBorderColor:[UIColor lightGrayColor]];
     [self.starRatingView setTintColor:[UIColor systemYellowColor]];
-    // Do any additional setup after loading the view.
 }
 - (IBAction)didTapPhoto:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
@@ -73,7 +71,6 @@
     [self.imageButton setBackgroundImage:nil forState:UIControlStateNormal];
     [self.imageButton setImage:resizedImage forState:UIControlStateNormal];
     
-    // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -152,8 +149,8 @@
         if (!succeeded) {
             NSLog(@"imaged not posted");
         } else {
+            // TODO: send request to find real location
             [self.delegate ComposeViewController:self didPickLocationWithLatitude:@47.697631726141275 longitude:@-122.02136993408205];
-            // todo: send this info to map + feed VC with a delegate
         }
         // go back to main map view
         self.tabBarController.selectedViewController
@@ -174,7 +171,6 @@
     } else if ([self.tags containsObject:tagName]) {
         [self.tags removeObject:tagName];
         [sender setBackgroundColor:[UIColor colorWithRed:211/255.0 green:229/255.0 blue:227/255.0 alpha:1.0]];
-
     }
 }
 

@@ -41,7 +41,6 @@
     [query orderByDescending:@"createdAt"];
     query.limit = 25;
     
-    // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.posts = (NSMutableArray *) posts;
