@@ -94,7 +94,7 @@
 - (IBAction)didTapCancel:(id)sender {
     self.tabBarController.selectedViewController
         = [self.tabBarController.viewControllers objectAtIndex:0];
-    [self clearField];
+    [self clearFields];
 }
 
 - (IBAction)didTapDone:(id)sender {
@@ -152,13 +152,14 @@
         if (!succeeded) {
             NSLog(@"imaged not posted");
         } else {
-            // todo: send this info to map + feed VC
+            // todo: send this info to map + feed VC with a delegate
         }
     }];
+    
     // go back to main map view
     self.tabBarController.selectedViewController
         = [self.tabBarController.viewControllers objectAtIndex:0];
-    [self clearField];
+    [self clearFields];
 }
 
 - (IBAction)didTapTag:(UIButton *)sender {
@@ -175,12 +176,17 @@
     }
 }
 
-- (void)clearField {
+- (void)clearFields {
     self.restaurantField.text = @"";
     self.dishField.text = @"";
     self.captionField.text = @"";
     self.starRatingView.value = 0;
+    [self.imageButton setImage:nil forState:UIControlStateNormal];
+    
+    UIImage *placeHolderImage =  [UIImage systemImageNamed:@"photo.fill.on.rectangle.fill"];
+    [self.imageButton setBackgroundImage:placeHolderImage forState:UIControlStateNormal];
 }
+
 /*
 #pragma mark - Navigation
 
