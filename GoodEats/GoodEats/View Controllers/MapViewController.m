@@ -27,7 +27,7 @@
     self.tabBarController.delegate = self;
 }
 
-- (void)ComposeViewController:(ComposeViewController *)controller didPickLocationWithLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude {
+- (void)ComposeViewController:(ComposeViewController *)controller postedWithRestaurantLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude {
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude.floatValue, longitude.floatValue);
 
     [self.navigationController popViewControllerAnimated:YES];

@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ComposeViewControllerDelegate
 
-- (void)ComposeViewController:(ComposeViewController *)controller didPickLocationWithLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude;
+- (void)ComposeViewController:(ComposeViewController *)controller postedWithRestaurantLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude;
 
 @end
 

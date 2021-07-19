@@ -104,7 +104,7 @@
 
 - (IBAction)didTapDone:(id)sender {
     if ([self validPost]) {
-        [self getRestaurant];
+        [self locateRestaurant:@"98053"]; //TODO: pass in user's current location
     } else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Post not completed"
                                                                                    message:@"Please upload an image and enter the restaurant and dish names"
@@ -119,20 +119,41 @@
     return (self.imageButton.imageView.image && self.restaurantField.text.length > 0 && self.dishField.text.length > 0);
 }
 
-- (void)getRestaurant {
+- (void) locateRestaurant:(NSString *) zipCode {
+    [[AppDelegate sharedClient] searchWithLocation:zipCode term:self.restaurantField.text limit:5 offset:0 sort:YLPSortTypeDistance completionHandler:^(YLPSearch * search, NSError * error) {
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        } else {
+            YLPBusiness *business = search.businesses[0];
+            YLPLocation *location = business.location;
+            [self getOrCreateParseRestaurant:business withLocation:location];
+        }
+    }];
+}
+
+- (void)getOrCreateParseRestaurant: (YLPBusiness *) business withLocation: (YLPLocation *) location {
+    
+    NSNumber *latitude = [NSNumber numberWithDouble:business.location.coordinate.latitude];
+    NSNumber *longitude = [NSNumber numberWithDouble:business.location.coordinate.longitude];
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
     [query includeKeys:@[@"dishes"]];
-    [query whereKey:@"name" equalTo:self.restaurantField.text]; //TODO: add location as a parameter
+    [query whereKey:@"name" equalTo:business.name];
+    [query whereKey:@"latitude" equalTo:latitude];
+    [query whereKey:@"longitude" equalTo:longitude];
+    
     __block Restaurant *restaurant;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *restaurants, NSError *error) {
+        // set the restaurant to the first result if one already exists
         if (restaurants != nil && restaurants.count != 0) {
             restaurant = restaurants[0];
-        } else {
-            restaurant = [[Restaurant alloc] initWithName:self.restaurantField.text withLatitude:@37.783333 withLongitude:@-122.416667]; //TODO: change these coordinates
+        }
+        // otherwise, create a new restaurant object
+        else {
+            restaurant = [[Restaurant alloc] initWithName:self.restaurantField.text withLatitude:latitude withLongitude:longitude];
         }
         [self getDish:restaurant];
-        [self findRestaurantLocation:restaurant zipCode:@"98053"];
     }];
 }
 
@@ -145,35 +166,22 @@
     }
     if (!dish) {
         dish = [[Dish alloc] initWithName:self.dishField.text withRestaurant:restaurant.name];
+        [restaurant addDish:dish];
+        [restaurant saveInBackground];
     }
-    [restaurant addDish:dish];
-    [restaurant saveInBackground];
-    [self createPost:dish];
-}
-
-- (void) findRestaurantLocation: (Restaurant *) restaurant zipCode:(NSString *) zipCode {
-    [[AppDelegate sharedClient] searchWithLocation:zipCode term:restaurant.name limit:5 offset:0 sort:YLPSortTypeDistance completionHandler:^(YLPSearch * search, NSError * error) {
-        if (error != nil) {
-            NSLog(@"%@", [error localizedDescription]);
-        } else {
-            NSLog(search.businesses[0].name);
-            YLPBusiness *business = search.businesses[0];
-            restaurant.latitude = [NSNumber numberWithDouble:business.location.coordinate.latitude];
-            restaurant.longitude = [NSNumber numberWithDouble:business.location.coordinate.longitude];
-        }
-    }];
+    
+    [self createPost:dish withRestaurant:restaurant];
 }
 
 
-- (void) createPost:(Dish *)dish {
+- (void) createPost:(Dish *)dish withRestaurant:(Restaurant *) restaurant {
     NSNumber *rating = [NSNumber numberWithFloat:self.starRatingView.value];
     
     [Post postUserImage:self.imageButton.imageView.image withCaption:self.captionField.text withDish:dish withRating:rating withTags:self.tags withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (!succeeded) {
             NSLog(@"imaged not posted");
         } else {
-            // TODO: send request to find real location
-            [self.delegate ComposeViewController:self didPickLocationWithLatitude:@47.697631726141275 longitude:@-122.02136993408205];
+            [self.delegate ComposeViewController:self postedWithRestaurantLatitude:restaurant.latitude longitude:restaurant.longitude];
         }
         // go back to main map view
         self.tabBarController.selectedViewController
