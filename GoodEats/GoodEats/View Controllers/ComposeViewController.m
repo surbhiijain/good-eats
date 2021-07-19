@@ -152,14 +152,16 @@
         if (!succeeded) {
             NSLog(@"imaged not posted");
         } else {
+            [self.delegate ComposeViewController:self didPickLocationWithLatitude:@47.697631726141275 longitude:@-122.02136993408205];
             // todo: send this info to map + feed VC with a delegate
         }
+        // go back to main map view
+        self.tabBarController.selectedViewController
+            = [self.tabBarController.viewControllers objectAtIndex:0];
+        [self clearFields];
     }];
     
-    // go back to main map view
-    self.tabBarController.selectedViewController
-        = [self.tabBarController.viewControllers objectAtIndex:0];
-    [self clearFields];
+
 }
 
 - (IBAction)didTapTag:(UIButton *)sender {

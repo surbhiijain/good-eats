@@ -6,10 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ComposeViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MapViewController : UIViewController
+@interface MapViewController : UIViewController <ComposeViewControllerDelegate, UITabBarControllerDelegate>
 
 @end
 

@@ -7,6 +7,7 @@
 
 #import "MapViewController.h"
 #import <MapKit/MapKit.h>
+#import "ComposeViewController.h"
 
 @interface MapViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -22,7 +23,32 @@
     // todo: change to user's current location
     MKCoordinateRegion sfRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(47.697631726141275, -122.02136993408205), MKCoordinateSpanMake(0.1, 0.1));
     [self.mapView setRegion:sfRegion animated:false];
+    self.mapView.delegate = self;
+    self.tabBarController.delegate = self;
     // Do any additional setup after loading the view.
+}
+
+- (void)ComposeViewController:(ComposeViewController *)controller didPickLocationWithLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude {
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude.floatValue, longitude.floatValue);
+
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    MKPointAnnotation *annotation = [MKPointAnnotation new];
+    annotation.coordinate = coordinate;
+//    annotation.title = @"Picture!";
+    [self.mapView addAnnotation:annotation];
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *viewControllers = (UINavigationController *) viewController;
+        for (id vc in viewControllers.viewControllers) {
+            if ([vc isKindOfClass:[ComposeViewController class]]) {
+                ComposeViewController *composeViewController = (ComposeViewController *) vc;
+                composeViewController.delegate = self;
+            }
+        }
+    }
 }
 
 /*

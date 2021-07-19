@@ -579,7 +579,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="ZVS-7m-aRH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cqh-hO-GL0">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -596,11 +596,11 @@
             <objects>
                 <viewController storyboardIdentifier="MapViewController" id="InW-DE-RzT" customClass="MapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u4r-aF-Giy">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qHO-Xz-o5y">
-                                <rect key="frame" x="0.0" y="56" width="390" height="651"/>
+                                <rect key="frame" x="0.0" y="88" width="390" height="673"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kW7-um-lxu"/>
@@ -615,7 +615,7 @@
                     <navigationItem key="navigationItem" id="fBs-jx-8MP">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="zIC-dy-MH3">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dZ5-Ch-xjR">
-                                <rect key="frame" x="16" y="17" width="75" height="22"/>
+                                <rect key="frame" x="16" y="11" width="75" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="line.horizontal.3.decrease" catalog="system"/>
                                 <connections>
@@ -625,7 +625,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="magnifyingglass" catalog="system" style="plain" id="DFn-sk-HMa">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="j3W-xB-Yyw">
-                                <rect key="frame" x="300" y="17" width="74" height="22"/>
+                                <rect key="frame" x="300" y="11" width="74" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="magnifyingglass" catalog="system"/>
                             </button>
@@ -644,21 +644,21 @@
             <objects>
                 <viewController id="zvO-tP-dNp" customClass="ComposeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7AL-9n-iPn">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="what'd you eat?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x1x-jE-Bfe">
-                                <rect key="frame" x="15" y="335" width="360" height="21"/>
+                                <rect key="frame" x="15" y="367" width="360" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="what'd you think?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wfd-p1-dPx">
-                                <rect key="frame" x="15" y="364" width="360" height="21"/>
+                                <rect key="frame" x="15" y="396" width="360" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZ7-Rm-lr2">
-                                <rect key="frame" x="15.000000000000007" y="397" width="114.66666666666669" height="30"/>
+                                <rect key="frame" x="15.000000000000007" y="429" width="114.66666666666669" height="30"/>
                                 <color key="backgroundColor" red="0.83960682149999999" green="0.89415436979999996" blue="0.89019709830000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="MUST TRY">
@@ -674,7 +674,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zwy-v8-nxp">
-                                <rect key="frame" x="137.66666666666666" y="397" width="114.66666666666666" height="30"/>
+                                <rect key="frame" x="137.66666666666666" y="429" width="114.66666666666666" height="30"/>
                                 <color key="backgroundColor" red="0.83960682149999999" green="0.89415436979999996" blue="0.89019709830000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="VEGETARIAN">
@@ -690,7 +690,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lww-DW-TYW">
-                                <rect key="frame" x="260.33333333333331" y="397" width="114.66666666666669" height="30"/>
+                                <rect key="frame" x="260.33333333333331" y="429" width="114.66666666666669" height="30"/>
                                 <color key="backgroundColor" red="0.83960682149999999" green="0.89415436979999996" blue="0.89019709830000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="GLUTEN FREE">
@@ -706,7 +706,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2q-ou-Qhy">
-                                <rect key="frame" x="15" y="431" width="176" height="30"/>
+                                <rect key="frame" x="15" y="463" width="176" height="30"/>
                                 <color key="backgroundColor" red="0.83960682149999999" green="0.89415436979999996" blue="0.89019709830000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="VEGAN">
@@ -722,7 +722,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oki-bV-95K">
-                                <rect key="frame" x="199" y="431" width="176" height="30"/>
+                                <rect key="frame" x="199" y="463" width="176" height="30"/>
                                 <color key="backgroundColor" red="0.83960682149999999" green="0.89415436979999996" blue="0.89019709830000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="HEALTHY">
@@ -738,7 +738,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLD-J3-3Zc">
-                                <rect key="frame" x="15" y="71.333333333333329" width="250" height="174.33333333333331"/>
+                                <rect key="frame" x="15" y="103.33333333333333" width="250" height="174.33333333333331"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="FmL-hu-Yhb"/>
                                     <constraint firstAttribute="height" constant="175" id="g9J-zc-mMz"/>
@@ -752,7 +752,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fhw-op-DXD" customClass="HCSStarRatingView">
-                                <rect key="frame" x="15" y="254" width="170" height="44"/>
+                                <rect key="frame" x="15" y="286" width="170" height="44"/>
                                 <color key="backgroundColor" red="1" green="0.97986656429999996" blue="0.97582834959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" systemColor="systemYellowColor"/>
                                 <constraints>
@@ -784,7 +784,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="restaurant name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s1s-XS-y5F">
-                                <rect key="frame" x="15" y="306" width="360" height="21"/>
+                                <rect key="frame" x="15" y="338" width="360" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -829,7 +829,7 @@
                     <navigationItem key="navigationItem" id="V4u-BT-Pr4">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="QZd-Vw-Ehc">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QhY-aU-BAC">
-                                <rect key="frame" x="16" y="17" width="67" height="22"/>
+                                <rect key="frame" x="16" y="11" width="67" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="chevron.backward" catalog="system"/>
                                 <connections>
@@ -839,7 +839,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="gxh-qy-xQ9">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="kl6-sV-IAT">
-                                <rect key="frame" x="282" y="13" width="92" height="30"/>
+                                <rect key="frame" x="282" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="DONE"/>
                                 <connections>
@@ -866,7 +866,7 @@
             <objects>
                 <viewController id="tZg-sP-V0K" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tyf-aG-FPY">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="obC-RM-t7U"/>
                         <color key="backgroundColor" red="0.99591690300000002" green="0.97654432059999996" blue="0.97254878280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -874,7 +874,7 @@
                     <navigationItem key="navigationItem" id="w7V-yW-3pK">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="Kye-NT-P49">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="vxT-Iu-eGZ">
-                                <rect key="frame" x="282" y="13" width="92" height="30"/>
+                                <rect key="frame" x="282" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
@@ -895,7 +895,7 @@
                     <tabBarItem key="tabBarItem" title="" image="person.fill" catalog="system" id="vCL-bX-XmE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Er1-1s-SyQ">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -914,7 +914,7 @@
                     <tabBarItem key="tabBarItem" title="" image="plus" catalog="system" id="zGG-BJ-drs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yZi-zQ-Sl8">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1238,6 +1238,7 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
+        <segue reference="cTX-GM-5MO"/>
         <segue reference="fV2-J6-dkz"/>
         <segue reference="Xy6-ao-URM"/>
     </inferredMetricsTieBreakers>
