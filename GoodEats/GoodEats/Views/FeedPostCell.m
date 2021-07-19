@@ -76,6 +76,7 @@
     UIImage *half = [UIImage systemImageNamed:@"star.leadinghalf.fill"];
 
     // fill one star at a time until you reach the rating value
+    // TODO: move this code to utilities file and consolidate
     while ([rating doubleValue] > [@0 doubleValue]) {
         UIImageView *star = stars[0];
         [stars removeObject:star];
