@@ -8,16 +8,24 @@
 #import "AppDelegate.h"
 #import "Parse/Parse.h"
 
+@import YelpAPI;
 
 @interface AppDelegate ()
+
+@property (strong, nonatomic) YLPClient *client;
 
 @end
 
 @implementation AppDelegate
 
++ (YLPClient *)sharedClient {
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    return appDelegate.client;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(  NSDictionary *)launchOptions {
 
+    // initialize Parse
     ParseClientConfiguration *config = [ParseClientConfiguration  configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
 
         configuration.applicationId = @"Ovy9r4RG5HDX8XSZZKUJiVQLikZXlFt4iuSa3axi";
@@ -26,6 +34,10 @@
     }];
 
     [Parse initializeWithConfiguration:config];
+    
+    // initialize Yelp API
+    self.client = [[YLPClient alloc] initWithAPIKey:@"eTulyoeceO4Xzju1opElKyvTSDQtrdTa7OcEHbgTPvAJDFco9DMxUPgcLr9Q9UhQum4hfjMcxLkXQA0fvHUDLyyO1JoQMkoND1Vl3TEPxozlJvsNVBOr_3alzur1YHYx"];
+
 
     return YES;
 }

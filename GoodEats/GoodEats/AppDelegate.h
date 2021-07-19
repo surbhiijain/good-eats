@@ -7,8 +7,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class YLPClient;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
++ (YLPClient *)sharedClient;
 
 @end
 

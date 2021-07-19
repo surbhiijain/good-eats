@@ -10,6 +10,14 @@
 #import "Dish.h"
 #import "Restaurant.h"
 #import "HCSStarRatingView.h"
+#import "AppDelegate.h"
+#import <YelpAPI/YLPClient+Search.h>
+#import <YelpAPI/YLPSortType.h>
+#import <YelpAPI/YLPSearch.h>
+#import <YelpAPI/YLPBusiness.h>
+#import <YelpAPI/YLPLocation.h>
+#import <YelpAPI/YLPCoordinate.h>
+
 
 @interface ComposeViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *imageButton;
@@ -124,6 +132,7 @@
             restaurant = [[Restaurant alloc] initWithName:self.restaurantField.text withLatitude:@37.783333 withLongitude:@-122.416667]; //TODO: change these coordinates
         }
         [self getDish:restaurant];
+        [self findRestaurantLocation:restaurant zipCode:@"98053"];
     }];
 }
 
@@ -141,6 +150,20 @@
     [restaurant saveInBackground];
     [self createPost:dish];
 }
+
+- (void) findRestaurantLocation: (Restaurant *) restaurant zipCode:(NSString *) zipCode {
+    [[AppDelegate sharedClient] searchWithLocation:zipCode term:restaurant.name limit:5 offset:0 sort:YLPSortTypeDistance completionHandler:^(YLPSearch * search, NSError * error) {
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        } else {
+            NSLog(search.businesses[0].name);
+            YLPBusiness *business = search.businesses[0];
+            restaurant.latitude = [NSNumber numberWithDouble:business.location.coordinate.latitude];
+            restaurant.longitude = [NSNumber numberWithDouble:business.location.coordinate.longitude];
+        }
+    }];
+}
+
 
 - (void) createPost:(Dish *)dish {
     NSNumber *rating = [NSNumber numberWithFloat:self.starRatingView.value];
