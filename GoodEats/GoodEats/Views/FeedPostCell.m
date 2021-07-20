@@ -22,14 +22,10 @@
 }
 
 - (void)refreshData {
-    [self setPlaceholdersToNil];
     
     PFUser *user = self.post.author;
     self.usernameLabel.text = user.username;
-    
-//    [self.post.dish.restaurantName fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-        self.restaurantLabel.text = self.post.dish.restaurantName;
-//    }];
+    self.restaurantLabel.text = self.post.dish.restaurantName;
   
     // set the post UIImageView based on the PFImage pased in through parse
     [self.post.image getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
@@ -45,7 +41,8 @@
 
 }
 
-- (void)setPlaceholdersToNil {
+- (void)prepareForReuse {
+    [super prepareForReuse];
     [self.postImage setImage:nil];
 //    [self.profileImage setImage:nil];
     

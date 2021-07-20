@@ -19,7 +19,6 @@
 }
 
 - (void)refreshData {
-    [self setPlaceholdersToNil];
     
     PFUser *user = self.post.author;
     self.usernameLabel.text = user.username;
@@ -42,7 +41,8 @@
     [self setStarFills];
 }
 
-- (void)setPlaceholdersToNil {
+- (void)prepareForReuse {
+    [super prepareForReuse];
     [self.postImage setImage:nil];
 //    [self.profileImage setImage:nil];
     
