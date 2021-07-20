@@ -19,7 +19,8 @@
 #import <YelpAPI/YLPCoordinate.h>
 
 
-@interface ComposeViewController ()
+@interface ComposeViewController () <CLLocationManagerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIButton *imageButton;
 @property (weak, nonatomic) IBOutlet UITextField *restaurantField;
 @property (weak, nonatomic) IBOutlet UITextField *dishField;
@@ -27,6 +28,9 @@
 @property (weak, nonatomic) IBOutlet HCSStarRatingView *starRatingView;
 
 @property (nonatomic, strong) NSMutableArray *tags;
+
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) YLPCoordinate *userCoordinate;
 
 @end
 
@@ -36,7 +40,32 @@
     [super viewDidLoad];
     self.tags = [NSMutableArray new];
     [self.starRatingView setTintColor:[UIColor systemYellowColor]];
+    [self setUpLocationManager];
 }
+
+- (void) setUpLocationManager {
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }    [self.locationManager startUpdatingLocation];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    CLLocation *location = locations.lastObject;
+    if (location.horizontalAccuracy > 0) {
+        [self.locationManager stopUpdatingLocation];
+        
+        self.userCoordinate = [[YLPCoordinate alloc] initWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"Location update failed %@", error);
+    
+}
+
 - (IBAction)didTapPhoto:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
@@ -104,7 +133,7 @@
 
 - (IBAction)didTapDone:(id)sender {
     if ([self validPost]) {
-        [self locateRestaurant:@"98053"]; //TODO: pass in user's current location
+        [self locateRestaurant];
     } else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Post not completed"
                                                                                    message:@"Please upload an image and enter the restaurant and dish names"
@@ -119,8 +148,8 @@
     return (self.imageButton.imageView.image && self.restaurantField.text.length > 0 && self.dishField.text.length > 0);
 }
 
-- (void) locateRestaurant:(NSString *) zipCode {
-    [[AppDelegate sharedClient] searchWithLocation:zipCode term:self.restaurantField.text limit:5 offset:0 sort:YLPSortTypeDistance completionHandler:^(YLPSearch * search, NSError * error) {
+- (void) locateRestaurant {
+    [[AppDelegate sharedClient] searchWithCoordinate:self.userCoordinate term:self.restaurantField.text limit:5 offset:0 sort:YLPSortTypeDistance completionHandler:^(YLPSearch * search, NSError * error) {
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
         } else {
