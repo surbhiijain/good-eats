@@ -204,14 +204,7 @@
 - (void) refreshData {
     [self calculateAverageRating];
     [self setTags];
-    
-    // calculate total number of checkins, accounting for how they may not have all been queried because the limit is 25
-    NSString *numCheckIns = [@(self.posts.count) stringValue];
-    if ([numCheckIns isEqualToString:@"25"]) {
-        numCheckIns = @"25+";
-    }
-    self.numCheckInsLabel.text = [NSString stringWithFormat:@"%@ Total Check-Ins", numCheckIns];
-    
+    self.numCheckInsLabel.text = [NSString stringWithFormat:@"%@ Total Check-Ins", self.dish.numCheckIns];
 }
 
 #pragma mark - Navigation

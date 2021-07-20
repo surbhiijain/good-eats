@@ -202,7 +202,6 @@
         }
     }
     if (!dish) {
-//        [restaurant fetchInBackground];
         dish = [[Dish alloc] initWithName:self.dishField.text withRestaurant:restaurant.name withRestaurantID:restaurant.objectId];
         [restaurant addDish:dish];
         [restaurant saveInBackground];
@@ -219,6 +218,8 @@
         if (!succeeded) {
             NSLog(@"imaged not posted");
         } else {
+            [dish addCheckIn];
+            [restaurant addCheckIn];
             [self.delegate ComposeViewController:self postedRestaurant:restaurant];
         }
         // go back to main map view

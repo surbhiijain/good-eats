@@ -48,6 +48,7 @@
 - (void) setHeaderValues {
     self.restaurantNameLabel.text = self.restaurant.name;
     self.locationLabel.text = self.restaurant.abrevLocation;
+    self.numCheckInsLabel.text = [NSString stringWithFormat:@"%@ Total Check-Ins", self.restaurant.numCheckIns];
 }
 
 - (IBAction)didChangeView:(UISegmentedControl *)segmentedControl {

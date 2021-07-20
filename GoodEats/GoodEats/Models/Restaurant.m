@@ -16,6 +16,7 @@
 @dynamic latitude;
 @dynamic longitude;
 @dynamic abrevLocation;
+@dynamic numCheckIns;
 
 + (nonnull NSString *)parseClassName {
     return @"Restaurant";
@@ -28,12 +29,18 @@
         self.longitude = longitude;
         self.dishes = [[NSMutableArray alloc] init];
         self.abrevLocation = abrevLocation;
+        self.numCheckIns = @0;
     }
     return self;
 }
 
 - (void)addDish:(Dish *)dish {
     [self addObject:dish forKey:@"dishes"];
+    [self saveInBackground];
+}
+
+- (void)addCheckIn {
+    self.numCheckIns = @([self.numCheckIns intValue] + [@1 intValue]);
     [self saveInBackground];
 }
 

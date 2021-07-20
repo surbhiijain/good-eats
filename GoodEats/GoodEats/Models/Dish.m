@@ -14,6 +14,7 @@
 @dynamic name;
 @dynamic restaurantName;
 @dynamic restaurantID;
+@dynamic numCheckIns;
 
 + (nonnull NSString *)parseClassName {
     return @"Dish";
@@ -24,8 +25,14 @@
         self.name = name;
         self.restaurantName = restaurantName;
         self.restaurantID = restaurantID;
+        self.numCheckIns = @0;
     }
     return self;
+}
+
+- (void)addCheckIn {
+    self.numCheckIns = @([self.numCheckIns intValue] + [@1 intValue]);
+    [self saveInBackground];
 }
 
 @end
