@@ -151,7 +151,7 @@
         }
         // otherwise, create a new restaurant object
         else {
-            restaurant = [[Restaurant alloc] initWithName:self.restaurantField.text withLatitude:latitude withLongitude:longitude];
+            restaurant = [[Restaurant alloc] initWithName:business.name withLatitude:latitude withLongitude:longitude];
         }
         [self getDish:restaurant];
     }];
@@ -181,7 +181,7 @@
         if (!succeeded) {
             NSLog(@"imaged not posted");
         } else {
-            [self.delegate ComposeViewController:self postedWithRestaurantLatitude:restaurant.latitude longitude:restaurant.longitude];
+            [self.delegate ComposeViewController:self postedRestaurant:restaurant];
         }
         // go back to main map view
         self.tabBarController.selectedViewController

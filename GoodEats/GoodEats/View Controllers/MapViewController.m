@@ -12,6 +12,8 @@
 @interface MapViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
+@property (nonatomic, strong) NSMutableArray *restaurants;
+
 @end
 
 @implementation MapViewController
@@ -25,17 +27,43 @@
     [self.mapView setRegion:sfRegion animated:false];
     self.mapView.delegate = self;
     self.tabBarController.delegate = self;
+    
+    [self getAllRestaurants];
 }
 
-- (void)ComposeViewController:(ComposeViewController *)controller postedWithRestaurantLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude {
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude.floatValue, longitude.floatValue);
+- (void) getAllRestaurants {
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
+    [query includeKeys:@[@"dishes"]];
+    [query orderByDescending:@"createdAt"];
+    query.limit = 25;
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *restaurants, NSError *error) {
+        if (restaurants != nil) {
+            self.restaurants = (NSMutableArray *) restaurants;
+            for (Restaurant *restaurant in restaurants) {
+                [self displayPin:restaurant];
+            }
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void) displayPin: (Restaurant *) restaurant {
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(restaurant.latitude.floatValue, restaurant.longitude.floatValue);
 
     [self.navigationController popViewControllerAnimated:YES];
     
     MKPointAnnotation *annotation = [MKPointAnnotation new];
     annotation.coordinate = coordinate;
-//    annotation.title = @"Picture!";
+    annotation.title = restaurant.name;
     [self.mapView addAnnotation:annotation];
+}
+
+- (void)ComposeViewController:(ComposeViewController *)controller postedRestaurant:(Restaurant *)restaurant {
+    [self.restaurants addObject:restaurant];
+    [self displayPin:restaurant];
 }
 
 // find and set compose view controller delegate

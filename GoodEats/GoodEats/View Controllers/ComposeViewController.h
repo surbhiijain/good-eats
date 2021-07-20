@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Restaurant.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -13,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ComposeViewControllerDelegate
 
-- (void)ComposeViewController:(ComposeViewController *)controller postedWithRestaurantLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude;
+- (void)ComposeViewController:(ComposeViewController *)controller postedRestaurant:(Restaurant *)restaurat;
 
 @end
 
