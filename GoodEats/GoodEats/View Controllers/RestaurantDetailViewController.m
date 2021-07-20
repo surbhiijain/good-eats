@@ -18,6 +18,9 @@
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segControl;
 
+@property (nonatomic, strong) Restaurant *restaurant;
+
+
 @end
 
 @implementation RestaurantDetailViewController
@@ -25,7 +28,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self getRestaurant];
+    
     // Do any additional setup after loading the view.
+}
+
+- (void) getRestaurant {
+    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
+    [query getObjectInBackgroundWithId:self.restaurantId block:^(PFObject *restaurant, NSError *error) {
+        if (!error) {
+            self.restaurant = (Restaurant *) restaurant;
+            [self setHeaderValues];
+        } else {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+
+- (void) setHeaderValues {
+    self.restaurantNameLabel.text = self.restaurant.name;
+    self.locationLabel.text = self.restaurant.abrevLocation;
 }
 
 - (IBAction)didChangeView:(UISegmentedControl *)segmentedControl {

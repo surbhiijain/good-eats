@@ -9,6 +9,7 @@
 #import "DishPostCell.h"
 #import "Post.h"
 #import "PostDetailViewController.h"
+#import "RestaurantDetailViewController.h"
 
 @interface DishDetailsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -215,11 +216,14 @@
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    Post *post = self.posts[indexPath.row];
     if ([segue.identifier isEqualToString:@"postDetailsSegue"]) {
         PostDetailViewController *detailsVC = [segue destinationViewController];
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        Post *post = self.posts[indexPath.row];
         detailsVC.post = post;
+    } else if ([segue.identifier isEqualToString:@"restaurantDetailsSegue"]) {
+        RestaurantDetailViewController *restaurantDetailsVC = [segue destinationViewController];
+        restaurantDetailsVC.restaurantId = post.dish.restaurantID;
     }
 }
 

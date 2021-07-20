@@ -8,6 +8,7 @@
 #import "PostDetailViewController.h"
 #import "DateTools.h"
 #import "DishDetailsViewController.h"
+#import "RestaurantDetailViewController.h"
 
 @interface PostDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *profileImage;
@@ -155,6 +156,9 @@
     if ([segue.identifier isEqualToString:@"dishDetailsSegue"]) {
         DishDetailsViewController *detailsVC = [segue destinationViewController];
         detailsVC.dish = self.post.dish;
+    } else if ([segue.identifier isEqualToString:@"restaurantDetailsSegue"]) {
+        RestaurantDetailViewController *restaurantDetailsVC = [segue destinationViewController];
+        restaurantDetailsVC.restaurantId = self.post.dish.restaurantID;
     }
 }
 
