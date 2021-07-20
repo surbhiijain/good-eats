@@ -177,12 +177,20 @@
         // set the restaurant to the first result if one already exists
         if (restaurants != nil && restaurants.count != 0) {
             restaurant = restaurants[0];
+            [self getDish:restaurant];
         }
         // otherwise, create a new restaurant object
         else {
-            restaurant = [[Restaurant alloc] initWithName:business.name withLatitude:latitude withLongitude:longitude];
+            NSString *abrevLocation = [NSString stringWithFormat:@"%@, %@", business.location.city, business.location.stateCode];
+            restaurant = [[Restaurant alloc] initWithName:business.name withLatitude:latitude withLongitude:longitude withLocation:abrevLocation];
+            [restaurant saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (!succeeded) {
+                    NSLog(@"Error: %@", error);
+                } else {
+                    [self getDish:restaurant];
+                }
+            }];
         }
-        [self getDish:restaurant];
     }];
 }
 
@@ -194,7 +202,8 @@
         }
     }
     if (!dish) {
-        dish = [[Dish alloc] initWithName:self.dishField.text withRestaurant:restaurant.name];
+//        [restaurant fetchInBackground];
+        dish = [[Dish alloc] initWithName:self.dishField.text withRestaurant:restaurant.name withRestaurantID:restaurant.objectId];
         [restaurant addDish:dish];
         [restaurant saveInBackground];
     }

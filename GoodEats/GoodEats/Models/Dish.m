@@ -13,15 +13,17 @@
 @dynamic dishID;
 @dynamic name;
 @dynamic restaurantName;
+@dynamic restaurantID;
 
 + (nonnull NSString *)parseClassName {
     return @"Dish";
 }
 
-- (instancetype)initWithName:(NSString *)name withRestaurant:(NSString *)restaurant {
+- (instancetype)initWithName:(NSString *)name withRestaurant:(NSString *)restaurantName withRestaurantID: (NSString *)restaurantID {
     if (self = [super init]) {
         self.name = name;
-        self.restaurantName = restaurant;
+        self.restaurantName = restaurantName;
+        self.restaurantID = restaurantID;
     }
     return self;
 }
