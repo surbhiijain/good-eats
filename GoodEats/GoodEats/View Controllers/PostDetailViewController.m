@@ -50,7 +50,17 @@
     self.usernameLabel.text = user.username;
     
     [self.restaurantLabel setTitle:self.post.dish.restaurantName forState:(UIControlStateNormal)];
-  
+    // get restaurant to display location
+    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
+    [query getObjectInBackgroundWithId:self.post.dish.restaurantID block:^(PFObject *restaurant, NSError *error) {
+        if (!error) {
+            Restaurant *r = (Restaurant *) restaurant;
+            self.locationLabel.text = r.abrevLocation;
+        } else {
+            self.locationLabel.hidden = TRUE;
+        }
+    }];
+    
     // set the post UIImageView based on the PFImage pased in through parse
     [self.post.image getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
         UIImage *image = [UIImage imageWithData:imageData];
