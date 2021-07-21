@@ -80,7 +80,7 @@
         popularDishesVC.restaurantId = self.restaurantId;
     }
     if ([segue.identifier isEqualToString:@"restaurantPostFeedSegue"]) {
-        NSLog(@"wkeuhrkwjehr");
+        // TODO: pass restaurant
     }
 }
 

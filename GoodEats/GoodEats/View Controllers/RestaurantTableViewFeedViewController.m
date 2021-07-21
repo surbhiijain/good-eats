@@ -6,8 +6,13 @@
 //
 
 #import "RestaurantTableViewFeedViewController.h"
+#import "FeedPostCell.h"
+#import "Post.h"
 
-@interface RestaurantTableViewFeedViewController ()
+@interface RestaurantTableViewFeedViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) NSMutableArray *posts;
 
 @end
 
@@ -15,7 +20,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    FeedPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedPostCell"];
+    
+    Post *post = self.posts[indexPath.row];
+    
+    cell.post = post;
+    [cell refreshData];
+    
+    return cell;}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.posts.count;
 }
 
 /*
