@@ -1320,10 +1320,10 @@
             </objects>
             <point key="canvasLocation" x="537" y="2893"/>
         </scene>
-        <!--View Controller-->
+        <!--Table Feed View Controller-->
         <scene sceneID="gU9-Bu-7hp">
             <objects>
-                <viewController id="p4U-Nh-NLq" sceneMemberID="viewController">
+                <viewController id="p4U-Nh-NLq" customClass="TableFeedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2c5-YJ-uGm">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="590"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1681,10 +1681,10 @@
             </objects>
             <point key="canvasLocation" x="1353.8461538461538" y="2801.6587677725115"/>
         </scene>
-        <!--View Controller-->
+        <!--Restaurant Collection Feed View Controller-->
         <scene sceneID="odQ-Hr-DRC">
             <objects>
-                <viewController id="Efp-4k-RaJ" sceneMemberID="viewController">
+                <viewController id="Efp-4k-RaJ" customClass="RestaurantCollectionFeedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2aK-Co-uBO">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="590"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
