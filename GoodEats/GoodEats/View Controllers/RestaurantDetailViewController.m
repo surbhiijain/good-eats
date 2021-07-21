@@ -7,6 +7,8 @@
 
 #import "RestaurantDetailViewController.h"
 #import "RestaurantPopularDishesViewController.h"
+#import "RestaurantTableViewFeedViewController.h"
+#import "RestaurantCollectionFeedViewController.h"
 
 @interface RestaurantDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIView *popularView;
@@ -80,7 +82,9 @@
         popularDishesVC.restaurantId = self.restaurantId;
     }
     if ([segue.identifier isEqualToString:@"restaurantPostFeedSegue"]) {
-        // TODO: pass restaurant
+        RestaurantTableViewFeedViewController *tableViewfeedVC = [segue destinationViewController];
+        tableViewfeedVC.restaurant = self.restaurant;
+        tableViewfeedVC.restaurantId = self.restaurantId;
     }
 }
 
