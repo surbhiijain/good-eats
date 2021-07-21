@@ -9,6 +9,7 @@
 #import "DateTools.h"
 #import "DishDetailsViewController.h"
 #import "RestaurantDetailViewController.h"
+#import "Utils.h"
 
 @interface PostDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *profileImage;
@@ -78,7 +79,7 @@
     
     self.timeStampLabel.text = timeDate.timeAgoSinceNow;
     
-    [self setStarFills];
+    [self setStars];
     [self setTags];
 
 }
@@ -101,8 +102,7 @@
     [self.reviewStar5 setImage:star];
 }
 
-- (void)setStarFills {
-    NSNumber *rating = self.post.rating;
+- (void)setStars {
     NSMutableArray *stars = [[NSMutableArray alloc] init];
     [stars addObject:self.reviewStar1];
     [stars addObject:self.reviewStar2];
@@ -110,22 +110,7 @@
     [stars addObject:self.reviewStar4];
     [stars addObject:self.reviewStar5];
     
-    UIImage *fill =  [UIImage systemImageNamed:@"star.fill"];
-    UIImage *half = [UIImage systemImageNamed:@"star.leadinghalf.fill"];
-
-    // fill one star at a time until you reach the rating value
-    while ([rating doubleValue] > [@0 doubleValue]) {
-        UIImageView *star = stars[0];
-        [stars removeObject:star];
-        if ([rating isEqualToNumber:@.5]) {
-            [star setImage:half];
-            rating = @0;
-        } else {
-            [star setImage:fill];
-            rating = @([rating doubleValue] + [@-1 doubleValue]);
-        }
-        [star setTintColor:[UIColor systemYellowColor]];
-    }
+    [Utils setStarFills:self.post.rating withStars:stars];
 }
 
 

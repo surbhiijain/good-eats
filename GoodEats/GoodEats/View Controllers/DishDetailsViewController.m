@@ -10,6 +10,7 @@
 #import "Post.h"
 #import "PostDetailViewController.h"
 #import "RestaurantDetailViewController.h"
+#import "Utils.h"
 
 @interface DishDetailsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -165,9 +166,6 @@
 - (void) setRatingStars {
     self.ratingLabel.text = [NSString stringWithFormat:@"Overall Rating: %@/5", [self.dish.avgRating stringValue]];
     
-    // round average rating to nearest 0.5 to fill in stars
-    float roundedRating = [self.dish.avgRating floatValue] < 0.5f ? 0.5f : floorf([self.dish.avgRating floatValue] * 2) / 2;
-
     NSMutableArray *stars = [[NSMutableArray alloc] init];
     [stars addObject:self.reviewStar1];
     [stars addObject:self.reviewStar2];
@@ -175,22 +173,7 @@
     [stars addObject:self.reviewStar4];
     [stars addObject:self.reviewStar5];
     
-    UIImage *fill =  [UIImage systemImageNamed:@"star.fill"];
-    UIImage *half = [UIImage systemImageNamed:@"star.leadinghalf.fill"];
-
-    // fill one star at a time until you reach the rating value
-    while (roundedRating > 0.0f) {
-        UIImageView *star = stars[0];
-        [stars removeObject:star];
-        if (roundedRating == 0.5f) {
-            [star setImage:half];
-            roundedRating = 0.0f;
-        } else {
-            [star setImage:fill];
-            roundedRating = roundedRating - 1.0f;
-        }
-        [star setTintColor:[UIColor systemYellowColor]];
-    }
+    [Utils setStarFills:self.dish.avgRating withStars:stars];
 }
 
 - (void) refreshData {
