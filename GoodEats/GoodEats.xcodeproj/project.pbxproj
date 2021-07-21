@@ -24,6 +24,8 @@
 		76D01CEB269CC9DD00288EF2 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CEA269CC9DD00288EF2 /* LoginViewController.m */; };
 		76D01CEE269CD53000288EF2 /* TableFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CED269CD53000288EF2 /* TableFeedViewController.m */; };
 		76E4576626A775CC0073AB8D /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E4576526A775CC0073AB8D /* RestaurantDetailViewController.m */; };
+		76E4576926A880C70073AB8D /* RestaurantPopularDishesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E4576826A880C70073AB8D /* RestaurantPopularDishesViewController.m */; };
+		76E4576C26A88BD50073AB8D /* PopularDishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E4576B26A88BD50073AB8D /* PopularDishCell.m */; };
 		76E49E65269D167D00617E4F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E49E64269D167D00617E4F /* MapKit.framework */; };
 		76E49E68269D1A1800617E4F /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E49E67269D1A1800617E4F /* MapViewController.m */; };
 		76E49E6B269D1DBF00617E4F /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E49E6A269D1DBF00617E4F /* ProfileViewController.m */; };
@@ -86,6 +88,10 @@
 		76D01CED269CD53000288EF2 /* TableFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableFeedViewController.m; sourceTree = "<group>"; };
 		76E4576426A775CC0073AB8D /* RestaurantDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestaurantDetailViewController.h; sourceTree = "<group>"; };
 		76E4576526A775CC0073AB8D /* RestaurantDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestaurantDetailViewController.m; sourceTree = "<group>"; };
+		76E4576726A880C70073AB8D /* RestaurantPopularDishesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestaurantPopularDishesViewController.h; sourceTree = "<group>"; };
+		76E4576826A880C70073AB8D /* RestaurantPopularDishesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestaurantPopularDishesViewController.m; sourceTree = "<group>"; };
+		76E4576A26A88BD50073AB8D /* PopularDishCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PopularDishCell.h; sourceTree = "<group>"; };
+		76E4576B26A88BD50073AB8D /* PopularDishCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PopularDishCell.m; sourceTree = "<group>"; };
 		76E49E64269D167D00617E4F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		76E49E66269D1A1800617E4F /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		76E49E67269D1A1800617E4F /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
@@ -213,6 +219,8 @@
 				760B968126A0A9A900CB7F80 /* DishDetailsViewController.m */,
 				76E4576426A775CC0073AB8D /* RestaurantDetailViewController.h */,
 				76E4576526A775CC0073AB8D /* RestaurantDetailViewController.m */,
+				76E4576726A880C70073AB8D /* RestaurantPopularDishesViewController.h */,
+				76E4576826A880C70073AB8D /* RestaurantPopularDishesViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -224,6 +232,8 @@
 				76290DA8269CD6F70045095D /* FeedPostCell.m */,
 				760B968326A0AE1100CB7F80 /* DishPostCell.h */,
 				760B968426A0AE1100CB7F80 /* DishPostCell.m */,
+				76E4576A26A88BD50073AB8D /* PopularDishCell.h */,
+				76E4576B26A88BD50073AB8D /* PopularDishCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -503,6 +513,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76D01CB3269CC89D00288EF2 /* AppDelegate.m in Sources */,
+				76E4576C26A88BD50073AB8D /* PopularDishCell.m in Sources */,
 				76290DA9269CD6F70045095D /* FeedPostCell.m in Sources */,
 				76E49E6B269D1DBF00617E4F /* ProfileViewController.m in Sources */,
 				760B968226A0A9A900CB7F80 /* DishDetailsViewController.m in Sources */,
@@ -517,6 +528,7 @@
 				76E4576626A775CC0073AB8D /* RestaurantDetailViewController.m in Sources */,
 				76D01CEB269CC9DD00288EF2 /* LoginViewController.m in Sources */,
 				76E49E68269D1A1800617E4F /* MapViewController.m in Sources */,
+				76E4576926A880C70073AB8D /* RestaurantPopularDishesViewController.m in Sources */,
 				76E49E74269E012000617E4F /* Dish.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

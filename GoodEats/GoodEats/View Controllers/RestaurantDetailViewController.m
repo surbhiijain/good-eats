@@ -6,6 +6,7 @@
 //
 
 #import "RestaurantDetailViewController.h"
+#import "RestaurantPopularDishesViewController.h"
 
 @interface RestaurantDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIView *popularView;
@@ -29,8 +30,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getRestaurant];
-    
-    // Do any additional setup after loading the view.
 }
 
 - (void) getRestaurant {
@@ -73,15 +72,16 @@
     }
 }
 
-
-/*
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"restaurantPopularDishesSegue"]) {
+        RestaurantPopularDishesViewController *popularDishesVC = [segue destinationViewController];
+        popularDishesVC.restaurant = self.restaurant;
+        popularDishesVC.restaurantId = self.restaurantId;
+    }
+    if ([segue.identifier isEqualToString:@"restaurantPostFeedSegue"]) {
+        NSLog(@"wkeuhrkwjehr");
+    }
 }
-*/
 
 @end
