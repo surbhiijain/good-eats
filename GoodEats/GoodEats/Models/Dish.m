@@ -15,6 +15,7 @@
 @dynamic restaurantName;
 @dynamic restaurantID;
 @dynamic numCheckIns;
+@dynamic avgRating;
 
 + (nonnull NSString *)parseClassName {
     return @"Dish";
@@ -26,12 +27,18 @@
         self.restaurantName = restaurantName;
         self.restaurantID = restaurantID;
         self.numCheckIns = @0;
+        self.avgRating = @0;
     }
     return self;
 }
 
-- (void)addCheckIn {
+- (void)addCheckInWithRating:(NSNumber *)rating {
+    
+    NSNumber *ratingSumSoFar = @([self.numCheckIns doubleValue] * [self.avgRating doubleValue] + [rating doubleValue]);
     self.numCheckIns = @([self.numCheckIns intValue] + [@1 intValue]);
+    
+    self.avgRating = @([ratingSumSoFar doubleValue] / [self.numCheckIns doubleValue]);
+
     [self saveInBackground];
 }
 

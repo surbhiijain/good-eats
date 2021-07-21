@@ -218,7 +218,7 @@
         if (!succeeded) {
             NSLog(@"imaged not posted");
         } else {
-            [dish addCheckIn];
+            [dish addCheckInWithRating:rating];
             [restaurant addCheckIn];
             [self.delegate ComposeViewController:self postedRestaurant:restaurant];
         }
