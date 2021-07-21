@@ -29,6 +29,7 @@
 		76E4577126A8A25A0073AB8D /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E4577026A8A25A0073AB8D /* Utils.m */; };
 		76E4577526A8D3870073AB8D /* RestaurantTableViewFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E4577426A8D3870073AB8D /* RestaurantTableViewFeedViewController.m */; };
 		76E4577826A8D3DD0073AB8D /* RestaurantCollectionFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E4577726A8D3DD0073AB8D /* RestaurantCollectionFeedViewController.m */; };
+		76E4577B26A8DE830073AB8D /* RestaurantPostCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E4577A26A8DE830073AB8D /* RestaurantPostCollectionCell.m */; };
 		76E49E65269D167D00617E4F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E49E64269D167D00617E4F /* MapKit.framework */; };
 		76E49E68269D1A1800617E4F /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E49E67269D1A1800617E4F /* MapViewController.m */; };
 		76E49E6B269D1DBF00617E4F /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E49E6A269D1DBF00617E4F /* ProfileViewController.m */; };
@@ -101,6 +102,8 @@
 		76E4577426A8D3870073AB8D /* RestaurantTableViewFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestaurantTableViewFeedViewController.m; sourceTree = "<group>"; };
 		76E4577626A8D3DD0073AB8D /* RestaurantCollectionFeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestaurantCollectionFeedViewController.h; sourceTree = "<group>"; };
 		76E4577726A8D3DD0073AB8D /* RestaurantCollectionFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestaurantCollectionFeedViewController.m; sourceTree = "<group>"; };
+		76E4577926A8DE830073AB8D /* RestaurantPostCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestaurantPostCollectionCell.h; sourceTree = "<group>"; };
+		76E4577A26A8DE830073AB8D /* RestaurantPostCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestaurantPostCollectionCell.m; sourceTree = "<group>"; };
 		76E49E64269D167D00617E4F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		76E49E66269D1A1800617E4F /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		76E49E67269D1A1800617E4F /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 				760B968426A0AE1100CB7F80 /* DishPostCell.m */,
 				76E4576A26A88BD50073AB8D /* PopularDishCell.h */,
 				76E4576B26A88BD50073AB8D /* PopularDishCell.m */,
+				76E4577926A8DE830073AB8D /* RestaurantPostCollectionCell.h */,
+				76E4577A26A8DE830073AB8D /* RestaurantPostCollectionCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -547,6 +552,7 @@
 				76D01CEB269CC9DD00288EF2 /* LoginViewController.m in Sources */,
 				76E49E68269D1A1800617E4F /* MapViewController.m in Sources */,
 				76E4576926A880C70073AB8D /* RestaurantPopularDishesViewController.m in Sources */,
+				76E4577B26A8DE830073AB8D /* RestaurantPostCollectionCell.m in Sources */,
 				76E49E74269E012000617E4F /* Dish.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

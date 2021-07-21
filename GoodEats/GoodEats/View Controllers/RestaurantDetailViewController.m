@@ -86,6 +86,11 @@
         tableViewfeedVC.restaurant = self.restaurant;
         tableViewfeedVC.restaurantId = self.restaurantId;
     }
+    if ([segue.identifier isEqualToString:@"restaurantCollectionFeedSegue"]) {
+        RestaurantCollectionFeedViewController *collectionFeedVC = [segue destinationViewController];
+        collectionFeedVC.restaurant = self.restaurant;
+        collectionFeedVC.restaurantId = self.restaurantId;
+    }
 }
 
 @end
