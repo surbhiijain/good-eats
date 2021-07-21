@@ -53,10 +53,12 @@
 
 - (void) sortDishesByPopularity {
     self.sortedDishes = self.restaurant.dishes;
-    NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"numCheckIns"
+    NSSortDescriptor *numCheckInsSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"numCheckIns"
                                                ascending:NO];
-    self.sortedDishes = [self.restaurant.dishes sortedArrayUsingDescriptors:@[sortDescriptor]];
+    NSSortDescriptor *ratingSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"avgRating"
+                                               ascending:NO];
+    
+    self.sortedDishes = [self.restaurant.dishes sortedArrayUsingDescriptors:@[ratingSortDescriptor, numCheckInsSortDescriptor]];
     [self.tableView reloadData];
 }
 /*
