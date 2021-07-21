@@ -162,19 +162,11 @@
     }
 }
 
-- (void) calculateAverageRating {
-    NSNumber *sum = @0;
-    for (Post *post in self.posts) {
-        sum = @([sum doubleValue] + [post.rating doubleValue]);
-    }
-    NSNumber *avgRating = @([sum doubleValue] / self.posts.count);
-    self.ratingLabel.text = [NSString stringWithFormat:@"Overall Rating: %@/5", [avgRating stringValue]];
-    [self setRatingStarsWithRating:avgRating];
-}
-
-- (void) setRatingStarsWithRating: (NSNumber* ) rating {
-    // round average rating to nearest 0.5
-    float roundedRating = [rating floatValue] < 0.5f ? 0.5f : floorf([rating floatValue] * 2) / 2;
+- (void) setRatingStars {
+    self.ratingLabel.text = [NSString stringWithFormat:@"Overall Rating: %@/5", [self.dish.avgRating stringValue]];
+    
+    // round average rating to nearest 0.5 to fill in stars
+    float roundedRating = [self.dish.avgRating floatValue] < 0.5f ? 0.5f : floorf([self.dish.avgRating floatValue] * 2) / 2;
 
     NSMutableArray *stars = [[NSMutableArray alloc] init];
     [stars addObject:self.reviewStar1];
@@ -202,7 +194,7 @@
 }
 
 - (void) refreshData {
-    [self calculateAverageRating];
+    [self setRatingStars];
     [self setTags];
     self.numCheckInsLabel.text = [NSString stringWithFormat:@"%@ Total Check-Ins", self.dish.numCheckIns];
 }
