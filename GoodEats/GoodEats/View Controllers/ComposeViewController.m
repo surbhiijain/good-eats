@@ -17,9 +17,10 @@
 #import <YelpAPI/YLPBusiness.h>
 #import <YelpAPI/YLPLocation.h>
 #import <YelpAPI/YLPCoordinate.h>
+#import "LocationManager.h"
 
 
-@interface ComposeViewController () <CLLocationManagerDelegate>
+@interface ComposeViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *imageButton;
 @property (weak, nonatomic) IBOutlet UITextField *restaurantField;
@@ -40,30 +41,11 @@
     [super viewDidLoad];
     self.tags = [NSMutableArray new];
     [self.starRatingView setTintColor:[UIColor systemYellowColor]];
-    [self setUpLocationManager];
-}
 
-- (void) setUpLocationManager {
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [self.locationManager requestWhenInUseAuthorization];
-    }    [self.locationManager startUpdatingLocation];
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    CLLocation *location = locations.lastObject;
-    if (location.horizontalAccuracy > 0) {
-        [self.locationManager stopUpdatingLocation];
-        
-        self.userCoordinate = [[YLPCoordinate alloc] initWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
-    }
-}
-
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    NSLog(@"Location update failed %@", error);
+    LocationManager *lm = [[LocationManager alloc] init];
+    [lm setUpLocationManager];
     
+    self.userCoordinate = [[YLPCoordinate alloc] initWithLatitude:lm.location.coordinate.latitude longitude:lm.location.coordinate.longitude];
 }
 
 - (IBAction)didTapPhoto:(id)sender {
