@@ -11,10 +11,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class LocationManager;
+
+@protocol LocationManagerDelegate
+
+- (void)LocationManager:(LocationManager *)locationManager setUpWithLocation:(CLLocation *)location;
+
+@end
+
 @interface LocationManager : NSObject <CLLocationManagerDelegate>
 
+@property (weak, nonatomic) id<LocationManagerDelegate> delegate;
+
 @property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, strong) CLLocation *location;
 
 - (void) setUpLocationManager;
 

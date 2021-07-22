@@ -20,7 +20,8 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
         [self.locationManager requestWhenInUseAuthorization];
-    }    [self.locationManager startUpdatingLocation];
+    }
+    [self.locationManager startUpdatingLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
@@ -28,7 +29,7 @@
     if (location.horizontalAccuracy > 0) {
         [self.locationManager stopUpdatingLocation];
         
-        self.location = location;
+        [self.delegate LocationManager:self setUpWithLocation:location];
     }
 }
 
