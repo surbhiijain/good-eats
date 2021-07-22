@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Restaurant.h"
+#import "LocationManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ComposeViewController : UIViewController <LocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) id<ComposeViewControllerDelegate> delegate;
 

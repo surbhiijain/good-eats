@@ -17,8 +17,6 @@
 #import <YelpAPI/YLPBusiness.h>
 #import <YelpAPI/YLPLocation.h>
 #import <YelpAPI/YLPCoordinate.h>
-#import "LocationManager.h"
-
 
 @interface ComposeViewController ()
 
@@ -30,7 +28,7 @@
 
 @property (nonatomic, strong) NSMutableArray *tags;
 
-@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) LocationManager *locationManager;
 @property (nonatomic, strong) YLPCoordinate *userCoordinate;
 
 @end
@@ -41,11 +39,14 @@
     [super viewDidLoad];
     self.tags = [NSMutableArray new];
     [self.starRatingView setTintColor:[UIColor systemYellowColor]];
-
-    LocationManager *lm = [[LocationManager alloc] init];
-    [lm setUpLocationManager];
     
-    self.userCoordinate = [[YLPCoordinate alloc] initWithLatitude:lm.location.coordinate.latitude longitude:lm.location.coordinate.longitude];
+    self.locationManager = [[LocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager setUpLocationManager];
+}
+
+- (void)LocationManager:(LocationManager *)locationManager setUpWithLocation:(CLLocation *)location {
+    self.userCoordinate = [[YLPCoordinate alloc] initWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
 }
 
 - (IBAction)didTapPhoto:(id)sender {
@@ -62,7 +63,7 @@
             [self presentViewController:imagePickerVC animated:YES completion:nil];
         }];
         [photoOptions addObject:camera];
-
+        
         
         UIAction *photoLibrary = [UIAction actionWithTitle:@"Photo Library" image:nil identifier:nil handler:^(UIAction* action) {
             imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -73,7 +74,7 @@
         [self.imageButton setMenu:[UIMenu menuWithChildren:photoOptions]];
     }
     // otherwise, go directly into the photo library
-     else {
+    else {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:imagePickerVC animated:YES completion:nil];
     }
@@ -109,7 +110,7 @@
 
 - (IBAction)didTapCancel:(id)sender {
     self.tabBarController.selectedViewController
-        = [self.tabBarController.viewControllers objectAtIndex:0];
+    = [self.tabBarController.viewControllers objectAtIndex:0];
     [self clearFields];
 }
 
@@ -118,8 +119,8 @@
         [self locateRestaurant];
     } else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Post not completed"
-                                                                                   message:@"Please upload an image and enter the restaurant and dish names"
-                                                                            preferredStyle:(UIAlertControllerStyleAlert)];
+                                                                       message:@"Please upload an image and enter the restaurant and dish names"
+                                                                preferredStyle:(UIAlertControllerStyleAlert)];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
@@ -131,6 +132,7 @@
 }
 
 - (void) locateRestaurant {
+    
     [[AppDelegate sharedClient] searchWithCoordinate:self.userCoordinate term:self.restaurantField.text limit:5 offset:0 sort:YLPSortTypeDistance completionHandler:^(YLPSearch * search, NSError * error) {
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
@@ -206,11 +208,11 @@
         }
         // go back to main map view
         self.tabBarController.selectedViewController
-            = [self.tabBarController.viewControllers objectAtIndex:0];
+        = [self.tabBarController.viewControllers objectAtIndex:0];
         [self clearFields];
     }];
     
-
+    
 }
 
 - (IBAction)didTapTag:(UIButton *)sender {
@@ -238,13 +240,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
