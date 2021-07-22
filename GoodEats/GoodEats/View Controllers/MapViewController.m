@@ -8,11 +8,14 @@
 #import "MapViewController.h"
 #import <MapKit/MapKit.h>
 #import "ComposeViewController.h"
+#import "RestaurantDetailViewController.h"
 
 @interface MapViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @property (nonatomic, strong) NSMutableArray *restaurants;
+@property (nonatomic, strong) NSString *restaurantId;
+
 
 @end
 
@@ -32,7 +35,6 @@
 }
 
 - (void) getAllRestaurants {
-    // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
     [query includeKeys:@[@"dishes"]];
     [query orderByDescending:@"createdAt"];
@@ -58,7 +60,16 @@
     MKPointAnnotation *annotation = [MKPointAnnotation new];
     annotation.coordinate = coordinate;
     annotation.title = restaurant.name;
+    annotation.subtitle = restaurant.objectId;
+    
     [self.mapView addAnnotation:annotation];
+    
+    self.restaurantId = restaurant.objectId;
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    self.restaurantId = view.annotation.subtitle;
+    [self performSegueWithIdentifier:@"restaurantDetailsSegue" sender:self];
 }
 
 - (void)ComposeViewController:(ComposeViewController *)controller postedRestaurant:(Restaurant *)restaurant {
@@ -79,14 +90,13 @@
     }
 }
 
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"restaurantDetailsSegue"]) {
+        RestaurantDetailViewController *restaurantDetailsVC = [segue destinationViewController];
+        restaurantDetailsVC.restaurantId = self.restaurantId;
+    }
 }
-*/
 
 @end
