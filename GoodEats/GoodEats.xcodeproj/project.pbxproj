@@ -181,6 +181,7 @@
 		76D01CB0269CC89D00288EF2 /* GoodEats */ = {
 			isa = PBXGroup;
 			children = (
+				76E4578026AA122E0073AB8D /* HelperFiles */,
 				76D01CE8269CC9D100288EF2 /* Models */,
 				76D01CE7269CC9CC00288EF2 /* Views */,
 				76D01CE6269CC9C000288EF2 /* View Controllers */,
@@ -193,10 +194,6 @@
 				76D01CBF269CC89D00288EF2 /* LaunchScreen.storyboard */,
 				76D01CC2269CC89D00288EF2 /* Info.plist */,
 				76D01CC3269CC89D00288EF2 /* main.m */,
-				76E4577026A8A25A0073AB8D /* Utils.m */,
-				76E4577226A8A2620073AB8D /* Utils.h */,
-				76E4577C26A9F69E0073AB8D /* LocationManager.h */,
-				76E4577D26A9F69E0073AB8D /* LocationManager.m */,
 			);
 			path = GoodEats;
 			sourceTree = "<group>";
@@ -274,6 +271,17 @@
 				76E49E70269E00AC00617E4F /* Restaurant.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		76E4578026AA122E0073AB8D /* HelperFiles */ = {
+			isa = PBXGroup;
+			children = (
+				76E4577026A8A25A0073AB8D /* Utils.m */,
+				76E4577226A8A2620073AB8D /* Utils.h */,
+				76E4577C26A9F69E0073AB8D /* LocationManager.h */,
+				76E4577D26A9F69E0073AB8D /* LocationManager.m */,
+			);
+			path = HelperFiles;
 			sourceTree = "<group>";
 		};
 		8194C5A482C318E9F7710FBF /* Pods */ = {
