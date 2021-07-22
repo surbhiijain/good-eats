@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) NSMutableArray *restaurants;
 @property (nonatomic, strong) NSString *restaurantId;
+@property (nonatomic, strong) LocationManager *locationManager;
 
 
 @end
@@ -23,15 +24,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.locationManager = [[LocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager setUpLocationManager];
     
-    // setting initial visible region of map to SF
-    // todo: change to user's current location
-    MKCoordinateRegion sfRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(47.697631726141275, -122.02136993408205), MKCoordinateSpanMake(0.1, 0.1));
-    [self.mapView setRegion:sfRegion animated:false];
-    self.mapView.delegate = self;
     self.tabBarController.delegate = self;
     
     [self getAllRestaurants];
+}
+
+- (void)LocationManager:(LocationManager *)locationManager setUpWithLocation:(CLLocation *)location {
+    MKCoordinateRegion sfRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude), MKCoordinateSpanMake(0.1, 0.1));
+    
+    [self.mapView setRegion:sfRegion animated:false];
+    self.mapView.delegate = self;
 }
 
 - (void) getAllRestaurants {
@@ -54,7 +60,7 @@
 
 - (void) displayPin: (Restaurant *) restaurant {
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(restaurant.latitude.floatValue, restaurant.longitude.floatValue);
-
+    
     [self.navigationController popViewControllerAnimated:YES];
     
     MKPointAnnotation *annotation = [MKPointAnnotation new];
