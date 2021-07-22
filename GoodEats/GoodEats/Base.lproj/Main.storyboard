@@ -665,7 +665,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="ZVS-7m-aRH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cqh-hO-GL0">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -682,11 +682,11 @@
             <objects>
                 <viewController storyboardIdentifier="MapViewController" id="InW-DE-RzT" customClass="MapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u4r-aF-Giy">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qHO-Xz-o5y">
-                                <rect key="frame" x="0.0" y="88" width="390" height="673"/>
+                                <rect key="frame" x="0.0" y="56" width="390" height="651"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kW7-um-lxu"/>
@@ -701,7 +701,7 @@
                     <navigationItem key="navigationItem" id="fBs-jx-8MP">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="zIC-dy-MH3">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dZ5-Ch-xjR">
-                                <rect key="frame" x="16" y="11" width="75" height="22"/>
+                                <rect key="frame" x="16" y="17" width="75" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="line.horizontal.3.decrease" catalog="system"/>
                                 <connections>
@@ -711,7 +711,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="magnifyingglass" catalog="system" style="plain" id="DFn-sk-HMa">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="j3W-xB-Yyw">
-                                <rect key="frame" x="300" y="11" width="74" height="22"/>
+                                <rect key="frame" x="300" y="17" width="74" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="magnifyingglass" catalog="system"/>
                             </button>
@@ -730,21 +730,21 @@
             <objects>
                 <viewController id="zvO-tP-dNp" customClass="ComposeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7AL-9n-iPn">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="what'd you eat?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x1x-jE-Bfe">
-                                <rect key="frame" x="15" y="367" width="360" height="21"/>
+                                <rect key="frame" x="15" y="335" width="360" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="what'd you think?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wfd-p1-dPx">
-                                <rect key="frame" x="15" y="396" width="360" height="21"/>
+                                <rect key="frame" x="15" y="364" width="360" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZ7-Rm-lr2">
-                                <rect key="frame" x="15.000000000000007" y="429" width="114.66666666666669" height="30"/>
+                                <rect key="frame" x="15.000000000000007" y="397" width="114.66666666666669" height="30"/>
                                 <color key="backgroundColor" red="0.83960682149999999" green="0.89415436979999996" blue="0.89019709830000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="MUST TRY">
@@ -760,7 +760,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zwy-v8-nxp">
-                                <rect key="frame" x="137.66666666666666" y="429" width="114.66666666666666" height="30"/>
+                                <rect key="frame" x="137.66666666666666" y="397" width="114.66666666666666" height="30"/>
                                 <color key="backgroundColor" red="0.83960682149999999" green="0.89415436979999996" blue="0.89019709830000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="VEGETARIAN">
@@ -776,7 +776,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lww-DW-TYW">
-                                <rect key="frame" x="260.33333333333331" y="429" width="114.66666666666669" height="30"/>
+                                <rect key="frame" x="260.33333333333331" y="397" width="114.66666666666669" height="30"/>
                                 <color key="backgroundColor" red="0.83960682149999999" green="0.89415436979999996" blue="0.89019709830000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="GLUTEN FREE">
@@ -792,7 +792,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2q-ou-Qhy">
-                                <rect key="frame" x="15" y="463" width="176" height="30"/>
+                                <rect key="frame" x="15" y="431" width="176" height="30"/>
                                 <color key="backgroundColor" red="0.83960682149999999" green="0.89415436979999996" blue="0.89019709830000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="VEGAN">
@@ -808,7 +808,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oki-bV-95K">
-                                <rect key="frame" x="199" y="463" width="176" height="30"/>
+                                <rect key="frame" x="199" y="431" width="176" height="30"/>
                                 <color key="backgroundColor" red="0.83960682149999999" green="0.89415436979999996" blue="0.89019709830000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="HEALTHY">
@@ -824,7 +824,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLD-J3-3Zc">
-                                <rect key="frame" x="15" y="103.33333333333333" width="250" height="174.33333333333331"/>
+                                <rect key="frame" x="15" y="71.333333333333329" width="250" height="174.33333333333331"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="FmL-hu-Yhb"/>
                                     <constraint firstAttribute="height" constant="175" id="g9J-zc-mMz"/>
@@ -838,7 +838,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fhw-op-DXD" customClass="HCSStarRatingView">
-                                <rect key="frame" x="15" y="286" width="170" height="44"/>
+                                <rect key="frame" x="15" y="254" width="170" height="44"/>
                                 <color key="backgroundColor" red="1" green="0.97986656429999996" blue="0.97582834959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" systemColor="systemYellowColor"/>
                                 <constraints>
@@ -870,7 +870,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="restaurant name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s1s-XS-y5F">
-                                <rect key="frame" x="15" y="338" width="360" height="21"/>
+                                <rect key="frame" x="15" y="306" width="360" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -915,7 +915,7 @@
                     <navigationItem key="navigationItem" id="V4u-BT-Pr4">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="QZd-Vw-Ehc">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QhY-aU-BAC">
-                                <rect key="frame" x="16" y="11" width="67" height="22"/>
+                                <rect key="frame" x="16" y="17" width="67" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="chevron.backward" catalog="system"/>
                                 <connections>
@@ -925,7 +925,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="gxh-qy-xQ9">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="kl6-sV-IAT">
-                                <rect key="frame" x="282" y="7" width="92" height="30"/>
+                                <rect key="frame" x="282" y="13" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="DONE"/>
                                 <connections>
@@ -952,7 +952,7 @@
             <objects>
                 <viewController id="tZg-sP-V0K" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tyf-aG-FPY">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="obC-RM-t7U"/>
                         <color key="backgroundColor" red="0.99591690300000002" green="0.97654432059999996" blue="0.97254878280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -960,7 +960,7 @@
                     <navigationItem key="navigationItem" id="w7V-yW-3pK">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="Kye-NT-P49">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="vxT-Iu-eGZ">
-                                <rect key="frame" x="282" y="7" width="92" height="30"/>
+                                <rect key="frame" x="282" y="13" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
@@ -981,7 +981,7 @@
                     <tabBarItem key="tabBarItem" title="" image="person.fill" catalog="system" id="vCL-bX-XmE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Er1-1s-SyQ">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1000,7 +1000,7 @@
                     <tabBarItem key="tabBarItem" title="" image="plus" catalog="system" id="zGG-BJ-drs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yZi-zQ-Sl8">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1692,29 +1692,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="590"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Tg8-hx-4XU">
-                                <rect key="frame" x="0.0" y="0.0" width="399" height="590"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PTX-jl-hM1">
-                                    <size key="itemSize" width="128" height="128"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Tg8-hx-4XU">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="590"/>
+                                <color key="backgroundColor" red="1" green="0.97986656429999996" blue="0.97582834959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="PTX-jl-hM1">
+                                    <size key="itemSize" width="182" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="15" maxX="20" maxY="15"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RestaurantPostCollectionCell" id="es6-PJ-bt7" customClass="RestaurantPostCollectionCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                        <rect key="frame" x="99" y="15" width="182" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="00R-GY-n93">
-                                            <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="182" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n74-Tm-0pn">
-                                                    <rect key="frame" x="0.0" y="-8" width="128" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n74-Tm-0pn">
+                                                    <rect key="frame" x="0.0" y="0.0" width="182" height="128"/>
                                                 </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="n74-Tm-0pn" secondAttribute="bottom" id="21I-m7-tiP"/>
+                                                <constraint firstItem="n74-Tm-0pn" firstAttribute="top" secondItem="00R-GY-n93" secondAttribute="top" id="6Ur-4y-giO"/>
+                                                <constraint firstItem="n74-Tm-0pn" firstAttribute="leading" secondItem="00R-GY-n93" secondAttribute="leading" id="hlm-qO-Vxn"/>
+                                                <constraint firstAttribute="trailing" secondItem="n74-Tm-0pn" secondAttribute="trailing" id="xn2-F6-RSc"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="182" height="128"/>
                                         <connections>
                                             <outlet property="postImage" destination="n74-Tm-0pn" id="gTC-xI-Aja"/>
                                         </connections>
@@ -1723,6 +1729,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Tg8-hx-4XU" secondAttribute="trailing" id="5vj-Ai-p0c"/>
+                            <constraint firstItem="Tg8-hx-4XU" firstAttribute="top" secondItem="2aK-Co-uBO" secondAttribute="top" id="OP3-ff-R8y"/>
+                            <constraint firstItem="Tg8-hx-4XU" firstAttribute="leading" secondItem="2aK-Co-uBO" secondAttribute="leading" id="iEG-GB-cfy"/>
+                            <constraint firstAttribute="bottom" secondItem="Tg8-hx-4XU" secondAttribute="bottom" id="sOI-El-sBz"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="Tg8-hx-4XU" id="VyA-pB-SYO"/>
@@ -1730,7 +1742,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gnq-kX-70P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2823" y="2802"/>
+            <point key="canvasLocation" x="2821.5384615384614" y="2800.2369668246442"/>
         </scene>
     </scenes>
     <designables>
@@ -1739,9 +1751,9 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="fV2-J6-dkz"/>
-        <segue reference="Kux-KQ-U0K"/>
-        <segue reference="uDL-IY-r1Y"/>
+        <segue reference="eE6-rv-jqs"/>
+        <segue reference="Xy6-ao-URM"/>
+        <segue reference="Nd1-Xy-IlG"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>

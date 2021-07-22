@@ -19,9 +19,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    
     [self getRestaurant];
+    
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    
+    layout.minimumLineSpacing = 15; // vertical spacing
+    layout.minimumInteritemSpacing = 15; // horizontal spacing
+
+    
+    CGFloat postsPerLine = 2;
+    CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing - 30 * (postsPerLine - 1)) / postsPerLine;
+    CGFloat itemHeight = itemWidth * 4 / 7;
+    layout.itemSize = CGSizeMake(itemWidth, itemHeight);
 }
 
 - (void) getRestaurant {
