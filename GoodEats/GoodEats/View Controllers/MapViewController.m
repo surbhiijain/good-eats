@@ -30,6 +30,8 @@
     
     self.tabBarController.delegate = self;
     
+    self.mapView.delegate = self;
+    
     [self getAllRestaurants];
 }
 
@@ -37,7 +39,11 @@
     MKCoordinateRegion sfRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude), MKCoordinateSpanMake(0.1, 0.1));
     
     [self.mapView setRegion:sfRegion animated:false];
-    self.mapView.delegate = self;
+}
+
+- (void)FilterViewController:(FilterViewController *)filterViewController reloadFeedWithRestaurants:(NSMutableArray *)restaurants {
+    self.restaurants = restaurants;
+    [self displayAllPinsForRestaurantArray:restaurants];
 }
 
 - (void) getAllRestaurants {
@@ -49,16 +55,14 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *restaurants, NSError *error) {
         if (restaurants != nil) {
             self.restaurants = (NSMutableArray *) restaurants;
-            for (Restaurant *restaurant in restaurants) {
-                [self displayPin:restaurant];
-            }
+            [self displayAllPinsForRestaurantArray:restaurants];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
 }
 
-- (void) displayPin: (Restaurant *) restaurant {
+- (void) displayPinForRestaurant: (Restaurant *) restaurant {
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(restaurant.latitude.floatValue, restaurant.longitude.floatValue);
     
     [self.navigationController popViewControllerAnimated:YES];
@@ -69,8 +73,13 @@
     annotation.subtitle = restaurant.objectId;
     
     [self.mapView addAnnotation:annotation];
-    
-    self.restaurantId = restaurant.objectId;
+}
+
+- (void) displayAllPinsForRestaurantArray: (NSArray *) restaurants {
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    for (Restaurant *restaurant in restaurants) {
+        [self displayPinForRestaurant:restaurant];
+    }
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
@@ -80,7 +89,7 @@
 
 - (void)ComposeViewController:(ComposeViewController *)controller postedRestaurant:(Restaurant *)restaurant {
     [self.restaurants addObject:restaurant];
-    [self displayPin:restaurant];
+    [self displayPinForRestaurant:restaurant];
 }
 
 // find and set compose view controller delegate
@@ -102,6 +111,10 @@
     if ([segue.identifier isEqualToString:@"restaurantDetailsSegue"]) {
         RestaurantDetailViewController *restaurantDetailsVC = [segue destinationViewController];
         restaurantDetailsVC.restaurantId = self.restaurantId;
+    } if ([segue.identifier isEqualToString:@"filterSegue"]) {
+        UINavigationController *navigationVC = [segue destinationViewController];
+        FilterViewController *filterVC = (FilterViewController *) navigationVC.topViewController;
+        filterVC.delegate = self;
     }
 }
 
