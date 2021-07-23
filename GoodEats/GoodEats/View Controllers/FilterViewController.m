@@ -93,6 +93,8 @@
             [self.filteredRestaurants addObject:restaurant];
         }
     }
+    [self.delegate FilterViewController:self reloadFeedWithRestaurants:self.filteredRestaurants];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

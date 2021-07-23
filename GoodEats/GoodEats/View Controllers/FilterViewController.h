@@ -9,7 +9,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class FilterViewController;
+
+@protocol  FilterViewDelegate
+
+- (void) FilterViewController:(FilterViewController *) filterViewController reloadFeedWithRestaurants: (NSMutableArray *) restaurants;
+
+@end
+
 @interface FilterViewController : UIViewController
+
+@property (weak, nonatomic) id<FilterViewDelegate> delegate;
 
 @end
 
