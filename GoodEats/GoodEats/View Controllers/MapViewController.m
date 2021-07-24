@@ -9,6 +9,7 @@
 #import <MapKit/MapKit.h>
 #import "ComposeViewController.h"
 #import "RestaurantDetailViewController.h"
+#import "TableFeedViewController.h"
 
 @interface MapViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -39,6 +40,8 @@
     MKCoordinateRegion sfRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude), MKCoordinateSpanMake(0.1, 0.1));
     
     [self.mapView setRegion:sfRegion animated:false];
+    
+    [self.mapView setShowsUserLocation:TRUE];
 }
 
 - (void)FilterViewController:(FilterViewController *)filterViewController reloadFeedWithRestaurants:(NSMutableArray *)restaurants {
@@ -104,6 +107,9 @@
         }
     }
 }
+- (IBAction)didTapToNavigateToTableFeed:(id)sender {
+    [self performSegueWithIdentifier:@"tableFeedSegue" sender:self];
+}
 
 #pragma mark - Navigation
 
@@ -115,6 +121,9 @@
         UINavigationController *navigationVC = [segue destinationViewController];
         FilterViewController *filterVC = (FilterViewController *) navigationVC.topViewController;
         filterVC.delegate = self;
+    } if ([segue.identifier isEqualToString:@"tableFeedSegue"]) {
+        TableFeedViewController *tableFeedVC = [segue destinationViewController];
+        // TODO: add some properties to tableFeedVC to help with filtering
     }
 }
 

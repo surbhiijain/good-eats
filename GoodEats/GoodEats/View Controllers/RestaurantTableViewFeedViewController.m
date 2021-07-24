@@ -45,7 +45,7 @@
     [postQuery orderByDescending:@"createdAt"];
     postQuery.limit = [self.restaurant.numCheckIns intValue];
     [postQuery includeKeys:@[@"image", @"dish", @"author"]];
-    
+        
     PFQuery *dishQuery = [PFQuery queryWithClassName:@"Dish"];
     [dishQuery whereKey:@"restaurantID" equalTo:self.restaurantId];
     
