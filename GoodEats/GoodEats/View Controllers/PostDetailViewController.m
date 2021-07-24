@@ -42,7 +42,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self refreshData];
-    // Do any additional setup after loading the view.
 }
 
 - (void)refreshData {
@@ -52,7 +51,7 @@
     self.usernameLabel.text = user.username;
     
     [self.restaurantLabel setTitle:self.post.dish.restaurantName forState:(UIControlStateNormal)];
-    // get restaurant to display location
+
     PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
     [query getObjectInBackgroundWithId:self.post.dish.restaurantID block:^(PFObject *restaurant, NSError *error) {
         if (!error) {
@@ -63,7 +62,6 @@
         }
     }];
     
-    // set the post UIImageView based on the PFImage pased in through parse
     [self.post.image getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
         UIImage *image = [UIImage imageWithData:imageData];
         [self.postImage setImage:image] ;
@@ -72,7 +70,6 @@
     [self.dishButton setTitle:self.post.dish.name forState:UIControlStateNormal];
     self.captionLabel.text = self.post.caption;
     
-    // use DateTools pod to add time ago feature
     NSDate *timeNow = [NSDate date];
     NSInteger seconds = [timeNow secondsFrom:self.post.createdAt];
     NSDate *timeDate = [NSDate dateWithTimeIntervalSinceNow:seconds];
@@ -81,12 +78,11 @@
     
     [self setStars];
     [self setTags];
-
+    
 }
 
 - (void)setPlaceholdersToNil {
     [self.postImage setImage:nil];
-//    [self.profileImage setImage:nil];
     
     self.usernameLabel.text = @"";
     [self.restaurantLabel setTitle:@"" forState:(UIControlStateNormal)];
@@ -121,8 +117,7 @@
     [tagButtons addObject:self.tagButton3];
     [tagButtons addObject:self.tagButton4];
     [tagButtons addObject:self.tagButton5];
-        
-    // display tags starting from bottom left until there are no more and hide any remaining tag placeholders
+    
     for (int i = 0; i < tagButtons.count; i++) {
         UIButton *tagButton = tagButtons[i];
         if (i < self.post.tags.count) {
@@ -136,7 +131,6 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"dishDetailsSegue"]) {
         DishDetailsViewController *detailsVC = [segue destinationViewController];

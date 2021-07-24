@@ -12,13 +12,11 @@
 @implementation Utils
 
 + (void)setStarFills:(NSNumber *)rating withStars:(NSMutableArray *)stars {
-    // round average rating to nearest 0.5 to fill in stars
     float roundedRating = [rating floatValue] < 0.5f ? 0.5f : floorf([rating floatValue] * 2) / 2;
     
     UIImage *fill =  [UIImage systemImageNamed:@"star.fill"];
     UIImage *half = [UIImage systemImageNamed:@"star.leadinghalf.fill"];
-
-    // fill one star at a time until you reach the rating value
+    
     while (roundedRating > 0.0f) {
         UIImageView *star = stars[0];
         [stars removeObject:star];

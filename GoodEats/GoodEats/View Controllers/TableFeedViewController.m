@@ -35,7 +35,7 @@
 }
 
 - (void) getAllPosts {
-    // construct query
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKeys:@[@"author",@"image", @"dish"]];
     [query orderByDescending:@"createdAt"];

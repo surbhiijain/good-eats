@@ -35,10 +35,10 @@
 - (void)addCheckInWithRating:(NSNumber *)rating {
     
     NSNumber *ratingSumSoFar = @([self.numCheckIns doubleValue] * [self.avgRating doubleValue] + [rating doubleValue]);
-    self.numCheckIns = @([self.numCheckIns intValue] + [@1 intValue]);
     
+    self.numCheckIns = @([self.numCheckIns intValue] + [@1 intValue]);
     self.avgRating = @([ratingSumSoFar doubleValue] / [self.numCheckIns doubleValue]);
-
+    
     [self saveInBackground];
 }
 

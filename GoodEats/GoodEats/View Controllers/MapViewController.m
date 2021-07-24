@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.locationManager = [[LocationManager alloc] init];
     self.locationManager.delegate = self;
     [self.locationManager setUpLocationManager];
@@ -79,10 +80,13 @@
 }
 
 - (void) displayAllPinsForRestaurantArray: (NSArray *) restaurants {
+    
     [self.mapView removeAnnotations:self.mapView.annotations];
+    
     for (Restaurant *restaurant in restaurants) {
         [self displayPinForRestaurant:restaurant];
     }
+
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {

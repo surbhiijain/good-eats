@@ -51,6 +51,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -72,7 +73,6 @@
     [query orderByDescending:@"createdAt"];
     query.limit = 25;
     
-    // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.posts = (NSMutableArray *) posts;
@@ -91,12 +91,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DishPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DishPostCell"];
-
+    
     Post *post = self.posts[indexPath.row];
-
+    
     cell.post = post;
     [cell refreshData];
-
+    
     return cell;
 }
 
@@ -120,13 +120,13 @@
     NSMutableDictionary *tagCounts = [self getTagCounts];
     
     NSArray* sortedKeys = [tagCounts keysSortedByValueUsingComparator:^(NSNumber *first, NSNumber *second) {
-       if ([first integerValue] > [second integerValue])
-           return (NSComparisonResult)NSOrderedAscending;
-
-       if ([first integerValue] < [second integerValue])
-           return (NSComparisonResult)NSOrderedDescending;
-       return (NSComparisonResult)NSOrderedSame;
-   }];
+        if ([first integerValue] > [second integerValue])
+            return (NSComparisonResult)NSOrderedAscending;
+        
+        if ([first integerValue] < [second integerValue])
+            return (NSComparisonResult)NSOrderedDescending;
+        return (NSComparisonResult)NSOrderedSame;
+    }];
     
     NSMutableArray *tagButtons = [[NSMutableArray alloc] init];
     [tagButtons addObject:self.tagButton1];
@@ -141,8 +141,7 @@
     [tagLabels addObject:self.tagCountLabel3];
     [tagLabels addObject:self.tagCountLabel4];
     [tagLabels addObject:self.tagCountLabel5];
-        
-    // display tags starting from top right left until there are no more and hide any remaining tag placeholders
+    
     int tagButtonIndex = 0;
     for (NSString *tagName in sortedKeys) {
         UIButton *tagButton = tagButtons[tagButtonIndex];
@@ -152,11 +151,11 @@
         [tagButton setTitle:tagName forState:UIControlStateNormal];
         tagCountLabel.text = [count stringValue];
     }
-
+    
     for (int i = tagButtonIndex; i < tagButtons.count; i++) {
         UIButton *tagButton = tagButtons[i];
         UILabel *tagCountLabel = tagLabels[i];
-
+        
         [tagButton setTitle:@"" forState:UIControlStateNormal];
         tagCountLabel.text = @"";
         [tagButton setHidden:TRUE];

@@ -82,7 +82,6 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
-    // Get the image captured by the UIImagePickerController
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(400, 300)];
@@ -159,6 +158,7 @@
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *restaurants, NSError *error) {
         // set the restaurant to the first result if one already exists
+        //TODO: display first few results to user for them to pick their restaurant
         if (restaurants != nil && restaurants.count != 0) {
             restaurant = restaurants[0];
             [self getDish:restaurant];
@@ -206,7 +206,7 @@
             [restaurant addCheckIn];
             [self.delegate ComposeViewController:self postedRestaurant:restaurant];
         }
-        // go back to main map view
+        
         self.tabBarController.selectedViewController
         = [self.tabBarController.viewControllers objectAtIndex:0];
         [self clearFields];
@@ -219,13 +219,14 @@
     
     NSString *tagName = [sender currentTitle];
     
-    if (![self.tags containsObject:tagName]) {
-        [self.tags addObject:tagName];
-        [sender setBackgroundColor:[UIColor colorWithRed:0/255.0 green:109/255.0 blue:119/255.0 alpha:1.0]];
-    } else if ([self.tags containsObject:tagName]) {
+    if ([self.tags containsObject:tagName]) {
         [self.tags removeObject:tagName];
         [sender setBackgroundColor:[UIColor colorWithRed:211/255.0 green:229/255.0 blue:227/255.0 alpha:1.0]];
+        return;
     }
+    
+    [self.tags addObject:tagName];
+    [sender setBackgroundColor:[UIColor colorWithRed:0/255.0 green:109/255.0 blue:119/255.0 alpha:1.0]];
 }
 
 - (void)clearFields {
@@ -238,15 +239,5 @@
     UIImage *placeHolderImage =  [UIImage systemImageNamed:@"photo.fill.on.rectangle.fill"];
     [self.imageButton setBackgroundImage:placeHolderImage forState:UIControlStateNormal];
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end
