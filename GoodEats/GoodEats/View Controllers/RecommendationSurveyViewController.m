@@ -55,6 +55,9 @@
             return;
         }
         [self filterRestaurants:restaurants byDistance:dist fromLocation:self.userLocation withCompletion:^(NSMutableArray *filteredRestaurants, NSMutableArray *filteredRestaurantIds) {
+            if (!filteredRestaurants.count) {
+                [self handleNoRecommendationsFound:@"No restaurants found close enough to you. Please increase your time, or try again later"];
+            }
             if (adventureIndex == 1 || adventureIndex == 2) {
                 allDishes = [self getAllDishesInRestaurants:filteredRestaurants];
             }
@@ -67,6 +70,9 @@
                 if (error) {
                     NSLog(@"Error: %@", error.localizedDescription);
                     return;
+                }
+                if (!posts.count && adventureIndex == 0) {
+                    [self handleNoRecommendationsFound:@"No 'safe' restaurants exist since you have never checked in to a restaurant before. Select 'advernturous' to find something new, or start checking into restaurants on your own first!"];
                 }
                 for (Post *post in posts) {
                     [userTriedDishes addObject:post.dish];
@@ -83,11 +89,27 @@
                         return;
                     }
                 }
-                
-                
+                if (!self.dish) {
+                    [self handleNoRecommendationsFound:@"You've tried all the dishes in our database! Tell your friends to check into new places or broaden your query."];
+                }
             }];
         }];
     }];
+}
+
+- (void) handleNoRecommendationsFound: (NSString *) alertMessage  {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No recommendations found"
+                                                                   message:alertMessage
+                                                            preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [alert addAction:cancelAction];
+    
+    UIAlertAction *tryAgainAction = [UIAlertAction actionWithTitle:@"try again" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:tryAgainAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (double) getSelectedDistance {
