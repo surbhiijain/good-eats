@@ -10,7 +10,6 @@
 
 @implementation Dish
 
-@dynamic dishID;
 @dynamic name;
 @dynamic restaurantName;
 @dynamic restaurantID;
@@ -42,4 +41,20 @@
     [self saveInBackground];
 }
 
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } if (!other || ![other isKindOfClass:[self class]]) {
+        return NO;
+    } else {
+        Dish *otherDish = (Dish *) other;
+        return [self.objectId isEqualToString:otherDish.objectId];
+    }
+}
+
+- (NSUInteger)hash
+{
+    return [self.objectId hash];
+}
 @end
