@@ -10,13 +10,17 @@
 #import "Dish.h"
 #import "Restaurant.h"
 #import "Post.h"
+#import "LocationManager.h"
 
-@interface RecommendationSurveyViewController ()
+@interface RecommendationSurveyViewController () <LocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *timeSegControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tasteSegControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *adventureSegControl;
 
 @property (nonatomic, strong) Dish *dish;
+
+@property (nonatomic, strong) LocationManager *locationManager;
+@property (nonatomic, strong) CLLocation *userLocation;
 
 @end
 
@@ -24,7 +28,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.locationManager = [[LocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager setUpLocationManager];
 }
+
+- (void)LocationManager:(LocationManager *)locationManager setUpWithLocation:(CLLocation *)location {
+    self.userLocation = location;
+}
+
 - (IBAction)didTapDone:(id)sender {
     double dist = [self getSelectedDistance];
     BOOL taste = [self getTasteImportanceBool];
@@ -70,7 +83,6 @@
     }
     return FALSE;
 }
-
 
 #pragma mark - Navigation
 
