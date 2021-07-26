@@ -94,10 +94,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedPostCell" id="kkN-oO-Ibe" customClass="FeedPostCell">
-                                        <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="410.66665649414062"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="411"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kkN-oO-Ibe" id="B5P-Ka-I1m">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="410.66665649414062"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="411"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IJP-nr-mV9">
@@ -174,7 +174,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIF-cX-2U3">
-                                                    <rect key="frame" x="15" y="375" width="42" height="20.666666666666686"/>
+                                                    <rect key="frame" x="15" y="375" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1238,7 +1238,6 @@
                                 </state>
                                 <connections>
                                     <action selector="didTapDone:" destination="JSP-dT-NSH" eventType="touchUpInside" id="fZR-u5-gjO"/>
-                                    <segue destination="0g2-bH-Xer" kind="showDetail" identifier="dishDetailsSegue" id="qMh-00-eHC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1249,6 +1248,7 @@
                         <outlet property="adventureSegControl" destination="ZND-EJ-DdT" id="0a0-2y-MfT"/>
                         <outlet property="tasteSegControl" destination="f36-vs-oXi" id="WoA-df-rTt"/>
                         <outlet property="timeSegControl" destination="NfM-7Z-p2F" id="yQk-MD-NcR"/>
+                        <segue destination="0g2-bH-Xer" kind="showDetail" identifier="dishDetailsSegue" id="vUX-08-sHO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dDr-fT-hqV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2062,7 +2062,7 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="qMh-00-eHC"/>
+        <segue reference="vUX-08-sHO"/>
         <segue reference="Xy6-ao-URM"/>
         <segue reference="mHb-gf-TFz"/>
     </inferredMetricsTieBreakers>
