@@ -94,10 +94,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedPostCell" id="kkN-oO-Ibe" customClass="FeedPostCell">
-                                        <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="411.66665649414062"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="411.33334350585938"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kkN-oO-Ibe" id="B5P-Ka-I1m">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="411.66665649414062"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="411.33334350585938"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IJP-nr-mV9">
@@ -174,7 +174,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIF-cX-2U3">
-                                                    <rect key="frame" x="15" y="375" width="42" height="21.666666666666686"/>
+                                                    <rect key="frame" x="15" y="375" width="42" height="21.333333333333314"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -688,6 +688,16 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qHO-Xz-o5y">
                                 <rect key="frame" x="0.0" y="88" width="390" height="673"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZPj-nA-vtI">
+                                <rect key="frame" x="236" y="103" width="139" height="30"/>
+                                <color key="backgroundColor" red="0.1804688871" green="0.41871958970000001" blue="0.45883160830000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Help me decide">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="JSP-dT-NSH" kind="showDetail" id="apy-e1-2Qx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kW7-um-lxu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -696,6 +706,8 @@
                             <constraint firstItem="kW7-um-lxu" firstAttribute="trailing" secondItem="qHO-Xz-o5y" secondAttribute="trailing" id="Waf-Hg-TI9"/>
                             <constraint firstAttribute="bottom" secondItem="qHO-Xz-o5y" secondAttribute="bottom" constant="83" id="cWP-Cx-cgx"/>
                             <constraint firstItem="qHO-Xz-o5y" firstAttribute="top" secondItem="kW7-um-lxu" secondAttribute="top" id="d4n-It-Eim"/>
+                            <constraint firstItem="kW7-um-lxu" firstAttribute="trailing" secondItem="ZPj-nA-vtI" secondAttribute="trailing" constant="15" id="gzB-Pr-3zj"/>
+                            <constraint firstItem="ZPj-nA-vtI" firstAttribute="top" secondItem="kW7-um-lxu" secondAttribute="top" constant="15" id="myG-30-LUd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fBs-jx-8MP">
@@ -735,7 +747,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wnh-aU-3am" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="538" y="1448"/>
+            <point key="canvasLocation" x="536.92307692307691" y="1447.3933649289099"/>
         </scene>
         <!--Compose View Controller-->
         <scene sceneID="fNb-b5-3kS">
@@ -1161,6 +1173,87 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iVf-D0-53S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3983.0769230769229" y="1461.6113744075828"/>
+        </scene>
+        <!--Recommendation Survey View Controller-->
+        <scene sceneID="p5n-IY-Lwh">
+            <objects>
+                <viewController id="JSP-dT-NSH" customClass="RecommendationSurveyViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="H4D-zz-3sD">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NfM-7Z-p2F">
+                                <rect key="frame" x="16" y="127" width="358" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="10 mins"/>
+                                    <segment title="30 mins"/>
+                                    <segment title="1 hr"/>
+                                    <segment title="1.5 hrs +"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How much time do you have?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZh-8V-9oX">
+                                <rect key="frame" x="16" y="98" width="223" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What do you care about more right now?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwz-DS-ceu">
+                                <rect key="frame" x="16" y="216" width="309" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How adventurous do you feel? " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ual-ul-ygD">
+                                <rect key="frame" x="16" y="326" width="234" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="f36-vs-oXi">
+                                <rect key="frame" x="16" y="252" width="358" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Taste"/>
+                                    <segment title="Trendiness"/>
+                                </segments>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZND-EJ-DdT">
+                                <rect key="frame" x="16" y="361" width="358" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Not at all"/>
+                                    <segment title="Very"/>
+                                </segments>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZH2-s6-EeA">
+                                <rect key="frame" x="100" y="431" width="190" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.1804688871" green="0.41871958970000001" blue="0.45883160830000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="find my perfect match">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapDone:" destination="JSP-dT-NSH" eventType="touchUpInside" id="fZR-u5-gjO"/>
+                                    <segue destination="0g2-bH-Xer" kind="showDetail" identifier="dishDetailsSegue" id="qMh-00-eHC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="CfL-xY-eEP"/>
+                        <color key="backgroundColor" red="0.99591690300000002" green="0.97654432059999996" blue="0.97254878280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                    <connections>
+                        <outlet property="adventureSegControl" destination="ZND-EJ-DdT" id="0a0-2y-MfT"/>
+                        <outlet property="tasteSegControl" destination="f36-vs-oXi" id="WoA-df-rTt"/>
+                        <outlet property="timeSegControl" destination="NfM-7Z-p2F" id="yQk-MD-NcR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dDr-fT-hqV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4052.3076923076924" y="2145.4976303317535"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oj3-ak-t7i">
@@ -1969,7 +2062,7 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="eE6-rv-jqs"/>
+        <segue reference="qMh-00-eHC"/>
         <segue reference="Xy6-ao-URM"/>
         <segue reference="mHb-gf-TFz"/>
     </inferredMetricsTieBreakers>
