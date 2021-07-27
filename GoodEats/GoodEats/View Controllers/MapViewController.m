@@ -81,12 +81,17 @@
     [self animateTransitionIfNeededWithDuration:0.9];
 }
 
-- (void) handleCardPan: (UITapGestureRecognizer *) recognizer {
+- (void) handleCardPan: (UIPanGestureRecognizer *) recognizer {
     switch (recognizer.state) {
         case UIGestureRecognizerStateBegan:
             [self startInteractiveTransitionWithDuration:0.9];
         case UIGestureRecognizerStateChanged:
-            [self updateInteractiveTransition:0];
+            [recognizer translationInView:(self.modalTableViewController.handleArea)];
+            
+            CGPoint translatedPoint =  [recognizer translationInView:(self.modalTableViewController.handleArea)];
+            double fracComplete = translatedPoint.y / self.modalCardHeight;
+            fracComplete = self.cardVisible ? fracComplete : - fracComplete;
+            [self updateInteractiveTransition:fracComplete];
         case UIGestureRecognizerStateEnded:
             [self continueInteractiveTransition];
         default:
