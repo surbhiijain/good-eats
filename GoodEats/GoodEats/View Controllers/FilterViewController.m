@@ -21,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *tagButton5;
 
 @property (nonatomic, strong) NSMutableArray *restaurants;
+@property (nonatomic, strong) NSMutableArray *restaurantIds;
+
 
 @property (nonatomic, strong) NSMutableArray *tags;
 
@@ -40,6 +42,8 @@
     [self.locationManager setUpLocationManager];
     
     self.restaurants = [[NSMutableArray alloc] init];
+    self.restaurantIds = [[NSMutableArray alloc] init];
+    
     self.tags = [[NSMutableArray alloc] init];
     
     
@@ -59,7 +63,7 @@
         if (self.tags.count > 0) {
             [self filterRestaurants:self.restaurants ByTags:self.tags];
         }
-        [self.delegate FilterViewController:self reloadFeedWithRestaurants:self.restaurants];
+        [self.delegate FilterViewController:self reloadFeedWithRestaurants:self.restaurants withRestaurantIds:self.restaurantIds];
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
 }
@@ -97,6 +101,8 @@
 - (void) filterRestaurantsByDistance: (double) filterDistance fromLocation: (CLLocation *) userLocation {
     
     NSMutableArray *filteredRestaurants = [[NSMutableArray alloc] init];
+    NSMutableArray *filteredRestaurantIds = [[NSMutableArray alloc] init];
+
     NSMutableArray *distances = [[NSMutableArray alloc] init];
     
     for (Restaurant *restaurant in self.restaurants) {
@@ -108,14 +114,18 @@
         
         if (distanceInMiles <= filterDistance) {
             [filteredRestaurants addObject:restaurant];
+            [filteredRestaurantIds addObject:restaurant.objectId];
         }
     }
     self.restaurants = filteredRestaurants;
+    self.restaurantIds = filteredRestaurantIds;
 }
 
 - (void) filterRestaurants: (NSArray *) restaurants ByTags: (NSArray *) tags {
     
     NSMutableArray *filteredRestaurants = [[NSMutableArray alloc] init];
+    NSMutableArray *filteredRestaurantIds = [[NSMutableArray alloc] init];
+
     
     for (Restaurant *restaurant in restaurants) {
         
@@ -128,10 +138,13 @@
                 
                 if (valid) {
                     [filteredRestaurants addObject:restaurant];
+                    [filteredRestaurantIds addObject:restaurant.objectId];
                 }
                 
                 self.restaurants = filteredRestaurants;
-                [self.delegate FilterViewController:self reloadFeedWithRestaurants:self.restaurants];
+                self.restaurantIds = filteredRestaurantIds;
+                
+                [self.delegate FilterViewController:self reloadFeedWithRestaurants:self.restaurants withRestaurantIds:self.restaurantIds];
             }];
         }
     }

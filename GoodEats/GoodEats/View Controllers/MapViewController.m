@@ -15,7 +15,10 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @property (nonatomic, strong) NSMutableArray *restaurants;
-@property (nonatomic, strong) NSString *restaurantId;
+@property (nonatomic, strong) NSMutableArray *restaurantIds;
+
+@property (nonatomic, strong) NSString *selectedRestaurantId;
+
 @property (nonatomic, strong) LocationManager *locationManager;
 
 @property (nonatomic, strong) TableFeedViewController *modalTableFeedViewController;
@@ -150,8 +153,13 @@
     [self.mapView setShowsUserLocation:TRUE];
 }
 
-- (void)FilterViewController:(FilterViewController *)filterViewController reloadFeedWithRestaurants:(NSMutableArray *)restaurants {
+- (void)FilterViewController:(FilterViewController *)filterViewController reloadFeedWithRestaurants:(NSMutableArray *)restaurants withRestaurantIds:(NSMutableArray *)restaurantIds {
     self.restaurants = restaurants;
+    self.restaurantIds = restaurantIds;
+    
+    self.modalTableFeedViewController.validRestaurantIds = self.restaurantIds;
+    [self.modalTableFeedViewController fetchPosts];
+    
     [self displayAllPinsForRestaurantArray:restaurants];
 }
 
@@ -195,7 +203,7 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    self.restaurantId = view.annotation.subtitle;
+    self.selectedRestaurantId = view.annotation.subtitle;
     [self performSegueWithIdentifier:@"restaurantDetailsSegue" sender:self];
 }
 
@@ -222,7 +230,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"restaurantDetailsSegue"]) {
         RestaurantDetailViewController *restaurantDetailsVC = [segue destinationViewController];
-        restaurantDetailsVC.restaurantId = self.restaurantId;
+        restaurantDetailsVC.restaurantId = self.selectedRestaurantId;
     } if ([segue.identifier isEqualToString:@"filterSegue"]) {
         UINavigationController *navigationVC = [segue destinationViewController];
         FilterViewController *filterVC = (FilterViewController *) navigationVC.topViewController;

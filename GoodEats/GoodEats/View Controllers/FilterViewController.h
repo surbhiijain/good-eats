@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol  FilterViewDelegate
 
-- (void) FilterViewController:(FilterViewController *) filterViewController reloadFeedWithRestaurants: (NSMutableArray *) restaurants;
+- (void) FilterViewController:(FilterViewController *) filterViewController reloadFeedWithRestaurants: (NSMutableArray *) restaurants withRestaurantIds: (NSMutableArray *) restaurantIds;
 
 @end
 

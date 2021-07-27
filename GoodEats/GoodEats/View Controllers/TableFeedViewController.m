@@ -28,18 +28,25 @@
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     
-    [self getAllPosts];
+    [self fetchPosts];
     
-    [self.refreshControl addTarget:self action:@selector(getAllPosts) forControlEvents:(UIControlEventValueChanged)];
+    [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:(UIControlEventValueChanged)];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
-- (void) getAllPosts {
+- (void) fetchPosts {
     
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKeys:@[@"author",@"image", @"dish"]];
     [query orderByDescending:@"createdAt"];
     query.limit = 25;
+
+    PFQuery *dishQuery = [PFQuery queryWithClassName:@"Dish"];
+    if (self.validRestaurantIds.count) {
+        [dishQuery whereKey:@"restaurantID" containedIn:self.validRestaurantIds];
+        [query whereKey:@"dish" matchesQuery:dishQuery];
+    }
+    
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
