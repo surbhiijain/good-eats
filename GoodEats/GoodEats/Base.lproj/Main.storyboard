@@ -386,7 +386,7 @@
             <objects>
                 <viewController id="rNf-yc-9wT" customClass="PostDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="io6-nM-JDE">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ca6-Pv-8mV">
@@ -1040,10 +1040,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKu-NO-NLV">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKu-NO-NLV">
                                 <rect key="frame" x="41" y="246" width="254" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Dish name @ restaurant name"/>
+                                <connections>
+                                    <action selector="didTapRecentPostHighlightButton:" destination="tZg-sP-V0K" eventType="touchUpInside" id="DWX-sO-sNs"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEG-YG-PMx">
                                 <rect key="frame" x="15" y="283" width="16" height="23"/>
@@ -1051,10 +1054,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXR-Lz-YVH">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXR-Lz-YVH">
                                 <rect key="frame" x="39" y="277" width="254" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Dish name @ restaurant name"/>
+                                <connections>
+                                    <action selector="didTapRecentPostHighlightButton:" destination="tZg-sP-V0K" eventType="touchUpInside" id="dre-b8-NQi"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZS-NW-urN">
                                 <rect key="frame" x="15" y="314" width="16" height="23"/>
@@ -1062,10 +1068,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzi-LK-Nh6">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzi-LK-Nh6">
                                 <rect key="frame" x="39" y="308" width="254" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Dish name @ restaurant name"/>
+                                <connections>
+                                    <action selector="didTapRecentPostHighlightButton:" destination="tZg-sP-V0K" eventType="touchUpInside" id="5bh-c2-Y2I"/>
+                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FCl-G0-AJG">
                                 <rect key="frame" x="16" y="380" width="359" height="417"/>
@@ -1152,6 +1161,7 @@
                         <outlet property="mostRecentGoodEatButton3" destination="yzi-LK-Nh6" id="NKL-Mr-7NT"/>
                         <outlet property="numCheckInsLabel" destination="h2u-tN-Mrt" id="1GH-3o-Qwn"/>
                         <outlet property="usernameLabel" destination="ln3-zy-Lpx" id="WbC-zU-thb"/>
+                        <segue destination="rNf-yc-9wT" kind="showDetail" identifier="postDetailSegue" id="uLV-6R-wkV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbP-QN-CnR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2224,6 +2234,7 @@
         <segue reference="fV2-J6-dkz"/>
         <segue reference="Kux-KQ-U0K"/>
         <segue reference="Nd1-Xy-IlG"/>
+        <segue reference="uLV-6R-wkV"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>

@@ -10,6 +10,8 @@
 #import "LoginViewController.h"
 #import "SceneDelegate.h"
 #import "PostCollectionCell.h"
+#import "Post.h"
+#import "PostDetailViewController.h"
 
 @interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -23,6 +25,10 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic, strong) NSMutableArray *posts;
+
+@property (nonatomic, strong) NSArray *topThreeRecentPosts;
+@property (nonatomic, strong) Post *selectedRecentPost;
+
 
 @property (nonatomic, strong) PFUser *user;
 
@@ -42,6 +48,7 @@
     self.collectionView.dataSource = self;
     
     [self fetchAllPosts];
+    [self fetchTopThreeRecentDishes];
     
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     
@@ -64,12 +71,54 @@
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (!error) {
             self.posts = (NSMutableArray *) posts;
+            self.numCheckInsLabel.text = [NSString stringWithFormat:@"%ld check-ins", self.posts.count];
             [self.collectionView reloadData];
         } else {
             NSLog(@"Error getting posts: %@", error);
         }
     }];
 }
+
+- (void) fetchTopThreeRecentDishes {
+    PFQuery *postQuery = [PFQuery queryWithClassName:@"Post"];
+    [postQuery orderByDescending:@"rating"];
+    [postQuery addDescendingOrder:@"createdAt"];
+    [postQuery includeKeys:@[@"dish", @"author"]];
+
+    [postQuery setLimit:3];
+    
+    [postQuery whereKey:@"author" equalTo:self.user];
+    
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (!error) {
+            self.topThreeRecentPosts = posts;
+            [self displayTopThreeRecentPosts:posts];
+        } else {
+            NSLog(@"Error getting posts: %@", error);
+        }
+    }];
+}
+
+- (void) displayTopThreeRecentPosts: (NSArray *) posts {
+    NSMutableArray *dishButtons = [[NSMutableArray alloc] initWithArray:@[self.mostRecentGoodEatButton1, self.mostRecentGoodEatButton2, self.mostRecentGoodEatButton3]];
+
+    for (Post *post in posts) {
+        UIButton *button = dishButtons[0];
+        [dishButtons removeObject:button];
+        
+        NSString *text = [NSString stringWithFormat:@"%@ @ %@", post.dish.name, post.dish.restaurantName];
+        [button setTitle:text forState:UIControlStateNormal];
+    }
+    for (UIButton *button in dishButtons) {
+        [button setHidden:TRUE];
+    }
+}
+- (IBAction)didTapRecentPostHighlightButton:(UIButton *)sender {
+    self.selectedRecentPost = self.topThreeRecentPosts[sender.tag];
+    [self performSegueWithIdentifier:@"postDetailSegue" sender:self];
+}
+
+
 
 - (IBAction)didTapLogout:(id)sender {
     
@@ -95,6 +144,15 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.posts.count;
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"postDetailSegue"]) {
+        PostDetailViewController *postDetails = [segue destinationViewController];
+        postDetails.post = self.selectedRecentPost;
+    }
 }
 
 @end
