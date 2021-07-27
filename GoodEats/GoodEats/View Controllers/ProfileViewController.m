@@ -25,9 +25,9 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic, strong) NSMutableArray *posts;
-
 @property (nonatomic, strong) NSArray *topThreeRecentPosts;
-@property (nonatomic, strong) Post *selectedRecentPost;
+
+@property (nonatomic, strong) Post *selectedPost;
 
 
 @property (nonatomic, strong) PFUser *user;
@@ -64,7 +64,7 @@
 - (void) fetchAllPosts {
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Post"];
     [postQuery orderByDescending:@"createdAt"];
-    [postQuery includeKeys:@[@"image", @"author"]];
+    [postQuery includeKeys:@[@"image", @"author", @"dish"]];
     
     [postQuery whereKey:@"author" equalTo:self.user];
     
@@ -114,7 +114,7 @@
     }
 }
 - (IBAction)didTapRecentPostHighlightButton:(UIButton *)sender {
-    self.selectedRecentPost = self.topThreeRecentPosts[sender.tag];
+    self.selectedPost = self.topThreeRecentPosts[sender.tag];
     [self performSegueWithIdentifier:@"postDetailSegue" sender:self];
 }
 
@@ -146,12 +146,18 @@
     return self.posts.count;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    Post *post = self.posts[indexPath.item];
+    self.selectedPost = post;
+    [self performSegueWithIdentifier:@"postDetailSegue" sender:self];
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"postDetailSegue"]) {
         PostDetailViewController *postDetails = [segue destinationViewController];
-        postDetails.post = self.selectedRecentPost;
+        postDetails.post = self.selectedPost;
     }
 }
 
