@@ -10,7 +10,6 @@
 #import "ComposeViewController.h"
 #import "RestaurantDetailViewController.h"
 #import "TableFeedViewController.h"
-#import "ModalTableViewController.h"
 
 @interface MapViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -19,7 +18,7 @@
 @property (nonatomic, strong) NSString *restaurantId;
 @property (nonatomic, strong) LocationManager *locationManager;
 
-@property (nonatomic, strong) ModalTableViewController *modalTableViewController;
+@property (nonatomic, strong) TableFeedViewController *modalTableFeedViewController;
 
 @property (nonatomic) CGFloat modalCardHeight;
 @property (nonatomic) CGFloat modalCardHandleAreaHeight;
@@ -53,27 +52,27 @@
 }
 
 - (void) setupModalCard {
-    self.modalCardHeight = 600;
+    self.modalCardHeight = 650;
     self.modalCardHandleAreaHeight = 150;
     self.animationProgressWhenInterrupted = 0;
     
     self.runningAnimations = [[NSMutableArray alloc] init];
     
     self.cardVisible = FALSE;
+       
+    self.modalTableFeedViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"TableFeedViewController"];
+    [self addChildViewController:self.modalTableFeedViewController];
+    [self.view addSubview:self.modalTableFeedViewController.view];
     
-    self.modalTableViewController = [[ModalTableViewController alloc] initWithNibName:@"ModalTableViewController" bundle:nil];
-    [self addChildViewController:self.modalTableViewController];
-    [self.view addSubview:self.modalTableViewController.view];
+    self.modalTableFeedViewController.view.frame = CGRectMake(0, self.view.bounds.size.height - self.modalCardHandleAreaHeight, self.view.bounds.size.width, self.modalCardHeight);
     
-    self.modalTableViewController.view.frame = CGRectMake(0, self.view.bounds.size.height - self.modalCardHandleAreaHeight, self.view.bounds.size.width, self.modalCardHeight);
-    
-    self.modalTableViewController.view.clipsToBounds = TRUE;
+    self.modalTableFeedViewController.view.clipsToBounds = TRUE;
     
     self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleCardTap:)];
     self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleCardPan:)];
     
-    [self.modalTableViewController.handleArea addGestureRecognizer:self.tapGestureRecognizer];
-    [self.modalTableViewController.handleArea addGestureRecognizer:self.panGestureRecognizer];
+    [self.modalTableFeedViewController.handleArea addGestureRecognizer:self.tapGestureRecognizer];
+    [self.modalTableFeedViewController.handleArea addGestureRecognizer:self.panGestureRecognizer];
     
 }
 
@@ -85,15 +84,19 @@
     switch (recognizer.state) {
         case UIGestureRecognizerStateBegan:
             [self startInteractiveTransitionWithDuration:0.9];
-        case UIGestureRecognizerStateChanged:
-            [recognizer translationInView:(self.modalTableViewController.handleArea)];
             
-            CGPoint translatedPoint =  [recognizer translationInView:(self.modalTableViewController.handleArea)];
+        case UIGestureRecognizerStateChanged:
+            [recognizer translationInView:(self.modalTableFeedViewController.handleArea)];
+            
+            CGPoint translatedPoint =  [recognizer translationInView:(self.modalTableFeedViewController.handleArea)];
             double fracComplete = translatedPoint.y / self.modalCardHeight;
             fracComplete = self.cardVisible ? fracComplete : - fracComplete;
+            
             [self updateInteractiveTransition:fracComplete];
+            
         case UIGestureRecognizerStateEnded:
             [self continueInteractiveTransition];
+            
         default:
             break;
     }
@@ -103,16 +106,19 @@
     if (!(self.runningAnimations.count)) {
         UIViewPropertyAnimator *frameAnimator = [[UIViewPropertyAnimator alloc] initWithDuration:duration dampingRatio:1 animations:^{
             if (self.cardVisible) {
-                self.modalTableViewController.view.frame = CGRectMake(0, self.view.bounds.size.height - self.modalCardHeight, self.view.bounds.size.width, self.modalCardHeight);
+                self.modalTableFeedViewController.view.frame = CGRectMake(0, self.view.bounds.size.height - self.modalCardHandleAreaHeight, self.view.bounds.size.width, self.modalCardHeight);
 
             } else {
-                self.modalTableViewController.view.frame = CGRectMake(0, self.view.bounds.size.height - self.modalCardHandleAreaHeight, self.view.bounds.size.width, self.modalCardHeight);
+                self.modalTableFeedViewController.view.frame = CGRectMake(0, self.view.bounds.size.height - self.modalCardHeight, self.view.bounds.size.width, self.modalCardHeight);
+
             }
         }];
+        
         [frameAnimator addCompletion:^(UIViewAnimatingPosition finalPosition) {
             self.cardVisible = !self.cardVisible;
             [self.runningAnimations removeAllObjects];
         }];
+        
         [frameAnimator startAnimation];
         [self.runningAnimations addObject:frameAnimator];
     }
@@ -121,10 +127,6 @@
 - (void) startInteractiveTransitionWithDuration: (double) duration {
     if (!(self.runningAnimations.count)) {
         [self animateTransitionIfNeededWithDuration:duration];
-    }
-    for (UIViewPropertyAnimator *animator in self.runningAnimations) {
-        [animator pauseAnimation];
-        self.animationProgressWhenInterrupted = animator.fractionComplete;
     }
 }
 
@@ -214,9 +216,6 @@
         }
     }
 }
-- (IBAction)didTapToNavigateToTableFeed:(id)sender {
-    [self performSegueWithIdentifier:@"tableFeedSegue" sender:self];
-}
 
 #pragma mark - Navigation
 
@@ -228,9 +227,6 @@
         UINavigationController *navigationVC = [segue destinationViewController];
         FilterViewController *filterVC = (FilterViewController *) navigationVC.topViewController;
         filterVC.delegate = self;
-    } if ([segue.identifier isEqualToString:@"tableFeedSegue"]) {
-        TableFeedViewController *tableFeedVC = [segue destinationViewController];
-        // TODO: add some properties to tableFeedVC to help with filtering
     }
 }
 

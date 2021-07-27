@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TableFeedViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIView *handleArea;
 
 @end
 

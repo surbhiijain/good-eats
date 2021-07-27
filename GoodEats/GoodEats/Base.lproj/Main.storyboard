@@ -84,20 +84,20 @@
         <!--Table Feed View Controller-->
         <scene sceneID="aAV-de-Cgk">
             <objects>
-                <viewController id="Khl-Hg-VRR" customClass="TableFeedViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TableFeedViewController" id="Khl-Hg-VRR" customClass="TableFeedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n4g-8m-PXe">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mbl-91-f6E">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="756"/>
+                                <rect key="frame" x="0.0" y="94" width="390" height="716"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedPostCell" id="kkN-oO-Ibe" customClass="FeedPostCell">
-                                        <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="411.33334350585938"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="411"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kkN-oO-Ibe" id="B5P-Ka-I1m">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="411.33334350585938"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="411"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IJP-nr-mV9">
@@ -174,7 +174,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIF-cX-2U3">
-                                                    <rect key="frame" x="15" y="375" width="42" height="21.333333333333314"/>
+                                                    <rect key="frame" x="15" y="375" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -336,12 +336,34 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jJB-4s-Cj1">
+                                <rect key="frame" x="0.0" y="44" width="390" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rpc-9n-7hP">
+                                        <rect key="frame" x="155" y="22.666666666666671" width="80" height="5"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="Qho-fN-Kvk"/>
+                                            <constraint firstAttribute="height" constant="5" id="m9B-qT-MhF"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="rpc-9n-7hP" firstAttribute="centerX" secondItem="jJB-4s-Cj1" secondAttribute="centerX" id="Uzw-YY-3VP"/>
+                                    <constraint firstItem="rpc-9n-7hP" firstAttribute="centerY" secondItem="jJB-4s-Cj1" secondAttribute="centerY" id="ldW-Kv-PTX"/>
+                                    <constraint firstAttribute="height" constant="50" id="vDa-fv-bcW"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Odl-kP-dQY"/>
                         <color key="backgroundColor" red="0.99591690300000002" green="0.97654432059999996" blue="0.97254878280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="mbl-91-f6E" firstAttribute="top" secondItem="jJB-4s-Cj1" secondAttribute="bottom" id="JnP-5t-GC6"/>
                             <constraint firstItem="Odl-kP-dQY" firstAttribute="bottom" secondItem="mbl-91-f6E" secondAttribute="bottom" id="Ohh-Bv-93m"/>
-                            <constraint firstItem="mbl-91-f6E" firstAttribute="top" secondItem="Odl-kP-dQY" secondAttribute="top" id="mWy-OX-bfA"/>
+                            <constraint firstItem="jJB-4s-Cj1" firstAttribute="leading" secondItem="Odl-kP-dQY" secondAttribute="leading" id="PKy-AQ-KlN"/>
+                            <constraint firstItem="jJB-4s-Cj1" firstAttribute="top" secondItem="Odl-kP-dQY" secondAttribute="top" id="csE-BS-Wag"/>
+                            <constraint firstItem="jJB-4s-Cj1" firstAttribute="trailing" secondItem="Odl-kP-dQY" secondAttribute="trailing" id="lvs-fs-DdY"/>
                             <constraint firstItem="mbl-91-f6E" firstAttribute="leading" secondItem="Odl-kP-dQY" secondAttribute="leading" id="t8x-6i-682"/>
                             <constraint firstItem="Odl-kP-dQY" firstAttribute="trailing" secondItem="mbl-91-f6E" secondAttribute="trailing" id="uOe-e1-BNP"/>
                         </constraints>
@@ -351,12 +373,13 @@
                         <barButtonItem key="rightBarButtonItem" title="Search" image="magnifyingglass" catalog="system" id="Tho-uk-tQa"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="handleArea" destination="jJB-4s-Cj1" id="dqs-lo-tpc"/>
                         <outlet property="tableView" destination="mbl-91-f6E" id="MIJ-jO-PhA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rRz-3S-TzU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="537.68115942028987" y="2139.5089285714284"/>
+            <point key="canvasLocation" x="536.92307692307691" y="2139.0995260663508"/>
         </scene>
         <!--Post Detail View Controller-->
         <scene sceneID="SZQ-hb-6M0">
@@ -712,24 +735,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="fBs-jx-8MP">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="zIC-dy-MH3">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dZ5-Ch-xjR">
-                                <rect key="frame" x="16" y="11" width="75" height="22"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="T10-S9-bEq">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="n2Q-cc-SsY">
+                                <rect key="frame" x="172" y="7" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="line.horizontal.3.decrease" catalog="system"/>
+                                <state key="normal" title="Filter"/>
                                 <connections>
-                                    <action selector="didTapToNavigateToTableFeed:" destination="InW-DE-RzT" eventType="touchUpInside" id="fSO-ow-NAI"/>
+                                    <segue destination="Yka-Rf-uOe" kind="presentation" identifier="filterSegue" modalPresentationStyle="automatic" id="2RA-M1-RWj"/>
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="n2Q-cc-SsY">
-                            <rect key="frame" x="172" y="7" width="46" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Filter"/>
-                            <connections>
-                                <segue destination="Yka-Rf-uOe" kind="presentation" identifier="filterSegue" modalPresentationStyle="automatic" id="2RA-M1-RWj"/>
-                            </connections>
-                        </button>
                         <barButtonItem key="rightBarButtonItem" image="magnifyingglass" catalog="system" style="plain" id="DFn-sk-HMa">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="j3W-xB-Yyw">
                                 <rect key="frame" x="300" y="11" width="74" height="22"/>
@@ -742,7 +757,6 @@
                     <connections>
                         <outlet property="mapView" destination="qHO-Xz-o5y" id="vgv-q9-T7s"/>
                         <segue destination="r1S-Wv-aaX" kind="showDetail" identifier="restaurantDetailsSegue" id="mHb-gf-TFz"/>
-                        <segue destination="Khl-Hg-VRR" kind="presentation" identifier="tableFeedSegue" id="ofi-lN-si3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wnh-aU-3am" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2063,7 +2077,7 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="vUX-08-sHO"/>
+        <segue reference="fV2-J6-dkz"/>
         <segue reference="Kux-KQ-U0K"/>
         <segue reference="mHb-gf-TFz"/>
     </inferredMetricsTieBreakers>

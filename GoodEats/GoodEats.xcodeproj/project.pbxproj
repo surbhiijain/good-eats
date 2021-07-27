@@ -14,8 +14,6 @@
 		760B968526A0AE1100CB7F80 /* DishPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760B968426A0AE1100CB7F80 /* DishPostCell.m */; };
 		76290DA9269CD6F70045095D /* FeedPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76290DA8269CD6F70045095D /* FeedPostCell.m */; };
 		76A95AC226AF1E9C005C8A04 /* RecommendationSurveyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A95AC126AF1E9C005C8A04 /* RecommendationSurveyViewController.m */; };
-		76A95AC426AF8174005C8A04 /* ModalTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76A95AC326AF8174005C8A04 /* ModalTableViewController.xib */; };
-		76A95AC726AF8263005C8A04 /* ModalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A95AC626AF8263005C8A04 /* ModalTableViewController.m */; };
 		76D01CB3269CC89D00288EF2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CB2269CC89D00288EF2 /* AppDelegate.m */; };
 		76D01CB6269CC89D00288EF2 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CB5269CC89D00288EF2 /* SceneDelegate.m */; };
 		76D01CBC269CC89D00288EF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76D01CBA269CC89D00288EF2 /* Main.storyboard */; };
@@ -77,9 +75,6 @@
 		76290DA8269CD6F70045095D /* FeedPostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedPostCell.m; sourceTree = "<group>"; };
 		76A95AC026AF1E9C005C8A04 /* RecommendationSurveyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendationSurveyViewController.h; sourceTree = "<group>"; };
 		76A95AC126AF1E9C005C8A04 /* RecommendationSurveyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendationSurveyViewController.m; sourceTree = "<group>"; };
-		76A95AC326AF8174005C8A04 /* ModalTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalTableViewController.xib; sourceTree = "<group>"; };
-		76A95AC526AF8263005C8A04 /* ModalTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModalTableViewController.h; sourceTree = "<group>"; };
-		76A95AC626AF8263005C8A04 /* ModalTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModalTableViewController.m; sourceTree = "<group>"; };
 		76D01CAE269CC89D00288EF2 /* GoodEats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodEats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76D01CB1269CC89D00288EF2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		76D01CB2269CC89D00288EF2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -256,8 +251,6 @@
 				76E4578226AA505B0073AB8D /* FilterViewController.m */,
 				76A95AC026AF1E9C005C8A04 /* RecommendationSurveyViewController.h */,
 				76A95AC126AF1E9C005C8A04 /* RecommendationSurveyViewController.m */,
-				76A95AC526AF8263005C8A04 /* ModalTableViewController.h */,
-				76A95AC626AF8263005C8A04 /* ModalTableViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -273,7 +266,6 @@
 				76E4576B26A88BD50073AB8D /* PopularDishCell.m */,
 				76E4577926A8DE830073AB8D /* RestaurantPostCollectionCell.h */,
 				76E4577A26A8DE830073AB8D /* RestaurantPostCollectionCell.m */,
-				76A95AC326AF8174005C8A04 /* ModalTableViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -434,7 +426,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				76D01CC1269CC89D00288EF2 /* LaunchScreen.storyboard in Resources */,
-				76A95AC426AF8174005C8A04 /* ModalTableViewController.xib in Resources */,
 				76D01CBE269CC89D00288EF2 /* Assets.xcassets in Resources */,
 				76D01CBC269CC89D00288EF2 /* Main.storyboard in Resources */,
 			);
@@ -581,7 +572,6 @@
 				760B968526A0AE1100CB7F80 /* DishPostCell.m in Sources */,
 				76E49E71269E00AC00617E4F /* Restaurant.m in Sources */,
 				76D01CEE269CD53000288EF2 /* TableFeedViewController.m in Sources */,
-				76A95AC726AF8263005C8A04 /* ModalTableViewController.m in Sources */,
 				76E4576626A775CC0073AB8D /* RestaurantDetailViewController.m in Sources */,
 				76D01CEB269CC9DD00288EF2 /* LoginViewController.m in Sources */,
 				76E49E68269D1A1800617E4F /* MapViewController.m in Sources */,
