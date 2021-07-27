@@ -27,15 +27,10 @@
 @property (nonatomic) BOOL cardVisible;
 
 @property (nonatomic, strong) NSMutableArray *runningAnimations;
-@property (nonatomic) CGFloat *animationProgressWhenInterrupted;
+@property (nonatomic) CGFloat animationProgressWhenInterrupted;
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
-
-typedef NS_ENUM(NSUInteger, CardState) {
-    expanded,
-    collapsed,
-};
 
 @end
 
@@ -64,13 +59,13 @@ typedef NS_ENUM(NSUInteger, CardState) {
     
     self.runningAnimations = [[NSMutableArray alloc] init];
     
-    CardState nextState = self.cardVisible ? collapsed : expanded;
+    self.cardVisible = FALSE;
     
     self.modalTableViewController = [[ModalTableViewController alloc] initWithNibName:@"ModalTableViewController" bundle:nil];
     [self addChildViewController:self.modalTableViewController];
     [self.view addSubview:self.modalTableViewController.view];
     
-    self.modalTableViewController.view.frame = CGRectMake(0, self.view.bounds.size.height - self.navigationController.navigationBar.frame.size.height- self.modalCardHandleAreaHeight, self.view.bounds.size.width, self.modalCardHeight);
+    self.modalTableViewController.view.frame = CGRectMake(0, self.view.bounds.size.height - self.modalCardHandleAreaHeight, self.view.bounds.size.width, self.modalCardHeight);
     
     self.modalTableViewController.view.clipsToBounds = TRUE;
     
@@ -79,13 +74,65 @@ typedef NS_ENUM(NSUInteger, CardState) {
     
     [self.modalTableViewController.handleArea addGestureRecognizer:self.tapGestureRecognizer];
     [self.modalTableViewController.handleArea addGestureRecognizer:self.panGestureRecognizer];
-
+    
 }
 
 - (void) handleCardTap: (UITapGestureRecognizer *) recognizer {
+    [self animateTransitionIfNeededWithDuration:0.9];
 }
 
 - (void) handleCardPan: (UITapGestureRecognizer *) recognizer {
+    switch (recognizer.state) {
+        case UIGestureRecognizerStateBegan:
+            [self startInteractiveTransitionWithDuration:0.9];
+        case UIGestureRecognizerStateChanged:
+            [self updateInteractiveTransition:0];
+        case UIGestureRecognizerStateEnded:
+            [self continueInteractiveTransition];
+        default:
+            break;
+    }
+}
+
+- (void) animateTransitionIfNeededWithDuration: (double) duration {
+    if (!(self.runningAnimations.count)) {
+        UIViewPropertyAnimator *frameAnimator = [[UIViewPropertyAnimator alloc] initWithDuration:duration dampingRatio:1 animations:^{
+            if (self.cardVisible) {
+                self.modalTableViewController.view.frame = CGRectMake(0, self.view.bounds.size.height - self.modalCardHeight, self.view.bounds.size.width, self.modalCardHeight);
+
+            } else {
+                self.modalTableViewController.view.frame = CGRectMake(0, self.view.bounds.size.height - self.modalCardHandleAreaHeight, self.view.bounds.size.width, self.modalCardHeight);
+            }
+        }];
+        [frameAnimator addCompletion:^(UIViewAnimatingPosition finalPosition) {
+            self.cardVisible = !self.cardVisible;
+            [self.runningAnimations removeAllObjects];
+        }];
+        [frameAnimator startAnimation];
+        [self.runningAnimations addObject:frameAnimator];
+    }
+}
+
+- (void) startInteractiveTransitionWithDuration: (double) duration {
+    if (!(self.runningAnimations.count)) {
+        [self animateTransitionIfNeededWithDuration:duration];
+    }
+    for (UIViewPropertyAnimator *animator in self.runningAnimations) {
+        [animator pauseAnimation];
+        self.animationProgressWhenInterrupted = animator.fractionComplete;
+    }
+}
+
+- (void) updateInteractiveTransition: (CGFloat) fractionCompleted {
+    for (UIViewPropertyAnimator *animator in self.runningAnimations) {
+        animator.fractionComplete = fractionCompleted + self.animationProgressWhenInterrupted;
+    }
+}
+
+- (void) continueInteractiveTransition {
+    for (UIViewPropertyAnimator *animator in self.runningAnimations) {
+        [animator continueAnimationWithTimingParameters:nil durationFactor:0];
+    }
 }
 
 - (void)LocationManager:(LocationManager *)locationManager setUpWithLocation:(CLLocation *)location {
@@ -137,7 +184,7 @@ typedef NS_ENUM(NSUInteger, CardState) {
     for (Restaurant *restaurant in restaurants) {
         [self displayPinForRestaurant:restaurant];
     }
-
+    
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
