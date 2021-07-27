@@ -10,6 +10,7 @@
 #import "ComposeViewController.h"
 #import "RestaurantDetailViewController.h"
 #import "TableFeedViewController.h"
+#import "ModalTableViewController.h"
 
 @interface MapViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -18,6 +19,23 @@
 @property (nonatomic, strong) NSString *restaurantId;
 @property (nonatomic, strong) LocationManager *locationManager;
 
+@property (nonatomic, strong) ModalTableViewController *modalTableViewController;
+
+@property (nonatomic) CGFloat modalCardHeight;
+@property (nonatomic) CGFloat modalCardHandleAreaHeight;
+
+@property (nonatomic) BOOL cardVisible;
+
+@property (nonatomic, strong) NSMutableArray *runningAnimations;
+@property (nonatomic) CGFloat *animationProgressWhenInterrupted;
+
+@property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
+
+typedef NS_ENUM(NSUInteger, CardState) {
+    expanded,
+    collapsed,
+};
 
 @end
 
@@ -34,7 +52,40 @@
     
     self.mapView.delegate = self;
     
+    [self setupModalCard];
+    
     [self getAllRestaurants];
+}
+
+- (void) setupModalCard {
+    self.modalCardHeight = 600;
+    self.modalCardHandleAreaHeight = 150;
+    self.animationProgressWhenInterrupted = 0;
+    
+    self.runningAnimations = [[NSMutableArray alloc] init];
+    
+    CardState nextState = self.cardVisible ? collapsed : expanded;
+    
+    self.modalTableViewController = [[ModalTableViewController alloc] initWithNibName:@"ModalTableViewController" bundle:nil];
+    [self addChildViewController:self.modalTableViewController];
+    [self.view addSubview:self.modalTableViewController.view];
+    
+    self.modalTableViewController.view.frame = CGRectMake(0, self.view.bounds.size.height - self.navigationController.navigationBar.frame.size.height- self.modalCardHandleAreaHeight, self.view.bounds.size.width, self.modalCardHeight);
+    
+    self.modalTableViewController.view.clipsToBounds = TRUE;
+    
+    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleCardTap:)];
+    self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleCardPan:)];
+    
+    [self.modalTableViewController.handleArea addGestureRecognizer:self.tapGestureRecognizer];
+    [self.modalTableViewController.handleArea addGestureRecognizer:self.panGestureRecognizer];
+
+}
+
+- (void) handleCardTap: (UITapGestureRecognizer *) recognizer {
+}
+
+- (void) handleCardPan: (UITapGestureRecognizer *) recognizer {
 }
 
 - (void)LocationManager:(LocationManager *)locationManager setUpWithLocation:(CLLocation *)location {
