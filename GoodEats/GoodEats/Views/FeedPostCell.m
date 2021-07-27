@@ -59,6 +59,13 @@
     [self.reviewStar3 setImage:star];
     [self.reviewStar4 setImage:star];
     [self.reviewStar5 setImage:star];
+    
+    [self.tagButton1 setHidden:FALSE];
+    [self.tagButton2 setHidden:FALSE];
+    [self.tagButton3 setHidden:FALSE];
+    [self.tagButton4 setHidden:FALSE];
+    [self.tagButton5 setHidden:FALSE];
+
 }
 
 - (void)setStars {

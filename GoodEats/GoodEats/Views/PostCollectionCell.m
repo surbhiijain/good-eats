@@ -1,13 +1,13 @@
 //
-//  RestaurantPostCollectionCell.m
+//  PostCollectionCell.m
 //  GoodEats
 //
 //  Created by Surbhi Jain on 7/21/21.
 //
 
-#import "RestaurantPostCollectionCell.h"
+#import "PostCollectionCell.h"
 
-@implementation RestaurantPostCollectionCell
+@implementation PostCollectionCell
 
 - (void)refreshData {
     [self.post.image getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {

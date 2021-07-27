@@ -6,7 +6,7 @@
 //
 
 #import "RestaurantCollectionFeedViewController.h"
-#import "RestaurantPostCollectionCell.h"
+#import "PostCollectionCell.h"
 
 @interface RestaurantCollectionFeedViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -71,7 +71,7 @@
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    RestaurantPostCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RestaurantPostCollectionCell" forIndexPath:indexPath];
+    PostCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PostCollectionCell" forIndexPath:indexPath];
     
     Post *post = self.posts[indexPath.item];
     

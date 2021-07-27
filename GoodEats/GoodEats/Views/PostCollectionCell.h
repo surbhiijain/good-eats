@@ -1,5 +1,5 @@
 //
-//  RestaurantPostCollectionCell.h
+//  PostCollectionCell.h
 //  GoodEats
 //
 //  Created by Surbhi Jain on 7/21/21.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RestaurantPostCollectionCell : UICollectionViewCell
+@interface PostCollectionCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *postImage;
 
