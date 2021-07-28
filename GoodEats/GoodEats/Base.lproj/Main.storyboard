@@ -94,10 +94,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedPostCell" id="kkN-oO-Ibe" customClass="FeedPostCell">
-                                        <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="411"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="410.66665649414062"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kkN-oO-Ibe" id="B5P-Ka-I1m">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="411"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="410.66665649414062"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IJP-nr-mV9">
@@ -168,7 +168,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIF-cX-2U3">
-                                                    <rect key="frame" x="15" y="375" width="42" height="21"/>
+                                                    <rect key="frame" x="15" y="375" width="42" height="20.666666666666686"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -423,7 +423,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="Restaurant Name"/>
                                 <connections>
-                                    <action selector="didTapRestaurant:" destination="rNf-yc-9wT" eventType="touchUpInside" id="bQy-HD-lsc"/>
+                                    <segue destination="r1S-Wv-aaX" kind="showDetail" identifier="restaurantDetailsSegue" id="WrL-zM-WWm"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K2Q-YA-nfy">
@@ -641,7 +641,6 @@
                         <outlet property="tagButton4" destination="LnS-av-bUb" id="Wm7-bj-6wU"/>
                         <outlet property="tagButton5" destination="OAD-ND-OpW" id="gNC-wx-hEM"/>
                         <outlet property="usernameLabel" destination="ca6-Pv-8mV" id="ddr-Js-mbQ"/>
-                        <segue destination="r1S-Wv-aaX" kind="showDetail" identifier="restaurantDetailsSegue" id="fQK-ar-IMN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiJ-2X-jac" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -687,19 +686,19 @@
                                 </connections>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E5y-hE-KbM">
-                                <rect key="frame" x="0.0" y="176" width="390" height="614"/>
+                                <rect key="frame" x="0.0" y="176.33333333333331" width="390" height="613.66666666666674"/>
                                 <connections>
                                     <segue destination="p4U-Nh-NLq" kind="embed" identifier="restaurantPostFeedSegue" id="9C6-la-OQy"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SlT-uP-Hwz">
-                                <rect key="frame" x="0.0" y="176" width="390" height="614"/>
+                                <rect key="frame" x="0.0" y="176.33333333333331" width="390" height="613.66666666666674"/>
                                 <connections>
                                     <segue destination="yAd-ve-s7Y" kind="embed" identifier="restaurantPopularDishesSegue" id="FbJ-gW-PXd"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYl-Bv-tlG">
-                                <rect key="frame" x="0.0" y="176" width="390" height="614"/>
+                                <rect key="frame" x="0.0" y="176.33333333333331" width="390" height="613.66666666666674"/>
                                 <connections>
                                     <segue destination="Efp-4k-RaJ" kind="embed" identifier="restaurantCollectionFeedSegue" id="3XA-YU-mgW"/>
                                 </connections>
@@ -1579,7 +1578,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Restaurant Name"/>
                                 <connections>
-                                    <action selector="didTapRestaurant:" destination="0g2-bH-Xer" eventType="touchUpInside" id="giC-Se-DgK"/>
+                                    <segue destination="r1S-Wv-aaX" kind="showDetail" identifier="restaurantDetailsSegue" id="LK2-aG-okc"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" backIndicatorImage="chevron.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bIh-CR-zQJ">
@@ -1860,7 +1859,6 @@
                         <outlet property="tagCountLabel3" destination="jgE-Dj-6KG" id="fvZ-4L-xPe"/>
                         <outlet property="tagCountLabel4" destination="D3N-7C-RJH" id="Zh5-J2-8Fl"/>
                         <outlet property="tagCountLabel5" destination="DfG-g5-k1b" id="KDM-gI-7UF"/>
-                        <segue destination="r1S-Wv-aaX" kind="showDetail" identifier="restaurantDetailsSegue" id="mMB-5c-EOL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cSB-Iv-zV6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1872,7 +1870,7 @@
             <objects>
                 <viewController id="p4U-Nh-NLq" customClass="RestaurantTableViewFeedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2c5-YJ-uGm">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="614"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="613.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="posts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hz-bM-I3E">
@@ -2154,7 +2152,7 @@
             <objects>
                 <viewController id="yAd-ve-s7Y" customClass="RestaurantPopularDishesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ntN-Vx-XvM">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="614"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="613.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="107" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zQN-HK-FRD">
@@ -2290,7 +2288,7 @@
             <objects>
                 <viewController id="Efp-4k-RaJ" customClass="RestaurantCollectionFeedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2aK-Co-uBO">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="614"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="613.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Tg8-hx-4XU">
@@ -2373,7 +2371,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="eE6-rv-jqs"/>
         <segue reference="Xy6-ao-URM"/>
-        <segue reference="fQK-ar-IMN"/>
+        <segue reference="WrL-zM-WWm"/>
         <segue reference="FhP-aH-ncJ"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -45,17 +45,6 @@
     [super viewDidLoad];
     [self refreshData];
 }
-- (IBAction)didTapRestaurant:(id)sender {
-    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
-    [query getObjectInBackgroundWithId:self.post.dish.restaurantID block:^(PFObject *restaurant, NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error.localizedDescription);
-            return;
-        }
-        self.restaurant = (Restaurant *) restaurant;
-        [self performSegueWithIdentifier:@"restaurantDetailsSegue" sender:self];
-    }];
-}
 
 - (void)refreshData {
     [self setPlaceholdersToNil];
@@ -66,10 +55,12 @@
     [self.restaurantLabel setTitle:self.post.dish.restaurantName forState:(UIControlStateNormal)];
 
     PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
+    [query includeKey:@"dishes"];
+    
     [query getObjectInBackgroundWithId:self.post.dish.restaurantID block:^(PFObject *restaurant, NSError *error) {
         if (!error) {
-            Restaurant *r = (Restaurant *) restaurant;
-            self.locationLabel.text = r.abrevLocation;
+            self.restaurant = (Restaurant *) restaurant;
+            self.locationLabel.text = self.restaurant.abrevLocation;
         } else {
             self.locationLabel.hidden = TRUE;
         }

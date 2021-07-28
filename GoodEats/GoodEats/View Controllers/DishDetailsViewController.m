@@ -61,6 +61,18 @@
     self.dishLabel.text = self.dish.name;
     [self.restaurantButton setTitle:self.dish.restaurantName forState:UIControlStateNormal];
     
+    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
+    [query includeKey:@"dishes"];
+    
+    [query getObjectInBackgroundWithId:self.dish.restaurantID block:^(PFObject *restaurant, NSError *error) {
+        if (!error) {
+            self.restaurant = (Restaurant *) restaurant;
+            self.locationLabel.text = self.restaurant.abrevLocation;
+        } else {
+            self.locationLabel.hidden = TRUE;
+        }
+    }];
+    
     [self getAllPostsofDish];
     
     [self.refreshControl addTarget:self action:@selector(getAllPostsofDish) forControlEvents:(UIControlEventValueChanged)];
@@ -180,17 +192,6 @@
     [self setRatingStars];
     [self setTags];
     self.numCheckInsLabel.text = [NSString stringWithFormat:@"%@ Total Check-Ins", self.dish.numCheckIns];
-}
-- (IBAction)didTapRestaurant:(id)sender {
-    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
-    [query getObjectInBackgroundWithId:self.dish.restaurantID block:^(PFObject *restaurant, NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error.localizedDescription);
-            return;
-        }
-        self.restaurant = (Restaurant *) restaurant;
-        [self performSegueWithIdentifier:@"restaurantDetailsSegue" sender:self];
-    }];
 }
 
 #pragma mark - Navigation

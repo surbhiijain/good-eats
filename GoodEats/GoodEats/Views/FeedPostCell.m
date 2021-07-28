@@ -42,6 +42,8 @@
 }
 - (IBAction)didTapRestaurant:(UIButton *)sender {
     PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
+    [query includeKey:@"dishes"];
+    
     [query getObjectInBackgroundWithId:self.post.dish.restaurantID block:^(PFObject *object, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error.localizedDescription);
