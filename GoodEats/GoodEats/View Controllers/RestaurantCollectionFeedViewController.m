@@ -31,7 +31,7 @@
     layout.minimumInteritemSpacing = 15;
     
     CGFloat postsPerLine = 2;
-    CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (postsPerLine - 1)) / postsPerLine;
+    CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (postsPerLine + 1)) / postsPerLine;
     CGFloat itemHeight = itemWidth * 3 / 4;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
 }

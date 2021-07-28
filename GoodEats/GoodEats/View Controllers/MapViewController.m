@@ -124,6 +124,16 @@
         
         [frameAnimator startAnimation];
         [self.runningAnimations addObject:frameAnimator];
+        
+        UIViewPropertyAnimator *cornerRadiusAnimator = [[UIViewPropertyAnimator alloc] initWithDuration:duration curve:UIViewAnimationCurveLinear animations:^{
+            if (self.cardVisible) {
+                self.modalTableFeedViewController.view.layer.cornerRadius = 0;
+                return;
+            }
+            self.modalTableFeedViewController.view.layer.cornerRadius = 12;
+        }];
+        [cornerRadiusAnimator startAnimation];
+        [self.runningAnimations addObject:cornerRadiusAnimator];
     }
 }
 
