@@ -20,20 +20,8 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self getRestaurant];
-}
+    [self sortDishesByPopularity];
 
-- (void) getRestaurant {
-    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
-    [query includeKey:@"dishes"];
-    [query getObjectInBackgroundWithId:self.restaurantId block:^(PFObject *restaurant, NSError *error) {
-        if (!error) {
-            self.restaurant = (Restaurant *) restaurant;
-            [self sortDishesByPopularity];
-        } else {
-            NSLog(@"Error: %@", error);
-        }
-    }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

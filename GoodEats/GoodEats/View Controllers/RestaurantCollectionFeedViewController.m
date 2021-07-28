@@ -23,7 +23,7 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
-    [self getRestaurant];
+    [self getPosts];
     
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     
@@ -36,19 +36,6 @@
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
 }
 
-- (void) getRestaurant {
-    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
-    [query includeKey:@"dishes"];
-    [query getObjectInBackgroundWithId:self.restaurantId block:^(PFObject *restaurant, NSError *error) {
-        if (!error) {
-            self.restaurant = (Restaurant *) restaurant;
-            [self getPosts];
-        } else {
-            NSLog(@"Error: %@", error);
-        }
-    }];
-}
-
 - (void) getPosts {
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Post"];
     [postQuery orderByDescending:@"createdAt"];
@@ -56,7 +43,7 @@
     [postQuery includeKeys:@[@"image", @"dish", @"author"]];
     
     PFQuery *dishQuery = [PFQuery queryWithClassName:@"Dish"];
-    [dishQuery whereKey:@"restaurantID" equalTo:self.restaurantId];
+    [dishQuery whereKey:@"restaurantID" equalTo:self.restaurant.objectId];
     
     [postQuery whereKey:@"dish" matchesQuery:dishQuery];
     

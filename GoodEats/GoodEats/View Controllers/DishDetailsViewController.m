@@ -203,7 +203,6 @@
         detailsVC.post = post;
     } else if ([segue.identifier isEqualToString:@"restaurantDetailsSegue"]) {
         RestaurantDetailViewController *restaurantDetailsVC = [segue destinationViewController];
-        restaurantDetailsVC.restaurantId = post.dish.restaurantID;
         restaurantDetailsVC.restaurant = self.restaurant;
     }
 }

@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RestaurantCollectionFeedViewController : UIViewController
 
 @property (nonatomic, strong) Restaurant *restaurant;
-@property (nonatomic, strong) NSString *restaurantId;
 
 @end
 

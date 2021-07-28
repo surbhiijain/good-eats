@@ -189,6 +189,7 @@
     }];
 }
 
+// TODO: create custom annotation, storing restaurant
 - (void) displayPinForRestaurant: (Restaurant *) restaurant {
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(restaurant.latitude.floatValue, restaurant.longitude.floatValue);
     
@@ -237,10 +238,12 @@
 
 #pragma mark - Navigation
 
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"restaurantDetailsSegue"]) {
+//         TODO: pass restaurant object instead of restaurantID
         RestaurantDetailViewController *restaurantDetailsVC = [segue destinationViewController];
-        restaurantDetailsVC.restaurantId = self.selectedRestaurantId;
+//        restaurantDetailsVC.restaurantId = self.selectedRestaurantId;
     } if ([segue.identifier isEqualToString:@"filterSegue"]) {
         UINavigationController *navigationVC = [segue destinationViewController];
         FilterViewController *filterVC = (FilterViewController *) navigationVC.topViewController;

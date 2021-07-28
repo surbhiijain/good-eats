@@ -31,20 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setHeaderValues];
-    [self getRestaurant];
     [self didChangeView:nil];
-}
-
-- (void) getRestaurant {
-    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
-    [query getObjectInBackgroundWithId:self.restaurantId block:^(PFObject *restaurant, NSError *error) {
-        if (!error) {
-            self.restaurant = (Restaurant *) restaurant;
-            [self setHeaderValues];
-        } else {
-            NSLog(@"Error: %@", error);
-        }
-    }];
 }
 
 - (void) setHeaderValues {
@@ -80,17 +67,14 @@
     if ([segue.identifier isEqualToString:@"restaurantPopularDishesSegue"]) {
         RestaurantPopularDishesViewController *popularDishesVC = [segue destinationViewController];
         popularDishesVC.restaurant = self.restaurant;
-        popularDishesVC.restaurantId = self.restaurantId;
     }
     if ([segue.identifier isEqualToString:@"restaurantPostFeedSegue"]) {
         RestaurantTableViewFeedViewController *tableViewfeedVC = [segue destinationViewController];
         tableViewfeedVC.restaurant = self.restaurant;
-        tableViewfeedVC.restaurantId = self.restaurantId;
     }
     if ([segue.identifier isEqualToString:@"restaurantCollectionFeedSegue"]) {
         RestaurantCollectionFeedViewController *collectionFeedVC = [segue destinationViewController];
         collectionFeedVC.restaurant = self.restaurant;
-        collectionFeedVC.restaurantId = self.restaurantId;
     }
 }
 

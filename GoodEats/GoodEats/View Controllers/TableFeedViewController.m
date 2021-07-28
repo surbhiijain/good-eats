@@ -103,7 +103,6 @@
         RestaurantDetailViewController *restaurantDetailsVC = [segue destinationViewController];
         FeedPostCell* cell = (FeedPostCell*) sender;
         restaurantDetailsVC.restaurant = cell.restaurant;
-        restaurantDetailsVC.restaurantId = cell.restaurant.objectId;
     }
 }
 

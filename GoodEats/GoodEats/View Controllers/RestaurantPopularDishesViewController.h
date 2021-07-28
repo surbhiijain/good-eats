@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RestaurantPopularDishesViewController : UIViewController
 
 @property (nonatomic, strong) Restaurant *restaurant;
-@property (nonatomic, strong) NSString *restaurantId;
-
 
 @end
 
