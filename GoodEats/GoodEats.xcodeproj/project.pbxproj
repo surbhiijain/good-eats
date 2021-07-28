@@ -225,32 +225,14 @@
 		76D01CE6269CC9C000288EF2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				76FF9ABC26B20D2900E03530 /* Main Map View Controllers */,
+				76FF9ABB26B20CF100E03530 /* Detail View Controllers */,
 				76D01CE9269CC9DD00288EF2 /* LoginViewController.h */,
 				76D01CEA269CC9DD00288EF2 /* LoginViewController.m */,
-				76D01CEC269CD53000288EF2 /* TableFeedViewController.h */,
-				76D01CED269CD53000288EF2 /* TableFeedViewController.m */,
-				76E49E66269D1A1800617E4F /* MapViewController.h */,
-				76E49E67269D1A1800617E4F /* MapViewController.m */,
 				76E49E69269D1DBF00617E4F /* ProfileViewController.h */,
 				76E49E6A269D1DBF00617E4F /* ProfileViewController.m */,
 				76E49E75269E0AF700617E4F /* ComposeViewController.h */,
 				76E49E76269E0AF700617E4F /* ComposeViewController.m */,
-				760B967D269FB74D00CB7F80 /* PostDetailViewController.h */,
-				760B967E269FB74D00CB7F80 /* PostDetailViewController.m */,
-				760B968026A0A9A900CB7F80 /* DishDetailsViewController.h */,
-				760B968126A0A9A900CB7F80 /* DishDetailsViewController.m */,
-				76E4576426A775CC0073AB8D /* RestaurantDetailViewController.h */,
-				76E4576526A775CC0073AB8D /* RestaurantDetailViewController.m */,
-				76E4576726A880C70073AB8D /* RestaurantPopularDishesViewController.h */,
-				76E4576826A880C70073AB8D /* RestaurantPopularDishesViewController.m */,
-				76E4577326A8D3870073AB8D /* RestaurantTableViewFeedViewController.h */,
-				76E4577426A8D3870073AB8D /* RestaurantTableViewFeedViewController.m */,
-				76E4577626A8D3DD0073AB8D /* RestaurantCollectionFeedViewController.h */,
-				76E4577726A8D3DD0073AB8D /* RestaurantCollectionFeedViewController.m */,
-				76E4578126AA505B0073AB8D /* FilterViewController.h */,
-				76E4578226AA505B0073AB8D /* FilterViewController.m */,
-				76A95AC026AF1E9C005C8A04 /* RecommendationSurveyViewController.h */,
-				76A95AC126AF1E9C005C8A04 /* RecommendationSurveyViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -292,6 +274,48 @@
 				76E4577D26A9F69E0073AB8D /* LocationManager.m */,
 			);
 			path = HelperFiles;
+			sourceTree = "<group>";
+		};
+		76FF9ABA26B20C9000E03530 /* Restaurant Details */ = {
+			isa = PBXGroup;
+			children = (
+				76E4576426A775CC0073AB8D /* RestaurantDetailViewController.h */,
+				76E4576526A775CC0073AB8D /* RestaurantDetailViewController.m */,
+				76E4576726A880C70073AB8D /* RestaurantPopularDishesViewController.h */,
+				76E4576826A880C70073AB8D /* RestaurantPopularDishesViewController.m */,
+				76E4577326A8D3870073AB8D /* RestaurantTableViewFeedViewController.h */,
+				76E4577426A8D3870073AB8D /* RestaurantTableViewFeedViewController.m */,
+				76E4577626A8D3DD0073AB8D /* RestaurantCollectionFeedViewController.h */,
+				76E4577726A8D3DD0073AB8D /* RestaurantCollectionFeedViewController.m */,
+			);
+			path = "Restaurant Details";
+			sourceTree = "<group>";
+		};
+		76FF9ABB26B20CF100E03530 /* Detail View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				760B967D269FB74D00CB7F80 /* PostDetailViewController.h */,
+				760B967E269FB74D00CB7F80 /* PostDetailViewController.m */,
+				760B968026A0A9A900CB7F80 /* DishDetailsViewController.h */,
+				760B968126A0A9A900CB7F80 /* DishDetailsViewController.m */,
+				76FF9ABA26B20C9000E03530 /* Restaurant Details */,
+			);
+			path = "Detail View Controllers";
+			sourceTree = "<group>";
+		};
+		76FF9ABC26B20D2900E03530 /* Main Map View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				76E49E66269D1A1800617E4F /* MapViewController.h */,
+				76E49E67269D1A1800617E4F /* MapViewController.m */,
+				76E4578126AA505B0073AB8D /* FilterViewController.h */,
+				76E4578226AA505B0073AB8D /* FilterViewController.m */,
+				76A95AC026AF1E9C005C8A04 /* RecommendationSurveyViewController.h */,
+				76A95AC126AF1E9C005C8A04 /* RecommendationSurveyViewController.m */,
+				76D01CEC269CD53000288EF2 /* TableFeedViewController.h */,
+				76D01CED269CD53000288EF2 /* TableFeedViewController.m */,
+			);
+			path = "Main Map View Controllers";
 			sourceTree = "<group>";
 		};
 		8194C5A482C318E9F7710FBF /* Pods */ = {
