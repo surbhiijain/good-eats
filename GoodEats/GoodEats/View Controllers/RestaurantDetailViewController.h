@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *restaurantId;
 
+@property (nonatomic, strong) Restaurant *restaurant;
+
 @end
 
 NS_ASSUME_NONNULL_END

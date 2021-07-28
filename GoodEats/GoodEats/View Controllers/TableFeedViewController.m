@@ -9,13 +9,16 @@
 #import "FeedPostCell.h"
 #import "PostDetailViewController.h"
 #import "DishDetailsViewController.h"
+#import "RestaurantDetailViewController.h"
 
-@interface TableFeedViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface TableFeedViewController () <UITableViewDelegate, UITableViewDataSource, FeedPostCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *posts;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+
+@property (nonatomic, strong) Restaurant *selectedRestaurant;
 
 @end
 
@@ -69,9 +72,15 @@
     Post *post = self.posts[indexPath.row];
     
     cell.post = post;
+    cell.delegate = self;
+    
     [cell refreshData];
     
     return cell;
+}
+
+- (void)callRestaurantSegueFromCell:(FeedPostCell *)cell {
+    [self performSegueWithIdentifier:@"restaurantDetailsSegue" sender:cell];
 }
 
 
@@ -79,16 +88,22 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([segue.identifier isEqualToString:@"postDetailsSegue"]) {
-        PostDetailViewController *detailsVC = [segue destinationViewController];
+        PostDetailViewController *postDetailsVC = [segue destinationViewController];
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        detailsVC.post = self.posts[indexPath.row];
+        postDetailsVC.post = self.posts[indexPath.row];
     }
     if ([segue.identifier isEqualToString:@"dishDetailsSegue"]) {
-        DishDetailsViewController *detailsVC = [segue destinationViewController];
+        DishDetailsViewController *dishDetailsVC = [segue destinationViewController];
         FeedPostCell* cell = (FeedPostCell*)[[sender superview] superview];
         NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
         Post *post = self.posts[indexPath.row];
-        detailsVC.dish = post.dish;
+        dishDetailsVC.dish = post.dish;
+    }
+    if ([segue.identifier isEqualToString:@"restaurantDetailsSegue"]) {
+        RestaurantDetailViewController *restaurantDetailsVC = [segue destinationViewController];
+        FeedPostCell* cell = (FeedPostCell*) sender;
+        restaurantDetailsVC.restaurant = cell.restaurant;
+        restaurantDetailsVC.restaurantId = cell.restaurant.objectId;
     }
 }
 

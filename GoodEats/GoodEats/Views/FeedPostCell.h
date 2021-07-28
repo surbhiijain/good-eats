@@ -10,10 +10,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class FeedPostCell;
+
+@protocol FeedPostCellDelegate
+
+- (void) callRestaurantSegueFromCell: (FeedPostCell *) cell;
+
+@end
+
 @interface FeedPostCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *restaurantLabel;
+@property (weak, nonatomic) IBOutlet UIButton *restaurantButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *dishButton;
 @property (weak, nonatomic) IBOutlet UIImageView *postImage;
@@ -32,6 +41,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *tagButton5;
 
 @property (nonatomic, strong) Post *post;
+
+@property (nonatomic, strong) Restaurant *restaurant;
+
+@property (weak, nonatomic) id<FeedPostCellDelegate> delegate;
 
 - (void)refreshData;
 

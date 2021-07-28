@@ -26,9 +26,8 @@
     
     PFUser *user = self.post.author;
     self.usernameLabel.text = user.username;
-    self.restaurantLabel.text = self.post.dish.restaurantName;
+    [self.restaurantButton setTitle:self.post.dish.restaurantName forState:UIControlStateNormal];
   
-    // set the post UIImageView based on the PFImage pased in through parse
     [self.post.image getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
         UIImage *image = [UIImage imageWithData:imageData];
         [self.postImage setImage:image] ;
@@ -41,6 +40,17 @@
     [self setTags];
 
 }
+- (IBAction)didTapRestaurant:(UIButton *)sender {
+    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
+    [query getObjectInBackgroundWithId:self.post.dish.restaurantID block:^(PFObject *object, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error.localizedDescription);
+            return;
+        }
+        self.restaurant = (Restaurant *) object;
+        [self.delegate callRestaurantSegueFromCell:self];
+    }];
+}
 
 - (void)prepareForReuse {
     [super prepareForReuse];
@@ -48,7 +58,7 @@
 //    [self.profileImage setImage:nil];
     
     self.usernameLabel.text = @"";
-    self.restaurantLabel.text = @"";
+    [self.restaurantButton setTitle:@"" forState:UIControlStateNormal];
     self.captionLabel.text = @"";
     [self.dishButton setTitle:@"" forState:UIControlStateNormal];
     

@@ -21,7 +21,6 @@
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segControl;
 
-@property (nonatomic, strong) Restaurant *restaurant;
 
 
 @end
@@ -32,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getRestaurant];
+    [self didChangeView:nil];
 }
 
 - (void) getRestaurant {
