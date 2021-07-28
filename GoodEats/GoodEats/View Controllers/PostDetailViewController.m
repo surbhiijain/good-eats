@@ -35,6 +35,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *tagButton4;
 @property (weak, nonatomic) IBOutlet UIButton *tagButton5;
 
+@property (nonatomic, strong) Restaurant *restaurant;
+
 @end
 
 @implementation PostDetailViewController
@@ -42,6 +44,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self refreshData];
+}
+- (IBAction)didTapRestaurant:(id)sender {
+    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
+    [query getObjectInBackgroundWithId:self.post.dish.restaurantID block:^(PFObject *restaurant, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error.localizedDescription);
+            return;
+        }
+        self.restaurant = (Restaurant *) restaurant;
+        [self performSegueWithIdentifier:@"restaurantDetailsSegue" sender:self];
+    }];
 }
 
 - (void)refreshData {
@@ -138,6 +151,7 @@
     } else if ([segue.identifier isEqualToString:@"restaurantDetailsSegue"]) {
         RestaurantDetailViewController *restaurantDetailsVC = [segue destinationViewController];
         restaurantDetailsVC.restaurantId = self.post.dish.restaurantID;
+        restaurantDetailsVC.restaurant = self.restaurant;
     }
 }
 

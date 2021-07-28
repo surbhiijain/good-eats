@@ -42,6 +42,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *posts;
+@property (nonatomic, strong) Restaurant *restaurant;
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
@@ -180,6 +181,17 @@
     [self setTags];
     self.numCheckInsLabel.text = [NSString stringWithFormat:@"%@ Total Check-Ins", self.dish.numCheckIns];
 }
+- (IBAction)didTapRestaurant:(id)sender {
+    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
+    [query getObjectInBackgroundWithId:self.dish.restaurantID block:^(PFObject *restaurant, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error.localizedDescription);
+            return;
+        }
+        self.restaurant = (Restaurant *) restaurant;
+        [self performSegueWithIdentifier:@"restaurantDetailsSegue" sender:self];
+    }];
+}
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -191,6 +203,7 @@
     } else if ([segue.identifier isEqualToString:@"restaurantDetailsSegue"]) {
         RestaurantDetailViewController *restaurantDetailsVC = [segue destinationViewController];
         restaurantDetailsVC.restaurantId = post.dish.restaurantID;
+        restaurantDetailsVC.restaurant = self.restaurant;
     }
 }
 

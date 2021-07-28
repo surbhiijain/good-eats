@@ -94,10 +94,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedPostCell" id="kkN-oO-Ibe" customClass="FeedPostCell">
-                                        <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="410.66665649414062"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="411"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kkN-oO-Ibe" id="B5P-Ka-I1m">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="410.66665649414062"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="411"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IJP-nr-mV9">
@@ -168,7 +168,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIF-cX-2U3">
-                                                    <rect key="frame" x="15" y="375" width="42" height="20.666666666666686"/>
+                                                    <rect key="frame" x="15" y="375" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -423,7 +423,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="Restaurant Name"/>
                                 <connections>
-                                    <segue destination="r1S-Wv-aaX" kind="showDetail" identifier="restaurantDetailsSegue" id="Nd1-Xy-IlG"/>
+                                    <action selector="didTapRestaurant:" destination="rNf-yc-9wT" eventType="touchUpInside" id="bQy-HD-lsc"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K2Q-YA-nfy">
@@ -641,6 +641,7 @@
                         <outlet property="tagButton4" destination="LnS-av-bUb" id="Wm7-bj-6wU"/>
                         <outlet property="tagButton5" destination="OAD-ND-OpW" id="gNC-wx-hEM"/>
                         <outlet property="usernameLabel" destination="ca6-Pv-8mV" id="ddr-Js-mbQ"/>
+                        <segue destination="r1S-Wv-aaX" kind="showDetail" identifier="restaurantDetailsSegue" id="fQK-ar-IMN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiJ-2X-jac" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1578,7 +1579,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Restaurant Name"/>
                                 <connections>
-                                    <segue destination="r1S-Wv-aaX" kind="showDetail" identifier="restaurantDetailsSegue" id="uDL-IY-r1Y"/>
+                                    <action selector="didTapRestaurant:" destination="0g2-bH-Xer" eventType="touchUpInside" id="giC-Se-DgK"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" backIndicatorImage="chevron.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bIh-CR-zQJ">
@@ -1859,6 +1860,7 @@
                         <outlet property="tagCountLabel3" destination="jgE-Dj-6KG" id="fvZ-4L-xPe"/>
                         <outlet property="tagCountLabel4" destination="D3N-7C-RJH" id="Zh5-J2-8Fl"/>
                         <outlet property="tagCountLabel5" destination="DfG-g5-k1b" id="KDM-gI-7UF"/>
+                        <segue destination="r1S-Wv-aaX" kind="showDetail" identifier="restaurantDetailsSegue" id="mMB-5c-EOL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cSB-Iv-zV6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2369,9 +2371,9 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="fV2-J6-dkz"/>
+        <segue reference="eE6-rv-jqs"/>
         <segue reference="Xy6-ao-URM"/>
-        <segue reference="s0L-oh-CBB"/>
+        <segue reference="fQK-ar-IMN"/>
         <segue reference="FhP-aH-ncJ"/>
     </inferredMetricsTieBreakers>
     <resources>

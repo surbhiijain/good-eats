@@ -30,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setHeaderValues];
     [self getRestaurant];
     [self didChangeView:nil];
 }
