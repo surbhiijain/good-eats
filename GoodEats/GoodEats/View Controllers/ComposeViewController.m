@@ -28,6 +28,13 @@
 
 @property (nonatomic, strong) NSMutableArray *tags;
 
+@property (weak, nonatomic) IBOutlet UIButton *tagButton1;
+@property (weak, nonatomic) IBOutlet UIButton *tagButton2;
+@property (weak, nonatomic) IBOutlet UIButton *tagButton3;
+@property (weak, nonatomic) IBOutlet UIButton *tagButton4;
+@property (weak, nonatomic) IBOutlet UIButton *tagButton5;
+
+
 @property (nonatomic, strong) LocationManager *locationManager;
 @property (nonatomic, strong) YLPCoordinate *userCoordinate;
 
@@ -114,36 +121,42 @@
 }
 
 - (IBAction)didTapDone:(id)sender {
-    if ([self validPost]) {
-        [self locateRestaurant];
-    } else {
+    if (![self validPost]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Post not completed"
                                                                        message:@"Please upload an image and enter the restaurant and dish names"
                                                                 preferredStyle:(UIAlertControllerStyleAlert)];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
+        return;
     }
+    [self fetchYelpRestaurantWithCompletion:^(YLPSearch *search, NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+            return;
+        }
+        YLPBusiness *business = search.businesses[0];
+        YLPLocation *location = business.location;
+        [self getOrCreateParseRestaurant:business withLocation:location withCompletion:^(Restaurant *restaurant) {
+            Dish *dish = [self getDish:restaurant];
+            [self createPost:dish withRestaurant:restaurant];
+        }];
+    }];
+    
 }
 
 - (BOOL) validPost {
     return (self.imageButton.imageView.image && self.restaurantField.text.length > 0 && self.dishField.text.length > 0);
 }
 
-- (void) locateRestaurant {
+- (void) fetchYelpRestaurantWithCompletion: (void(^)(YLPSearch * search, NSError * error)) completion {
     
     [[AppDelegate sharedClient] searchWithCoordinate:self.userCoordinate term:self.restaurantField.text limit:5 offset:0 sort:YLPSortTypeDistance completionHandler:^(YLPSearch * search, NSError * error) {
-        if (error != nil) {
-            NSLog(@"%@", [error localizedDescription]);
-        } else {
-            YLPBusiness *business = search.businesses[0];
-            YLPLocation *location = business.location;
-            [self getOrCreateParseRestaurant:business withLocation:location];
-        }
+        completion(search, error);
     }];
 }
 
-- (void)getOrCreateParseRestaurant: (YLPBusiness *) business withLocation: (YLPLocation *) location {
+- (void)getOrCreateParseRestaurant: (YLPBusiness *) business withLocation: (YLPLocation *) location withCompletion: (void(^)(Restaurant * restaurant)) completion {
     
     NSNumber *latitude = [NSNumber numberWithDouble:business.location.coordinate.latitude];
     NSNumber *longitude = [NSNumber numberWithDouble:business.location.coordinate.longitude];
@@ -153,32 +166,24 @@
     [query whereKey:@"name" equalTo:business.name];
     [query whereKey:@"latitude" equalTo:latitude];
     [query whereKey:@"longitude" equalTo:longitude];
+    [query setLimit:1];
     
     __block Restaurant *restaurant;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *restaurants, NSError *error) {
-        // set the restaurant to the first result if one already exists
-        //TODO: display first few results to user for them to pick their restaurant
-        if (restaurants != nil && restaurants.count != 0) {
+        if (restaurants && restaurants.count != 0) {
             restaurant = restaurants[0];
-            [self getDish:restaurant];
         }
-        // otherwise, create a new restaurant object
         else {
             NSString *abrevLocation = [NSString stringWithFormat:@"%@, %@", business.location.city, business.location.stateCode];
             restaurant = [[Restaurant alloc] initWithName:business.name withLatitude:latitude withLongitude:longitude withLocation:abrevLocation];
-            [restaurant saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                if (!succeeded) {
-                    NSLog(@"Error: %@", error);
-                } else {
-                    [self getDish:restaurant];
-                }
-            }];
+            [restaurant save];
         }
+        completion(restaurant);
     }];
 }
 
-- (void) getDish:(Restaurant *) restaurant {
+- (Dish *) getDish:(Restaurant *) restaurant {
     Dish *dish;
     for (Dish *d in restaurant.dishes) {
         if ([d.name isEqual:self.dishField.text]) {
@@ -190,8 +195,7 @@
         [restaurant addDish:dish];
         [restaurant saveInBackground];
     }
-    
-    [self createPost:dish withRestaurant:restaurant];
+    return dish;
 }
 
 
@@ -211,8 +215,6 @@
         = [self.tabBarController.viewControllers objectAtIndex:0];
         [self clearFields];
     }];
-    
-    
 }
 
 - (IBAction)didTapTag:(UIButton *)sender {
@@ -238,6 +240,14 @@
     
     UIImage *placeHolderImage =  [UIImage systemImageNamed:@"photo.fill.on.rectangle.fill"];
     [self.imageButton setBackgroundImage:placeHolderImage forState:UIControlStateNormal];
+    
+    [self.tagButton1 setBackgroundColor:[UIColor colorWithRed:211/255.0 green:229/255.0 blue:227/255.0 alpha:1.0]];
+    [self.tagButton2 setBackgroundColor:[UIColor colorWithRed:211/255.0 green:229/255.0 blue:227/255.0 alpha:1.0]];
+    [self.tagButton3 setBackgroundColor:[UIColor colorWithRed:211/255.0 green:229/255.0 blue:227/255.0 alpha:1.0]];
+    [self.tagButton4 setBackgroundColor:[UIColor colorWithRed:211/255.0 green:229/255.0 blue:227/255.0 alpha:1.0]];
+    [self.tagButton5 setBackgroundColor:[UIColor colorWithRed:211/255.0 green:229/255.0 blue:227/255.0 alpha:1.0]];
+    
+    self.tags = [[NSMutableArray alloc] init];
 }
 
 @end
