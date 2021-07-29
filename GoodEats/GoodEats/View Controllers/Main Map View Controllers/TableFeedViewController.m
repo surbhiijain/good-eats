@@ -86,12 +86,6 @@
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if ([segue.identifier isEqualToString:@"postDetailsSegue"]) {
-        PostDetailViewController *postDetailsVC = [segue destinationViewController];
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        postDetailsVC.post = self.posts[indexPath.row];
-    }
     if ([segue.identifier isEqualToString:@"dishDetailsSegue"]) {
         DishDetailsViewController *dishDetailsVC = [segue destinationViewController];
         FeedPostCell* cell = (FeedPostCell*)[[sender superview] superview];
