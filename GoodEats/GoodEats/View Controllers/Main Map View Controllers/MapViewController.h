@@ -9,10 +9,11 @@
 #import "ComposeViewController.h"
 #import "LocationManager.h"
 #import "FilterViewController.h"
+#import <MapKit/MapKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MapViewController : UIViewController <ComposeViewControllerDelegate, UITabBarControllerDelegate, LocationManagerDelegate, FilterViewDelegate>
+@interface MapViewController : UIViewController <ComposeViewControllerDelegate, UITabBarControllerDelegate, LocationManagerDelegate, FilterViewDelegate, MKMapViewDelegate>
 
 @end
 

@@ -10,6 +10,7 @@
 #import "ComposeViewController.h"
 #import "RestaurantDetailViewController.h"
 #import "TableFeedViewController.h"
+#import "RestaurantMKAnnotationView.h"
 
 @interface MapViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -17,7 +18,7 @@
 @property (nonatomic, strong) NSMutableArray *restaurants;
 @property (nonatomic, strong) NSMutableArray *restaurantIds;
 
-@property (nonatomic, strong) NSString *selectedRestaurantId;
+@property (nonatomic, strong) Restaurant *selectedRestaurant;
 
 @property (nonatomic, strong) LocationManager *locationManager;
 
@@ -191,16 +192,25 @@
 
 // TODO: create custom annotation, storing restaurant
 - (void) displayPinForRestaurant: (Restaurant *) restaurant {
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(restaurant.latitude.floatValue, restaurant.longitude.floatValue);
     
     [self.navigationController popViewControllerAnimated:YES];
     
-    MKPointAnnotation *annotation = [MKPointAnnotation new];
-    annotation.coordinate = coordinate;
-    annotation.title = restaurant.name;
-    annotation.subtitle = restaurant.objectId;
+    RestaurantMKAnnotationView *annotation = [[RestaurantMKAnnotationView alloc] initWithRestaurant:restaurant];
     
     [self.mapView addAnnotation:annotation];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if (![annotation isKindOfClass:[RestaurantMKAnnotationView class]]) {
+        return nil;
+    }
+    
+    RestaurantMKAnnotationView *restaurantAnnotation = (RestaurantMKAnnotationView *) annotation;
+    MKAnnotationView *annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:@"RestaurantMKAnnotation"];
+    
+    annotationView = restaurantAnnotation.annotationView;
+    
+    return annotationView;
 }
 
 - (void) displayAllPinsForRestaurantArray: (NSArray *) restaurants {
@@ -214,7 +224,8 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    self.selectedRestaurantId = view.annotation.subtitle;
+    RestaurantMKAnnotationView *restaurantAnnotation = (RestaurantMKAnnotationView *) view.annotation;
+    self.selectedRestaurant = restaurantAnnotation.restaurant;
     [self performSegueWithIdentifier:@"restaurantDetailsSegue" sender:self];
 }
 
@@ -243,7 +254,7 @@
     if ([segue.identifier isEqualToString:@"restaurantDetailsSegue"]) {
 //         TODO: pass restaurant object instead of restaurantID
         RestaurantDetailViewController *restaurantDetailsVC = [segue destinationViewController];
-//        restaurantDetailsVC.restaurantId = self.selectedRestaurantId;
+        restaurantDetailsVC.restaurant = self.selectedRestaurant;
     } if ([segue.identifier isEqualToString:@"filterSegue"]) {
         UINavigationController *navigationVC = [segue destinationViewController];
         FilterViewController *filterVC = (FilterViewController *) navigationVC.topViewController;
