@@ -10,28 +10,13 @@
 @implementation RestaurantMKAnnotationView
 
 - (id)initWithRestaurant:(Restaurant *)restaurant {
-    self = [super init];
+    CLLocationCoordinate2D location = CLLocationCoordinate2DMake(restaurant.latitude.floatValue, restaurant.longitude.floatValue);
+
+    self = [super initWithCoordinate:location title:restaurant.name subtitle:nil];
     if (self) {
         self.restaurant = restaurant;
-        self.title = restaurant.name;
-        CLLocationCoordinate2D location = CLLocationCoordinate2DMake(restaurant.latitude.floatValue, restaurant.longitude.floatValue);
-        self.coordinate = location;
     }
     return self;
-}
-
-
-- (MKAnnotationView *)annotationView {
-    MKAnnotationView *annotationView = [[MKAnnotationView alloc] initWithAnnotation:self reuseIdentifier:@"RestaurantMKAnnotation"];
-    
-
-    annotationView.enabled = YES;
-    annotationView.canShowCallout = YES;
-    
-    annotationView.image = [UIImage systemImageNamed:@"mappin"];
-    [annotationView setTintColor:[UIColor redColor]];
-    
-    return annotationView;
 }
 
 @end

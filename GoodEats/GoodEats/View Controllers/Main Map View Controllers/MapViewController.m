@@ -200,19 +200,6 @@
     [self.mapView addAnnotation:annotation];
 }
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    if (![annotation isKindOfClass:[RestaurantMKAnnotationView class]]) {
-        return nil;
-    }
-    
-    RestaurantMKAnnotationView *restaurantAnnotation = (RestaurantMKAnnotationView *) annotation;
-    MKAnnotationView *annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:@"RestaurantMKAnnotation"];
-    
-    annotationView = restaurantAnnotation.annotationView;
-    
-    return annotationView;
-}
-
 - (void) displayAllPinsForRestaurantArray: (NSArray *) restaurants {
     
     [self.mapView removeAnnotations:self.mapView.annotations];
