@@ -19,7 +19,9 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)refreshData {
+- (void)setPost:(Post *)post {
+
+    _post = post;
     
     PFUser *user = self.post.author;
     self.usernameLabel.text = user.username;

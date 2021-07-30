@@ -9,7 +9,8 @@
 
 @implementation PostCollectionCell
 
-- (void)refreshData {
+- (void)setPost:(Post *)post {
+    _post = post;
     [self.post.image getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
         UIImage *image = [UIImage imageWithData:imageData];
         [self.postImage setImage:image] ;

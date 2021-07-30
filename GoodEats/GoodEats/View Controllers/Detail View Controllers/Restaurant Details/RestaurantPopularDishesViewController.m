@@ -31,7 +31,6 @@
     Dish *dish = self.sortedDishes[indexPath.row];
     
     cell.dish = dish;
-    [cell refreshData];
     
     return cell;
 }

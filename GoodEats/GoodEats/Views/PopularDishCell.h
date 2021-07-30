@@ -23,8 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) Dish *dish;
 
-- (void)refreshData;
-
 @end
 
 NS_ASSUME_NONNULL_END

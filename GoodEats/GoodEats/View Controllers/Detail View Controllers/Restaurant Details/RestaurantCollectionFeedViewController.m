@@ -64,7 +64,6 @@
     Post *post = self.posts[indexPath.item];
     
     cell.post = post;
-    [cell refreshData];
     
     return cell;
 }

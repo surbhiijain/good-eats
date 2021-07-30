@@ -19,7 +19,9 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)refreshData {
+- (void)setDish:(Dish *)dish {
+    
+    _dish = dish;
   
     self.dishNameLabel.text = self.dish.name;
     self.numCheckInsLabel.text = [NSString stringWithFormat:@"%@ check ins", self.dish.numCheckIns];

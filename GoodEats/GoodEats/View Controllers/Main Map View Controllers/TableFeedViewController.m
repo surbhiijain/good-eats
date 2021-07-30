@@ -75,9 +75,7 @@
     
     cell.post = post;
     cell.delegate = self;
-    
-    [cell refreshData];
-    
+        
     return cell;
 }
 

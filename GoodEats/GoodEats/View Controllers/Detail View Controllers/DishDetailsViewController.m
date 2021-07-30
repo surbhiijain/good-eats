@@ -110,7 +110,6 @@
     Post *post = self.posts[indexPath.row];
     
     cell.post = post;
-    [cell refreshData];
     
     return cell;
 }

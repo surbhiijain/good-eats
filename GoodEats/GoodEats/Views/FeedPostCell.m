@@ -19,19 +19,21 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)refreshData {
+- (void)setPost:(Post *)post {
     
-    PFUser *user = self.post.author;
+    _post = post;
+            
+    PFUser *user = post.author;
     self.usernameLabel.text = user.username;
-    [self.restaurantButton setTitle:self.post.dish.restaurantName forState:UIControlStateNormal];
+    [self.restaurantButton setTitle:post.dish.restaurantName forState:UIControlStateNormal];
   
-    [self.post.image getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+    [post.image getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
         UIImage *image = [UIImage imageWithData:imageData];
         [self.postImage setImage:image] ;
     }];
     
-    [self.dishButton setTitle:self.post.dish.name forState:UIControlStateNormal];
-    self.captionLabel.text = self.post.caption;
+    [self.dishButton setTitle:post.dish.name forState:UIControlStateNormal];
+    self.captionLabel.text = post.caption;
     
     [self setStars];
     [self setTags];
