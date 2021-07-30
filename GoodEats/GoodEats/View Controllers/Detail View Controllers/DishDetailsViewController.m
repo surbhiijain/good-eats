@@ -11,6 +11,7 @@
 #import "PostDetailViewController.h"
 #import "RestaurantDetailViewController.h"
 #import "Utils.h"
+#import "APIManager.h"
 
 @interface DishDetailsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -61,12 +62,9 @@
     self.dishLabel.text = self.dish.name;
     [self.restaurantButton setTitle:self.dish.restaurantName forState:UIControlStateNormal];
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
-    [query includeKey:@"dishes"];
-    
-    [query getObjectInBackgroundWithId:self.dish.restaurantID block:^(PFObject *restaurant, NSError *error) {
+    [[APIManager shared] fetchRestaurantWithId:self.dish.restaurantID withCompletion:^(Restaurant *restaurant, NSError *error) {
         if (!error) {
-            self.restaurant = (Restaurant *) restaurant;
+            self.restaurant = restaurant;
             self.locationLabel.text = self.restaurant.abrevLocation;
         } else {
             self.locationLabel.hidden = TRUE;

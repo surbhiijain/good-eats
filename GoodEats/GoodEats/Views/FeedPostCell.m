@@ -7,6 +7,7 @@
 
 #import "FeedPostCell.h"
 #import "Utils.h"
+#import "APIManager.h"
 
 @implementation FeedPostCell
 
@@ -40,15 +41,13 @@
 
 }
 - (IBAction)didTapRestaurant:(UIButton *)sender {
-    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
-    [query includeKey:@"dishes"];
     
-    [query getObjectInBackgroundWithId:self.post.dish.restaurantID block:^(PFObject *object, NSError *error) {
+    [[APIManager shared] fetchRestaurantWithId:self.post.dish.restaurantID withCompletion:^(Restaurant *restaurant, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error.localizedDescription);
             return;
         }
-        self.restaurant = (Restaurant *) object;
+        self.restaurant = restaurant;
         [self.delegate callRestaurantSegueFromCell:self];
     }];
 }

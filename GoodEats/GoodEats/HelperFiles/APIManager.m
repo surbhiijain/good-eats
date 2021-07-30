@@ -8,7 +8,6 @@
 #import <Foundation/Foundation.h>
 #import "APIManager.h"
 #import "Parse/Parse.h"
-#import "Restaurant.h"
 
 @implementation APIManager
 
@@ -21,7 +20,6 @@
     return sharedManager;
 }
 
-// TODO: use in recommendationsManager, mapVC, filterVC, postDetailsVC, dishdetailsVC
 - (void) fetchAllRestaurantsWithOrderKey: (NSString *) order
                              withLimit: (NSNumber *) limit
                        withConstraints: (NSDictionary *) constraints
@@ -46,8 +44,7 @@
     }];
 }
 
-// TODO: USE IN feedpostcell
-- (void) getRestaurantWithId: (NSString *) restaurantId
+- (void) fetchRestaurantWithId: (NSString *) restaurantId
 withCompletion: (void(^)(Restaurant *restaurant, NSError *error))completion {
     
     PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];

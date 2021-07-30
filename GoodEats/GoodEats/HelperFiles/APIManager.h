@@ -7,6 +7,7 @@
 
 #ifndef APIManager_h
 #define APIManager_h
+#import "Restaurant.h"
 
 @interface APIManager : NSObject
 
@@ -16,6 +17,9 @@
                              withLimit: (NSNumber *) limit
                        withConstraints: (NSDictionary *) constraints
                         withCompletion: (void(^)(NSMutableArray *restaurants, NSError *error))completion;
+
+- (void) fetchRestaurantWithId: (NSString *) restaurantId
+                withCompletion: (void(^)(Restaurant *restaurant, NSError *error))completion;
 
 
 @end

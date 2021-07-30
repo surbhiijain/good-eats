@@ -17,6 +17,7 @@
 #import <YelpAPI/YLPBusiness.h>
 #import <YelpAPI/YLPLocation.h>
 #import <YelpAPI/YLPCoordinate.h>
+#import "APIManager.h"
 
 @interface ComposeViewController ()
 
@@ -93,7 +94,6 @@
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
-    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(400, 300)];
     
@@ -169,16 +169,10 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     NSNumber *latitude = [NSNumber numberWithDouble:business.location.coordinate.latitude];
     NSNumber *longitude = [NSNumber numberWithDouble:business.location.coordinate.longitude];
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
-    [query includeKeys:@[@"dishes"]];
-    [query whereKey:@"name" equalTo:business.name];
-    [query whereKey:@"latitude" equalTo:latitude];
-    [query whereKey:@"longitude" equalTo:longitude];
-    [query setLimit:1];
+    NSDictionary *constraints = [[NSDictionary alloc] initWithObjects:@[business.name, latitude, longitude] forKeys:@[@"name", @"latitude", @"longitude"]];
     
-    __block Restaurant *restaurant;
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *restaurants, NSError *error) {
+    [[APIManager shared] fetchAllRestaurantsWithOrderKey:nil withLimit:@1 withConstraints:constraints withCompletion:^(NSMutableArray *restaurants, NSError *error) {
+        Restaurant *restaurant;
         if (restaurants && restaurants.count != 0) {
             restaurant = restaurants[0];
         }

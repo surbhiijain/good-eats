@@ -10,6 +10,7 @@
 #import "DishDetailsViewController.h"
 #import "RestaurantDetailViewController.h"
 #import "Utils.h"
+#import "APIManager.h"
 
 @interface PostDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *profileImage;
@@ -54,10 +55,7 @@
     
     [self.restaurantLabel setTitle:self.post.dish.restaurantName forState:(UIControlStateNormal)];
 
-    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
-    [query includeKey:@"dishes"];
-    
-    [query getObjectInBackgroundWithId:self.post.dish.restaurantID block:^(PFObject *restaurant, NSError *error) {
+    [[APIManager shared] fetchRestaurantWithId:self.post.dish.restaurantID withCompletion:^(Restaurant *restaurant, NSError *error) {
         if (!error) {
             self.restaurant = (Restaurant *) restaurant;
             self.locationLabel.text = self.restaurant.abrevLocation;

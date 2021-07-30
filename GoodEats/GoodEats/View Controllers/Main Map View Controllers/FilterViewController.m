@@ -10,6 +10,7 @@
 #import "Restaurant.h"
 #import "LocationManager.h"
 #import "Post.h"
+#import "APIManager.h"
 
 @interface FilterViewController () <LocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *distanceSegControl;
@@ -50,7 +51,11 @@
 }
 - (IBAction)didApplyFilters:(UIButton *)sender {
     
-    [self fetchAllRestaurantsAndFilterWithCompletion:^(NSArray *restaurants, NSError *error) {
+    [[APIManager shared] fetchAllRestaurantsWithOrderKey:@"createdAt"
+                                             withLimit:@25
+                                       withConstraints:nil
+                                        withCompletion:^(NSMutableArray *restaurants, NSError *error) {
+
         if (error) {
             NSLog(@"%@", error.localizedDescription);
             return;
@@ -82,18 +87,6 @@
     return 0;
 }
 
-- (void) fetchAllRestaurantsAndFilterWithCompletion:(void(^)(NSArray *restaurants, NSError *error)) filterCompletion {
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
-    [query includeKeys:@[@"dishes"]];
-    [query orderByDescending:@"createdAt"];
-    query.limit = 25;
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *restaurants, NSError *error) {
-        filterCompletion(restaurants,error);
-    }];
-}
-
 - (void) LocationManager:(LocationManager *)locationManager
       setUpWithLocation:(CLLocation *)location {
     self.userLocation = location;
@@ -104,8 +97,6 @@
     
     NSMutableArray *filteredRestaurants = [[NSMutableArray alloc] init];
     NSMutableArray *filteredRestaurantIds = [[NSMutableArray alloc] init];
-
-    NSMutableArray *distances = [[NSMutableArray alloc] init];
     
     for (Restaurant *restaurant in self.restaurants) {
         CLLocation *restaurantLocation = [[CLLocation alloc] initWithLatitude:[restaurant.latitude doubleValue] longitude:[restaurant.longitude doubleValue]];

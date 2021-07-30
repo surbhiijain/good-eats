@@ -9,6 +9,7 @@
 #import "RecommendationManager.h"
 #import "Restaurant.h"
 #import "Post.h"
+#import "APIManager.h"
 
 @implementation RecommendationManager
 
@@ -23,8 +24,10 @@
     __block NSMutableArray *userTriedDishes = [[NSMutableArray alloc] init];
     __block NSString *noRecsErrorString = @"";
     
-    [self getAllRestaurantsWithCompletion:^(NSMutableArray *restaurants, NSError *error) {
-        
+    [[APIManager shared] fetchAllRestaurantsWithOrderKey:nil
+                                             withLimit:nil
+                                       withConstraints:nil
+                                        withCompletion:^(NSMutableArray *restaurants, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error.localizedDescription);
             return;
@@ -82,15 +85,6 @@
                 completion(d, nil);
             }];
         }];
-    }];
-}
-
-+ (void) getAllRestaurantsWithCompletion: (void(^)(NSMutableArray *restaurants, NSError *error))completion {
-    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
-    [query includeKey:@"dishes"];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *restaurants, NSError *error) {
-        completion((NSMutableArray *) restaurants, error);
     }];
 }
 

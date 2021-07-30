@@ -11,6 +11,7 @@
 #import "RestaurantDetailViewController.h"
 #import "TableFeedViewController.h"
 #import "RestaurantMKAnnotationView.h"
+#import "APIManager.h"
 
 @interface MapViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -184,12 +185,10 @@
 
 
 - (void) getAllRestaurants {
-    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
-    [query includeKeys:@[@"dishes"]];
-    [query orderByDescending:@"createdAt"];
-    query.limit = 25;
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *restaurants, NSError *error) {
+    [[APIManager shared] fetchAllRestaurantsWithOrderKey:@"createdAt"
+                                             withLimit:@25
+                                       withConstraints:nil
+                                        withCompletion:^(NSMutableArray *restaurants, NSError *error) {
         if (restaurants != nil) {
             self.restaurants = (NSMutableArray *) restaurants;
             [self displayAllPinsForRestaurantArray:restaurants];
