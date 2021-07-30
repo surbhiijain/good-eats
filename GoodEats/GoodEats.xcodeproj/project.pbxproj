@@ -42,6 +42,7 @@
 		76E49E77269E0AF800617E4F /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E49E76269E0AF700617E4F /* ComposeViewController.m */; };
 		76FF9AC226B2147000E03530 /* RestaurantMKAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FF9AC126B2147000E03530 /* RestaurantMKAnnotationView.m */; };
 		76FF9AC526B4772B00E03530 /* RecommendationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FF9AC426B4772B00E03530 /* RecommendationManager.m */; };
+		76FF9AC826B48EE900E03530 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FF9AC726B48EE900E03530 /* APIManager.m */; };
 		B1B23EDDB43B6EB5718B7F7F /* Pods_GoodEats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1437E886A076A38FA2C6B6A5 /* Pods_GoodEats.framework */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +133,8 @@
 		76FF9AC126B2147000E03530 /* RestaurantMKAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestaurantMKAnnotationView.m; sourceTree = "<group>"; };
 		76FF9AC326B4771D00E03530 /* RecommendationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendationManager.h; sourceTree = "<group>"; };
 		76FF9AC426B4772B00E03530 /* RecommendationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendationManager.m; sourceTree = "<group>"; };
+		76FF9AC626B48EDF00E03530 /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		76FF9AC726B48EE900E03530 /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		814318AB1B9F6E3334A7D6EF /* Pods-GoodEatsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodEatsTests.debug.xcconfig"; path = "Target Support Files/Pods-GoodEatsTests/Pods-GoodEatsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A0E1AF08D6F7B85A11CD2C95 /* Pods-GoodEatsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodEatsTests.release.xcconfig"; path = "Target Support Files/Pods-GoodEatsTests/Pods-GoodEatsTests.release.xcconfig"; sourceTree = "<group>"; };
 		DFF1880454A69F6BD7FA8BF9 /* Pods_GoodEatsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodEatsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -282,6 +285,8 @@
 				76E4577D26A9F69E0073AB8D /* LocationManager.m */,
 				76FF9AC326B4771D00E03530 /* RecommendationManager.h */,
 				76FF9AC426B4772B00E03530 /* RecommendationManager.m */,
+				76FF9AC626B48EDF00E03530 /* APIManager.h */,
+				76FF9AC726B48EE900E03530 /* APIManager.m */,
 			);
 			path = HelperFiles;
 			sourceTree = "<group>";
@@ -593,6 +598,7 @@
 				76E4576C26A88BD50073AB8D /* PopularDishCell.m in Sources */,
 				76290DA9269CD6F70045095D /* FeedPostCell.m in Sources */,
 				76E4577126A8A25A0073AB8D /* Utils.m in Sources */,
+				76FF9AC826B48EE900E03530 /* APIManager.m in Sources */,
 				76E49E6B269D1DBF00617E4F /* ProfileViewController.m in Sources */,
 				76E4577526A8D3870073AB8D /* RestaurantTableViewFeedViewController.m in Sources */,
 				760B968226A0A9A900CB7F80 /* DishDetailsViewController.m in Sources */,

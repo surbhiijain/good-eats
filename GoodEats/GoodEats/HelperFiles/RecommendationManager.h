@@ -16,7 +16,7 @@
 + (void) getRecommendedDishWithDist:(double) dist
                           withTaste:(BOOL) taste
                  withAdventureIndex:(int) adventureIndex
-                    withUserLoation: (CLLocation *) userLocation
+                    withUserLoation:(CLLocation *) userLocation
                      withCompletion:(void(^)(Dish *dish, NSString *noRecsErrorString))completion;
 
 @end
