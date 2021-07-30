@@ -20,7 +20,10 @@
     return @"Dish";
 }
 
-- (instancetype)initWithName:(NSString *)name withRestaurant:(NSString *)restaurantName withRestaurantID: (NSString *)restaurantID {
+- (instancetype)initWithName:(NSString *)name
+              withRestaurant:(NSString *)restaurantName
+            withRestaurantID: (NSString *)restaurantID {
+    
     if (self = [super init]) {
         self.name = name;
         self.restaurantName = restaurantName;

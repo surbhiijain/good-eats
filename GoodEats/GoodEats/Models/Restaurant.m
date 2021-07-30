@@ -22,7 +22,11 @@
     return @"Restaurant";
 }
 
-- (instancetype)initWithName:(NSString *)name withLatitude:(NSNumber *)latitude withLongitude:(NSNumber *)longitude withLocation:(NSString *)abrevLocation{
+- (instancetype)initWithName:(NSString *)name
+                withLatitude:(NSNumber *)latitude
+               withLongitude:(NSNumber *)longitude
+                withLocation:(NSString *)abrevLocation {
+    
     if (self = [super init]) {
         self.name = name;
         self.latitude = latitude;

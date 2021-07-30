@@ -21,7 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *abrevLocation;
 @property (nonatomic, strong) NSNumber *numCheckIns;
 
-- (instancetype) initWithName:(NSString *)name withLatitude:(NSNumber *)latitude withLongitude:(NSNumber *)longitude withLocation:(NSString *) abrevLocation;
+- (instancetype) initWithName:(NSString *)name
+                 withLatitude:(NSNumber *)latitude
+                withLongitude:(NSNumber *)longitude
+                 withLocation:(NSString *) abrevLocation;
 
 - (void) addDish:(Dish *)dish;
 - (void) addCheckIn;

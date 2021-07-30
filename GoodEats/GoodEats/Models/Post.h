@@ -26,7 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) Dish *dish;
 
 
-+ (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption withDish: (Dish *)dish withRating: (NSNumber *)rating withTags: (NSArray *)tags  withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void) postUserImage:(UIImage *)image
+           withCaption:(NSString *)caption
+              withDish:(Dish *)dish
+            withRating:(NSNumber *)rating
+              withTags:(NSArray *)tags
+        withCompletion:(PFBooleanResultBlock)completion;
 
 @end
 

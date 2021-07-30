@@ -39,7 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.user = [PFUser currentUser];
     
     self.usernameLabel.text = self.user.username;
@@ -84,7 +84,7 @@
     [postQuery orderByDescending:@"rating"];
     [postQuery addDescendingOrder:@"createdAt"];
     [postQuery includeKeys:@[@"dish", @"author"]];
-
+    
     [postQuery setLimit:3];
     
     [postQuery whereKey:@"author" equalTo:self.user];
@@ -101,7 +101,7 @@
 
 - (void) displayTopThreeRecentPosts: (NSArray *) posts {
     NSMutableArray *dishButtons = [[NSMutableArray alloc] initWithArray:@[self.mostRecentGoodEatButton1, self.mostRecentGoodEatButton2, self.mostRecentGoodEatButton3]];
-
+    
     for (Post *post in posts) {
         UIButton *button = dishButtons[0];
         [dishButtons removeObject:button];
@@ -131,22 +131,25 @@
     }];
 }
 
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                           cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PostCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PostCollectionCell" forIndexPath:indexPath];
     
     Post *post = self.posts[indexPath.item];
     
     cell.post = post;
     [cell refreshData];
-
+    
     return cell;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+     numberOfItemsInSection:(NSInteger)section {
     return self.posts.count;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView
+didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     Post *post = self.posts[indexPath.item];
     self.selectedPost = post;
     [self performSegueWithIdentifier:@"postDetailSegue" sender:self];

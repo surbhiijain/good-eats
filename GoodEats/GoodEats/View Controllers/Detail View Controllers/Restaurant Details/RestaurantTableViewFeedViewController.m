@@ -33,7 +33,7 @@
     [postQuery orderByDescending:@"createdAt"];
     postQuery.limit = [self.restaurant.numCheckIns intValue];
     [postQuery includeKeys:@[@"image", @"dish", @"author"]];
-        
+    
     PFQuery *dishQuery = [PFQuery queryWithClassName:@"Dish"];
     [dishQuery whereKey:@"restaurantID" equalTo:self.restaurant.objectId];
     
@@ -49,7 +49,8 @@
     }];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FeedPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedPostCell"];
     
     Post *post = self.posts[indexPath.row];
@@ -59,7 +60,8 @@
     
     return cell;}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section {
     return self.posts.count;
 }
 

@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol LocationManagerDelegate
 
-- (void)LocationManager:(LocationManager *)locationManager setUpWithLocation:(CLLocation *)location;
+- (void)LocationManager:(LocationManager *)locationManager
+      setUpWithLocation:(CLLocation *)location;
 
 @end
 

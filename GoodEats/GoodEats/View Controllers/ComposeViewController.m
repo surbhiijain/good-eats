@@ -52,8 +52,11 @@
     [self.locationManager setUpLocationManager];
 }
 
-- (void)LocationManager:(LocationManager *)locationManager setUpWithLocation:(CLLocation *)location {
+- (void)LocationManager:(LocationManager *)locationManager
+      setUpWithLocation:(CLLocation *)location {
+    
     self.userCoordinate = [[YLPCoordinate alloc] initWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
+
 }
 
 - (IBAction)didTapPhoto:(id)sender {
@@ -87,7 +90,8 @@
     }
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+- (void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
@@ -100,7 +104,9 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+- (UIImage *)resizeImage:(UIImage *)image
+                withSize:(CGSize)size {
+    
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
     resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -156,7 +162,9 @@
     }];
 }
 
-- (void)getOrCreateParseRestaurant: (YLPBusiness *) business withLocation: (YLPLocation *) location withCompletion: (void(^)(Restaurant * restaurant)) completion {
+- (void)getOrCreateParseRestaurant:(YLPBusiness *) business
+                      withLocation:(YLPLocation *) location
+                    withCompletion:(void(^)(Restaurant * restaurant)) completion {
     
     NSNumber *latitude = [NSNumber numberWithDouble:business.location.coordinate.latitude];
     NSNumber *longitude = [NSNumber numberWithDouble:business.location.coordinate.longitude];
@@ -199,7 +207,8 @@
 }
 
 
-- (void) createPost:(Dish *)dish withRestaurant:(Restaurant *) restaurant {
+- (void) createPost:(Dish *)dish
+     withRestaurant:(Restaurant *) restaurant {
     NSNumber *rating = [NSNumber numberWithFloat:self.starRatingView.value];
     
     [Post postUserImage:self.imageButton.imageView.image withCaption:self.captionField.text withDish:dish withRating:rating withTags:self.tags withCompletion:^(BOOL succeeded, NSError * _Nullable error) {

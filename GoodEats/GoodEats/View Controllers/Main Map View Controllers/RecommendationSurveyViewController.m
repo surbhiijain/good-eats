@@ -26,7 +26,7 @@
 
 @implementation RecommendationSurveyViewController
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
     
     self.locationManager = [[LocationManager alloc] init];
@@ -34,20 +34,18 @@
     [self.locationManager setUpLocationManager];
 }
 
-- (void)LocationManager:(LocationManager *)locationManager setUpWithLocation:(CLLocation *)location {
+- (void) LocationManager:(LocationManager *)locationManager
+       setUpWithLocation:(CLLocation *)location {
     self.userLocation = location;
 }
 
-- (IBAction)didTapDone:(id)sender {
+- (IBAction) didTapDone:(id)sender {
     double dist = [self getSelectedDistance];
     BOOL taste = [self getTasteImportanceBool];
     int adventureIndex = (int) self.adventureSegControl.selectedSegmentIndex;
     
     __block NSMutableArray *allDishes = [[NSMutableArray alloc] init];
     __block NSMutableArray *userTriedDishes = [[NSMutableArray alloc] init];
-    __block NSMutableArray *userNotTriedDishes = [[NSMutableArray alloc] init];
-    
-    __block NSMutableArray *dishes = [[NSMutableArray alloc] init];
     
     [self getAllRestaurantsWithCompletion:^(NSArray *restaurants, NSError *error) {
         if (error) {
@@ -58,7 +56,7 @@
             if (!filteredRestaurants.count) {
                 [self handleNoRecommendationsFound:@"No restaurants found close enough to you. Please increase your time, or try again later"];
             }
-            if (adventureIndex == 1 || adventureIndex == 2) {
+            if (adventureIndex != 0) {
                 allDishes = [self getAllDishesInRestaurants:filteredRestaurants];
             }
             if (adventureIndex == 1) {
@@ -74,6 +72,7 @@
                 if (!posts.count && adventureIndex == 0) {
                     [self handleNoRecommendationsFound:@"No 'safe' restaurants exist since you have never checked in to a restaurant before. Select 'advernturous' to find something new, or start checking into restaurants on your own first!"];
                 }
+                
                 for (Post *post in posts) {
                     [userTriedDishes addObject:post.dish];
                 }
@@ -82,6 +81,7 @@
                     [self performSegueWithIdentifier:@"dishDetailsSegue" sender:self];
                     return;
                 }
+                //TODO: use a filter method instead
                 for (Dish *d in allDishes) {
                     if (![userTriedDishes containsObject:d]) {
                         self.dish = d;
@@ -89,6 +89,7 @@
                         return;
                     }
                 }
+                
                 if (!self.dish) {
                     [self handleNoRecommendationsFound:@"You've tried all the dishes in our database! Tell your friends to check into new places or broaden your query."];
                 }
@@ -149,7 +150,10 @@
     }];
 }
 
-- (void) filterRestaurants: (NSMutableArray *) restaurants byDistance: (double) filterDistance fromLocation: (CLLocation *) userLocation withCompletion: (void(^)(NSMutableArray *restaurants, NSMutableArray *filteredRestaurantIds))completion{
+- (void) filterRestaurants:(NSMutableArray *) restaurants
+                byDistance:(double) filterDistance
+              fromLocation:(CLLocation *) userLocation
+            withCompletion:(void(^)(NSMutableArray *restaurants, NSMutableArray *filteredRestaurantIds))completion{
     
     NSMutableArray *filteredRestaurants = [[NSMutableArray alloc] init];
     NSMutableArray *filteredRestaurantIds = [[NSMutableArray alloc] init];
@@ -178,7 +182,8 @@
     return dishes;
 }
 
-- (void) getUsersPastPostsForRestaurants: (NSMutableArray *) restaurantIds withCompletion: (void(^)(NSArray *posts, NSError *error))completion {
+- (void) getUsersPastPostsForRestaurants:(NSMutableArray *) restaurantIds
+                          withCompletion:(void(^)(NSArray *posts, NSError *error))completion {
     
     PFUser *currentUser = [PFUser currentUser];
     
@@ -197,8 +202,9 @@
         completion(posts,error);
     }];
 }
-
-- (void) sortDishes: (NSMutableArray *) dishes withTasteImportance: (BOOL) taste {
+// TODO: return array of dihes instead of setting the self.dsh property
+- (void) sortDishes:(NSMutableArray *) dishes
+withTasteImportance:(BOOL) taste {
     NSSortDescriptor *numCheckInsSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"numCheckIns"
                                                                               ascending:NO];
     NSSortDescriptor *ratingSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"avgRating"

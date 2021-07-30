@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ComposeViewControllerDelegate
 
-- (void)ComposeViewController:(ComposeViewController *)controller postedRestaurant:(Restaurant *)restaurat;
+- (void)ComposeViewController:(ComposeViewController *)controller
+             postedRestaurant:(Restaurant *)restaurat;
 
 @end
 

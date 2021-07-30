@@ -21,30 +21,32 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self sortDishesByPopularity];
-
+    
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PopularDishCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PopularDishCell"];
-
+    
     Dish *dish = self.sortedDishes[indexPath.row];
-
+    
     cell.dish = dish;
     [cell refreshData];
-
+    
     return cell;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section {
     return self.sortedDishes.count;
 }
 
 - (void) sortDishesByPopularity {
     self.sortedDishes = self.restaurant.dishes;
     NSSortDescriptor *numCheckInsSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"numCheckIns"
-                                               ascending:NO];
+                                                                              ascending:NO];
     NSSortDescriptor *ratingSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"avgRating"
-                                               ascending:NO];
+                                                                         ascending:NO];
     
     self.sortedDishes = [self.restaurant.dishes sortedArrayUsingDescriptors:@[ratingSortDescriptor, numCheckInsSortDescriptor]];
     [self.tableView reloadData];

@@ -55,6 +55,8 @@
     [self getAllRestaurants];
 }
 
+# pragma mark - Modal Table Feed Card
+
 - (void) setupModalCard {
     self.modalCardHeight = 650;
     self.modalCardHandleAreaHeight = 150;
@@ -63,7 +65,7 @@
     self.runningAnimations = [[NSMutableArray alloc] init];
     
     self.cardVisible = FALSE;
-       
+    
     self.modalTableFeedViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"TableFeedViewController"];
     [self addChildViewController:self.modalTableFeedViewController];
     [self.view addSubview:self.modalTableFeedViewController.view];
@@ -111,10 +113,10 @@
         UIViewPropertyAnimator *frameAnimator = [[UIViewPropertyAnimator alloc] initWithDuration:duration dampingRatio:1 animations:^{
             if (self.cardVisible) {
                 self.modalTableFeedViewController.view.frame = CGRectMake(0, self.view.bounds.size.height - self.modalCardHandleAreaHeight, self.view.bounds.size.width, self.modalCardHeight);
-
+                
             } else {
                 self.modalTableFeedViewController.view.frame = CGRectMake(0, self.view.bounds.size.height - self.modalCardHeight, self.view.bounds.size.width, self.modalCardHeight);
-
+                
             }
         }];
         
@@ -156,7 +158,10 @@
     }
 }
 
-- (void)LocationManager:(LocationManager *)locationManager setUpWithLocation:(CLLocation *)location {
+# pragma mark - Delegate Methods
+
+- (void) LocationManager:(LocationManager *)locationManager
+       setUpWithLocation:(CLLocation *)location {
     MKCoordinateRegion sfRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude), MKCoordinateSpanMake(0.1, 0.1));
     
     [self.mapView setRegion:sfRegion animated:false];
@@ -164,7 +169,9 @@
     [self.mapView setShowsUserLocation:TRUE];
 }
 
-- (void)FilterViewController:(FilterViewController *)filterViewController reloadFeedWithRestaurants:(NSMutableArray *)restaurants withRestaurantIds:(NSMutableArray *)restaurantIds {
+- (void) FilterViewController:(FilterViewController *)filterViewController
+    reloadFeedWithRestaurants:(NSMutableArray *)restaurants
+            withRestaurantIds:(NSMutableArray *)restaurantIds {
     self.restaurants = restaurants;
     self.restaurantIds = restaurantIds;
     
@@ -173,6 +180,8 @@
     
     [self displayAllPinsForRestaurantArray:restaurants];
 }
+
+
 
 - (void) getAllRestaurants {
     PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
@@ -190,7 +199,9 @@
     }];
 }
 
-// TODO: create custom annotation, storing restaurant
+# pragma mark - Map View Methods to Display Restaurants
+
+
 - (void) displayPinForRestaurant: (Restaurant *) restaurant {
     
     [self.navigationController popViewControllerAnimated:YES];
@@ -210,19 +221,22 @@
     
 }
 
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+- (void) mapView:(MKMapView *)mapView
+didSelectAnnotationView:(MKAnnotationView *)view {
     RestaurantMKAnnotationView *restaurantAnnotation = (RestaurantMKAnnotationView *) view.annotation;
     self.selectedRestaurant = restaurantAnnotation.restaurant;
     [self performSegueWithIdentifier:@"restaurantDetailsSegue" sender:self];
 }
 
-- (void)ComposeViewController:(ComposeViewController *)controller postedRestaurant:(Restaurant *)restaurant {
+- (void) ComposeViewController:(ComposeViewController *)controller
+              postedRestaurant:(Restaurant *)restaurant {
     [self.restaurants addObject:restaurant];
     [self displayPinForRestaurant:restaurant];
 }
 
 // find and set compose view controller delegate
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+- (void) tabBarController:(UITabBarController *)tabBarController
+  didSelectViewController:(UIViewController *)viewController {
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         UINavigationController *viewControllers = (UINavigationController *) viewController;
         for (id vc in viewControllers.viewControllers) {
@@ -239,7 +253,6 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"restaurantDetailsSegue"]) {
-//         TODO: pass restaurant object instead of restaurantID
         RestaurantDetailViewController *restaurantDetailsVC = [segue destinationViewController];
         restaurantDetailsVC.restaurant = self.selectedRestaurant;
     } if ([segue.identifier isEqualToString:@"filterSegue"]) {

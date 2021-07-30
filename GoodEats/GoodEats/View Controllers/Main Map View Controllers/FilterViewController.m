@@ -94,11 +94,13 @@
     }];
 }
 
-- (void)LocationManager:(LocationManager *)locationManager setUpWithLocation:(CLLocation *)location {
+- (void) LocationManager:(LocationManager *)locationManager
+      setUpWithLocation:(CLLocation *)location {
     self.userLocation = location;
 }
 
-- (void) filterRestaurantsByDistance: (double) filterDistance fromLocation: (CLLocation *) userLocation {
+- (void) filterRestaurantsByDistance:(double) filterDistance
+                        fromLocation:(CLLocation *) userLocation {
     
     NSMutableArray *filteredRestaurants = [[NSMutableArray alloc] init];
     NSMutableArray *filteredRestaurantIds = [[NSMutableArray alloc] init];
@@ -121,7 +123,8 @@
     self.restaurantIds = filteredRestaurantIds;
 }
 
-- (void) filterRestaurants: (NSArray *) restaurants ByTags: (NSArray *) tags {
+- (void) filterRestaurants:(NSArray *) restaurants
+                    ByTags:(NSArray *) tags {
     
     NSMutableArray *filteredRestaurants = [[NSMutableArray alloc] init];
     NSMutableArray *filteredRestaurantIds = [[NSMutableArray alloc] init];
@@ -150,7 +153,8 @@
     }
 }
 
-- (void) getAllPostsWithDish: (Dish *) dish withCompletion:(void(^)(NSArray *posts, NSError *error))completion {
+- (void) getAllPostsWithDish:(Dish *) dish
+              withCompletion:(void(^)(NSArray *posts, NSError *error))completion {
     
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKeys:@[@"tags"]];
@@ -177,7 +181,9 @@
     return tagCounts;
 }
 
-- (BOOL) findIfRestaurantMeetsFilterWithTags: (NSArray *) tags withTagCounts: (NSMutableDictionary *) tagCounts forDish: (Dish *) dish {
+- (BOOL) findIfRestaurantMeetsFilterWithTags:(NSArray *) tags
+                               withTagCounts:(NSMutableDictionary *) tagCounts
+                                     forDish:(Dish *) dish {
     for (NSString *tag in tags) {
         if (!([tagCounts objectForKey:tag] && tagCounts[tag] >= @([dish.numCheckIns doubleValue] / 2))) {
             return FALSE;

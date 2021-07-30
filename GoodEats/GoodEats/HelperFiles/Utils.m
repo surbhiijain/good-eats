@@ -11,7 +11,8 @@
 
 @implementation Utils
 
-+ (void)setStarFills:(NSNumber *)rating withStars:(NSMutableArray *)stars {
++ (void)setStarFills:(NSNumber *)rating
+           withStars:(NSMutableArray *)stars {
     float roundedRating = [rating floatValue] < 0.5f ? 0.5f : floorf([rating floatValue] * 2) / 2;
     
     UIImage *fill =  [UIImage systemImageNamed:@"star.fill"];

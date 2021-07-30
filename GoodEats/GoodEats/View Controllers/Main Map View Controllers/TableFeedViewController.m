@@ -43,7 +43,7 @@
     [query includeKeys:@[@"author",@"image", @"dish"]];
     [query orderByDescending:@"createdAt"];
     query.limit = 25;
-
+    
     PFQuery *dishQuery = [PFQuery queryWithClassName:@"Dish"];
     if (self.validRestaurantIds.count) {
         [dishQuery whereKey:@"restaurantID" containedIn:self.validRestaurantIds];
@@ -62,11 +62,13 @@
     }];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section {
     return self.posts.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FeedPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedPostCell"];
     
     Post *post = self.posts[indexPath.row];
