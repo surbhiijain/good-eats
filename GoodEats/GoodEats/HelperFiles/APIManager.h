@@ -12,6 +12,11 @@
 
 + (instancetype)shared;
 
+- (void) fetchAllRestaurantsWithOrderKey: (NSString *) order
+                             withLimit: (NSNumber *) limit
+                       withConstraints: (NSDictionary *) constraints
+                        withCompletion: (void(^)(NSMutableArray *restaurants, NSError *error))completion;
+
 
 @end
 

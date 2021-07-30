@@ -21,4 +21,41 @@
     return sharedManager;
 }
 
+// TODO: use in recommendationsManager, mapVC, filterVC, postDetailsVC, dishdetailsVC
+- (void) fetchAllRestaurantsWithOrderKey: (NSString *) order
+                             withLimit: (NSNumber *) limit
+                       withConstraints: (NSDictionary *) constraints
+                        withCompletion: (void(^)(NSMutableArray *restaurants, NSError *error))completion {
+    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
+    [query includeKey:@"dishes"];
+    
+    if (order) {
+        [query orderByDescending:order];
+    }
+    if (limit) {
+        query.limit = [limit intValue];
+    }
+    if (constraints) {
+        for (id key in constraints) {
+            [query whereKey:key equalTo:[constraints objectForKey:key]];
+        }
+    }
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *restaurants, NSError *error) {
+        completion((NSMutableArray *) restaurants, error);
+    }];
+}
+
+// TODO: USE IN feedpostcell
+- (void) getRestaurantWithId: (NSString *) restaurantId
+withCompletion: (void(^)(Restaurant *restaurant, NSError *error))completion {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
+    [query includeKey:@"dishes"];
+    
+    [query getObjectInBackgroundWithId:restaurantId block:^(PFObject *object, NSError *error) {
+        completion((Restaurant *) object, error);
+    }];
+}
+
 @end
