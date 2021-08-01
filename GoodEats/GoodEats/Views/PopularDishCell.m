@@ -8,6 +8,7 @@
 #import "PopularDishCell.h"
 #import "Utils.h"
 #import "Post.h"
+#import "APIManager.h"
 
 @implementation PopularDishCell
 
@@ -22,7 +23,7 @@
 - (void)setDish:(Dish *)dish {
     
     _dish = dish;
-  
+    
     self.dishNameLabel.text = self.dish.name;
     self.numCheckInsLabel.text = [NSString stringWithFormat:@"%@ check ins", self.dish.numCheckIns];
     [self setStars];
@@ -31,7 +32,7 @@
 
 - (void)prepareForReuse {
     [super prepareForReuse];
-
+    
     UIImage *star =  [UIImage systemImageNamed:@"star"];
     
     [self.reviewStar1 setImage:star];
@@ -48,12 +49,19 @@
     [stars addObject:self.reviewStar3];
     [stars addObject:self.reviewStar4];
     [stars addObject:self.reviewStar5];
-
+    
     [Utils setStarFills:self.dish.avgRating withStars:stars];
 }
 
 - (void) setDishImageView {
-    [self getDishImageWithCompletion:^(NSArray *posts, NSError *error) {
+    
+    [[APIManager shared] fetchAllPostsWithOrderKey:@"createdAt"
+                                         withLimit:@1 withAuthor:nil
+                                          withKeys:@[@"image"]
+                                   withRestaurants:nil
+                                          withDish:self.dish
+                                withSecondaryOrder:nil
+                                    withCompletion:^(NSMutableArray *posts, NSError *error) {
         if (posts) {
             Post *post = posts[0];
             [post.image getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
@@ -61,17 +69,6 @@
                 [self.dishImageView setImage:image] ;
             }];
         }
-    }];
-}
-
-- (void)getDishImageWithCompletion:(void(^)(NSArray *posts, NSError *error))completion {
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query orderByDescending:@"createdAt"];
-    query.limit = 1;
-    [query includeKey:@"image"];
-    [query whereKey:@"dish" equalTo:self.dish];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        completion(objects, error);
     }];
 }
 

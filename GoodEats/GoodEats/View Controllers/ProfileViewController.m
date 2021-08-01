@@ -12,6 +12,7 @@
 #import "PostCollectionCell.h"
 #import "Post.h"
 #import "PostDetailViewController.h"
+#import "APIManager.h"
 
 @interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -62,40 +63,41 @@
 }
 
 - (void) fetchAllPosts {
-    PFQuery *postQuery = [PFQuery queryWithClassName:@"Post"];
-    [postQuery orderByDescending:@"createdAt"];
-    [postQuery includeKeys:@[@"image", @"author", @"dish"]];
     
-    [postQuery whereKey:@"author" equalTo:self.user];
-    
-    [postQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (!error) {
-            self.posts = (NSMutableArray *) posts;
-            self.numCheckInsLabel.text = [NSString stringWithFormat:@"%ld check-ins", self.posts.count];
-            [self.collectionView reloadData];
-        } else {
+    [[APIManager shared] fetchAllPostsWithOrderKey:@"createdAt"
+                                         withLimit:nil
+                                        withAuthor:self.user
+                                          withKeys:@[@"image", @"author", @"dish"]
+                                   withRestaurants:nil
+                                          withDish:nil
+                                withSecondaryOrder:nil
+                                    withCompletion:^(NSMutableArray *posts, NSError *error) {
+        if (error) {
             NSLog(@"Error getting posts: %@", error);
+            return;
         }
+        self.posts = (NSMutableArray *) posts;
+        self.numCheckInsLabel.text = [NSString stringWithFormat:@"%ld check-ins", self.posts.count];
+        [self.collectionView reloadData];
     }];
 }
 
 - (void) fetchTopThreeRecentDishes {
-    PFQuery *postQuery = [PFQuery queryWithClassName:@"Post"];
-    [postQuery orderByDescending:@"rating"];
-    [postQuery addDescendingOrder:@"createdAt"];
-    [postQuery includeKeys:@[@"dish", @"author"]];
     
-    [postQuery setLimit:3];
-    
-    [postQuery whereKey:@"author" equalTo:self.user];
-    
-    [postQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (!error) {
-            self.topThreeRecentPosts = posts;
-            [self displayTopThreeRecentPosts:posts];
-        } else {
+    [[APIManager shared] fetchAllPostsWithOrderKey:@"rating"
+                                         withLimit:@3
+                                        withAuthor:self.user
+                                          withKeys:@[@"dish", @"author"]
+                                   withRestaurants:nil
+                                          withDish:nil
+                                withSecondaryOrder:@"createdAt"
+                                    withCompletion:^(NSMutableArray *posts, NSError *error) {
+        if (error) {
             NSLog(@"Error getting posts: %@", error);
+            return;
         }
+        self.topThreeRecentPosts = posts;
+        [self displayTopThreeRecentPosts:posts];
     }];
 }
 

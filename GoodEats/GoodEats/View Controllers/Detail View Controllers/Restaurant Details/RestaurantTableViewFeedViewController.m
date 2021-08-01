@@ -8,6 +8,7 @@
 #import "RestaurantTableViewFeedViewController.h"
 #import "FeedPostCell.h"
 #import "Post.h"
+#import "APIManager.h"
 
 @interface RestaurantTableViewFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -29,23 +30,21 @@
 
 
 - (void) getPosts {
-    PFQuery *postQuery = [PFQuery queryWithClassName:@"Post"];
-    [postQuery orderByDescending:@"createdAt"];
-    postQuery.limit = [self.restaurant.numCheckIns intValue];
-    [postQuery includeKeys:@[@"image", @"dish", @"author"]];
     
-    PFQuery *dishQuery = [PFQuery queryWithClassName:@"Dish"];
-    [dishQuery whereKey:@"restaurantID" equalTo:self.restaurant.objectId];
-    
-    [postQuery whereKey:@"dish" matchesQuery:dishQuery];
-    
-    [postQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (!error) {
-            self.posts = (NSMutableArray *) posts;
-            [self.tableView reloadData];
-        } else {
+    [[APIManager shared] fetchAllPostsWithOrderKey:@"createdAt"
+                                         withLimit:self.restaurant.numCheckIns
+                                        withAuthor:nil
+                                          withKeys:@[@"image", @"dish", @"author"]
+                                   withRestaurants:@[self.restaurant.objectId]
+                                          withDish:nil
+                                withSecondaryOrder:nil
+                                    withCompletion:^(NSMutableArray *posts, NSError *error) {
+        if (error) {
             NSLog(@"Error getting posts: %@", error);
+        } else {
+            self.posts = (NSMutableArray *) posts;
         }
+        [self.tableView reloadData];
     }];
 }
 

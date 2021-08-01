@@ -125,7 +125,14 @@
         
         for (Dish *dish in restaurant.dishes) {
             
-            [self getAllPostsWithDish:dish withCompletion:^(NSArray *posts, NSError *error) {
+            [[APIManager shared] fetchAllPostsWithOrderKey:@"createdAt"
+                                                 withLimit:@25
+                                                withAuthor:nil
+                                                  withKeys:@[@"tags"]
+                                           withRestaurants:nil
+                                                  withDish:dish
+                                        withSecondaryOrder:nil
+                                            withCompletion:^(NSMutableArray *posts, NSError *error) {
                 
                 NSMutableDictionary *tagCounts = [self getTagCountsforTags:tags withPosts:posts];
                 BOOL valid = [self findIfRestaurantMeetsFilterWithTags:tags withTagCounts:tagCounts forDish:dish];

@@ -10,6 +10,7 @@
 #import "PostDetailViewController.h"
 #import "DishDetailsViewController.h"
 #import "RestaurantDetailViewController.h"
+#import "APIManager.h"
 
 @interface TableFeedViewController () <UITableViewDelegate, UITableViewDataSource, FeedPostCellDelegate>
 
@@ -39,19 +40,14 @@
 
 - (void) fetchPosts {
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query includeKeys:@[@"author",@"image", @"dish"]];
-    [query orderByDescending:@"createdAt"];
-    query.limit = 25;
-    
-    PFQuery *dishQuery = [PFQuery queryWithClassName:@"Dish"];
-    if (self.validRestaurantIds.count) {
-        [dishQuery whereKey:@"restaurantID" containedIn:self.validRestaurantIds];
-        [query whereKey:@"dish" matchesQuery:dishQuery];
-    }
-    
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+    [[APIManager shared] fetchAllPostsWithOrderKey:@"createdAt"
+                                         withLimit:@25
+                                        withAuthor:nil
+                                          withKeys:@[@"author",@"image", @"dish"]
+                                   withRestaurants:self.validRestaurantIds
+                                          withDish:nil
+                                withSecondaryOrder:nil
+                                    withCompletion:^(NSMutableArray *posts, NSError *error) {
         if (posts != nil) {
             self.posts = (NSMutableArray *) posts;
             [self.tableView reloadData];
@@ -75,7 +71,7 @@
     
     cell.post = post;
     cell.delegate = self;
-        
+    
     return cell;
 }
 

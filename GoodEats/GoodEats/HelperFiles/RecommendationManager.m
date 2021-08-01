@@ -54,7 +54,14 @@
                 return;
             }
             
-            [self getUsersPastPostsForRestaurants:filteredRestaurantIds withCompletion:^(NSArray *posts, NSError *error) {
+            [[APIManager shared]fetchAllPostsWithOrderKey:@"createdAt"
+                                                withLimit:nil
+                                               withAuthor:[PFUser currentUser]
+                                                 withKeys:@[@"dish"]
+                                          withRestaurants:filteredRestaurantIds
+                                                 withDish:nil
+                                       withSecondaryOrder:nil
+                                           withCompletion:^(NSMutableArray *posts, NSError *error) {
                 if (error) {
                     NSLog(@"Error: %@", error.localizedDescription);
                     return;
@@ -118,27 +125,6 @@
         [dishes addObjectsFromArray:restaurant.dishes];
     }
     return dishes;
-}
-
-+ (void) getUsersPastPostsForRestaurants:(NSMutableArray *) restaurantIds
-                          withCompletion:(void(^)(NSArray *posts, NSError *error))completion {
-    
-    PFUser *currentUser = [PFUser currentUser];
-    
-    PFQuery *postQuery = [PFQuery queryWithClassName:@"Post"];
-    
-    [postQuery includeKey:@"dish"];
-    [postQuery whereKey:@"author" equalTo:currentUser];
-    
-    PFQuery *dishQuery = [PFQuery queryWithClassName:@"Dish"];
-    [dishQuery whereKey:@"restaurantID" containedIn:restaurantIds];
-    [dishQuery includeKeys:@[@"avgRating", @"numCheckIns"]];
-    
-    [postQuery whereKey:@"dish" matchesQuery:dishQuery];
-    
-    [postQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        completion(posts,error);
-    }];
 }
 
 + (Dish *) getTopDishWithDishes:(NSMutableArray *) dishes

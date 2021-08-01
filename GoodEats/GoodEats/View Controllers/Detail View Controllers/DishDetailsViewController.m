@@ -78,19 +78,21 @@
 }
 
 - (void) getAllPostsofDish {
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query includeKeys:@[@"author",@"image", @"dish"]];
-    [query whereKey:@"dish" equalTo:self.dish];
-    [query orderByDescending:@"createdAt"];
-    query.limit = 25;
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
+    [[APIManager shared] fetchAllPostsWithOrderKey:@"createdAt"
+                                         withLimit:@25
+                                        withAuthor:nil
+                                          withKeys:@[@"author",@"image", @"dish"]
+                                   withRestaurants:nil
+                                          withDish:self.dish
+                                withSecondaryOrder:nil
+                                    withCompletion:^(NSMutableArray *posts, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
             self.posts = (NSMutableArray *) posts;
             [self refreshData];
             [self.tableView reloadData];
-        } else {
-            NSLog(@"%@", error.localizedDescription);
         }
         [self.refreshControl endRefreshing];
     }];
