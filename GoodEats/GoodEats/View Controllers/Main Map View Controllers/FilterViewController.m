@@ -151,20 +151,6 @@
     }
 }
 
-- (void) getAllPostsWithDish:(Dish *) dish
-              withCompletion:(void(^)(NSArray *posts, NSError *error))completion {
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query includeKeys:@[@"tags"]];
-    [query whereKey:@"dish" equalTo:dish];
-    [query orderByDescending:@"createdAt"];
-    query.limit = 25;
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        completion(posts,error);
-    }];
-}
-
 - (NSMutableDictionary *) getTagCountsforTags: (NSArray *) tags withPosts: (NSArray *) posts {
     NSMutableDictionary *tagCounts = [NSMutableDictionary new];
     for (Post *post in posts) {
