@@ -20,10 +20,10 @@
     return sharedManager;
 }
 
-- (void) fetchAllRestaurantsWithOrderKey: (NSString *) order
-                             withLimit: (NSNumber *) limit
-                       withConstraints: (NSDictionary *) constraints
-                        withCompletion: (void(^)(NSMutableArray *restaurants, NSError *error))completion {
+- (void) fetchAllRestaurantsWithOrderKey:(NSString *) order
+                               withLimit:(NSNumber *) limit
+                         withConstraints:(NSDictionary *) constraints
+                          withCompletion:(void(^)(NSMutableArray *restaurants, NSError *error))completion {
     PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
     [query includeKey:@"dishes"];
     
@@ -33,10 +33,8 @@
     if (limit) {
         query.limit = [limit intValue];
     }
-    if (constraints) {
-        for (id key in constraints) {
-            [query whereKey:key equalTo:[constraints objectForKey:key]];
-        }
+    for (id key in constraints) {
+        [query whereKey:key equalTo:[constraints objectForKey:key]];
     }
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *restaurants, NSError *error) {
@@ -44,14 +42,47 @@
     }];
 }
 
-- (void) fetchRestaurantWithId: (NSString *) restaurantId
-withCompletion: (void(^)(Restaurant *restaurant, NSError *error))completion {
+- (void) fetchRestaurantWithId:(NSString *) restaurantId
+                withCompletion:(void(^)(Restaurant *restaurant, NSError *error))completion {
     
     PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
     [query includeKey:@"dishes"];
     
     [query getObjectInBackgroundWithId:restaurantId block:^(PFObject *object, NSError *error) {
         completion((Restaurant *) object, error);
+    }];
+}
+
+- (void) fetchAllPostsWithOrderKey:(NSString *) order
+                         withLimit:(NSNumber *) limit
+                        withAuthor:(PFUser *) author
+                          withKeys:(NSArray *) keys
+                   withRestaurants:(NSArray *) validRestaurantIds
+                          withDish:(Dish *) dish
+                withSecondaryOrder:(NSString *) secondaryOrder
+                    withCompletion:(void(^)(NSMutableArray *posts, NSError *error))completion {
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query includeKeys:keys];
+    
+    if (order) {
+        [query orderByDescending:order];
+    } if (secondaryOrder) {
+        [query addDescendingOrder:secondaryOrder];
+    } if (limit) {
+        query.limit = [limit intValue];
+    } if (author) {
+        [query whereKey:@"author" equalTo:author];
+    } if (dish) {
+        [query whereKey:@"dish" equalTo:dish];
+    } if (validRestaurantIds) {
+        PFQuery *dishQuery = [PFQuery queryWithClassName:@"Dish"];
+        [dishQuery whereKey:@"restaurantID" containedIn:validRestaurantIds];
+        [dishQuery includeKeys:@[@"avgRating", @"numCheckIns"]];
+        [query whereKey:@"dish" matchesQuery:dishQuery];
+    }
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        completion((NSMutableArray *) posts, error);
     }];
 }
 

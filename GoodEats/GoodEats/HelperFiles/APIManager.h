@@ -21,6 +21,14 @@
 - (void) fetchRestaurantWithId: (NSString *) restaurantId
                 withCompletion: (void(^)(Restaurant *restaurant, NSError *error))completion;
 
+- (void) fetchAllPostsWithOrderKey:(NSString *) order
+                         withLimit:(NSNumber *) limit
+                        withAuthor:(PFUser *) author
+                          withKeys:(NSArray *) keys
+                   withRestaurants:(NSArray *) validRestaurantIds
+                          withDish:(Dish *) dish
+                withSecondaryOrder:(NSString *) secondaryOrder
+                    withCompletion:(void(^)(NSMutableArray *posts, NSError *error))completion;
 
 @end
 
