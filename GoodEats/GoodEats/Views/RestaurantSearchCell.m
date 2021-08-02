@@ -6,18 +6,23 @@
 //
 
 #import "RestaurantSearchCell.h"
+#import <YelpAPI/YLPLocation.h>
 
 @implementation RestaurantSearchCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
 
-    // Configure the view for the selected state
+- (void)setYLPRestaurant:(YLPBusiness *)YLPRestaurant {
+    _YLPRestaurant = YLPRestaurant;
+    
+    self.nameLabel.text = YLPRestaurant.name;
+    self.addressLabel.text = YLPRestaurant.location.address[0];
 }
 
 @end

@@ -13,6 +13,7 @@
 		760B968226A0A9A900CB7F80 /* DishDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760B968126A0A9A900CB7F80 /* DishDetailsViewController.m */; };
 		760B968526A0AE1100CB7F80 /* DishPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760B968426A0AE1100CB7F80 /* DishPostCell.m */; };
 		76290DA9269CD6F70045095D /* FeedPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76290DA8269CD6F70045095D /* FeedPostCell.m */; };
+		7699D00B26B85D1D0058B854 /* RestaurantSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7699D00A26B85D1D0058B854 /* RestaurantSearchCell.m */; };
 		76A95AC226AF1E9C005C8A04 /* RecommendationSurveyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A95AC126AF1E9C005C8A04 /* RecommendationSurveyViewController.m */; };
 		76D01CB3269CC89D00288EF2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CB2269CC89D00288EF2 /* AppDelegate.m */; };
 		76D01CB6269CC89D00288EF2 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D01CB5269CC89D00288EF2 /* SceneDelegate.m */; };
@@ -76,6 +77,8 @@
 		760B968426A0AE1100CB7F80 /* DishPostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DishPostCell.m; sourceTree = "<group>"; };
 		76290DA7269CD6F70045095D /* FeedPostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedPostCell.h; sourceTree = "<group>"; };
 		76290DA8269CD6F70045095D /* FeedPostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedPostCell.m; sourceTree = "<group>"; };
+		7699D00926B85D1D0058B854 /* RestaurantSearchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestaurantSearchCell.h; sourceTree = "<group>"; };
+		7699D00A26B85D1D0058B854 /* RestaurantSearchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestaurantSearchCell.m; sourceTree = "<group>"; };
 		76A95AC026AF1E9C005C8A04 /* RecommendationSurveyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendationSurveyViewController.h; sourceTree = "<group>"; };
 		76A95AC126AF1E9C005C8A04 /* RecommendationSurveyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendationSurveyViewController.m; sourceTree = "<group>"; };
 		76D01CAE269CC89D00288EF2 /* GoodEats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodEats.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -259,6 +262,8 @@
 				76E4577A26A8DE830073AB8D /* PostCollectionCell.m */,
 				76FF9AC026B2147000E03530 /* RestaurantMKAnnotationView.h */,
 				76FF9AC126B2147000E03530 /* RestaurantMKAnnotationView.m */,
+				7699D00926B85D1D0058B854 /* RestaurantSearchCell.h */,
+				7699D00A26B85D1D0058B854 /* RestaurantSearchCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -621,6 +626,7 @@
 				76E4576926A880C70073AB8D /* RestaurantPopularDishesViewController.m in Sources */,
 				76E4577B26A8DE830073AB8D /* PostCollectionCell.m in Sources */,
 				76E4578326AA505B0073AB8D /* FilterViewController.m in Sources */,
+				7699D00B26B85D1D0058B854 /* RestaurantSearchCell.m in Sources */,
 				76E49E74269E012000617E4F /* Dish.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

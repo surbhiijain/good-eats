@@ -10,16 +10,18 @@
 #import "Dish.h"
 #import "Restaurant.h"
 #import "HCSStarRatingView.h"
-#import "AppDelegate.h"
-#import <YelpAPI/YLPClient+Search.h>
-#import <YelpAPI/YLPSortType.h>
-#import <YelpAPI/YLPSearch.h>
-#import <YelpAPI/YLPBusiness.h>
-#import <YelpAPI/YLPLocation.h>
-#import <YelpAPI/YLPCoordinate.h>
 #import "APIManager.h"
+#import "RestaurantSearchCell.h"
+#import "APIManager.h"
+//#import <YelpAPI/YLPClient+Search.h>
+//#import <YelpAPI/YLPSortType.h>
+//#import <YelpAPI/YLPSearch.h>
+//#import <YelpAPI/YLPBusiness.h>
+#import <YelpAPI/YLPLocation.h>
+//#import <YelpAPI/YLPCoordinate.h>
+//#import <YelpAPI/YLPQuery.h>
 
-@interface ComposeViewController ()
+@interface ComposeViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *imageButton;
 @property (weak, nonatomic) IBOutlet UITextField *restaurantField;
@@ -39,6 +41,11 @@
 @property (nonatomic, strong) LocationManager *locationManager;
 @property (nonatomic, strong) YLPCoordinate *userCoordinate;
 
+@property (weak, nonatomic) IBOutlet UITableView *restaurantTableView;
+@property (weak, nonatomic) IBOutlet UISearchBar *restaurantSearchBar;
+
+@property(nonatomic, strong) NSMutableArray *filteredRestaurants;
+
 @end
 
 @implementation ComposeViewController
@@ -51,13 +58,17 @@
     self.locationManager = [[LocationManager alloc] init];
     self.locationManager.delegate = self;
     [self.locationManager setUpLocationManager];
+    
+    self.restaurantTableView.delegate = self;
+    self.restaurantTableView.dataSource = self;
+    self.restaurantSearchBar.delegate = self;
 }
 
 - (void)LocationManager:(LocationManager *)locationManager
       setUpWithLocation:(CLLocation *)location {
     
     self.userCoordinate = [[YLPCoordinate alloc] initWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
-
+    
 }
 
 - (IBAction)didTapPhoto:(id)sender {
@@ -120,6 +131,33 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     return newImage;
 }
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    
+    [[APIManager shared] fetchYelpRestaurantWithName:searchText withUserCoordinate:self.userCoordinate withCompletion:^(YLPSearch *search, NSError *error) {
+        
+        self.filteredRestaurants = (NSMutableArray *) search.businesses;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.restaurantTableView performSelectorOnMainThread:@selector(reloadData)
+                                                       withObject:nil
+                                                    waitUntilDone:YES];
+        });
+    }];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.filteredRestaurants.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    RestaurantSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RestaurantSearchCell"];
+
+    cell.YLPRestaurant = self.filteredRestaurants[indexPath.row];
+    
+    return cell;
+}
+
 - (IBAction)didTapCancel:(id)sender {
     self.tabBarController.selectedViewController
     = [self.tabBarController.viewControllers objectAtIndex:0];
@@ -136,7 +174,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
-    [self fetchYelpRestaurantWithCompletion:^(YLPSearch *search, NSError *error) {
+    [[APIManager shared] fetchYelpRestaurantWithName:self.restaurantField.text withUserCoordinate:self.userCoordinate withCompletion:^(YLPSearch *search, NSError *error) {
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
             return;
@@ -153,13 +191,6 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
 
 - (BOOL) validPost {
     return (self.imageButton.imageView.image && self.restaurantField.text.length > 0 && self.dishField.text.length > 0);
-}
-
-- (void) fetchYelpRestaurantWithCompletion: (void(^)(YLPSearch * search, NSError * error)) completion {
-    
-    [[AppDelegate sharedClient] searchWithCoordinate:self.userCoordinate term:self.restaurantField.text limit:5 offset:0 sort:YLPSortTypeDistance completionHandler:^(YLPSearch * search, NSError * error) {
-        completion(search, error);
-    }];
 }
 
 - (void)getOrCreateParseRestaurant:(YLPBusiness *) business
