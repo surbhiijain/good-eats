@@ -94,7 +94,7 @@
 - (void) fetchYelpRestaurantWithName: (NSString *) name withUserCoordinate: (YLPCoordinate *) userCoordinate withCompletion: (void(^)(YLPSearch * search, NSError * error)) completion {
     
     YLPQuery *query = [[YLPQuery alloc] initWithCoordinate:userCoordinate];
-    query.limit = 5;
+    query.limit = 10;
     query.offset = 0;
     [query setTerm:name];
     [query setSort:YLPSortTypeDistance];

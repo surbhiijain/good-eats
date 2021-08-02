@@ -11,23 +11,18 @@
 #import "Restaurant.h"
 #import "HCSStarRatingView.h"
 #import "APIManager.h"
-#import "RestaurantSearchCell.h"
-#import "APIManager.h"
-//#import <YelpAPI/YLPClient+Search.h>
-//#import <YelpAPI/YLPSortType.h>
-//#import <YelpAPI/YLPSearch.h>
-//#import <YelpAPI/YLPBusiness.h>
+#import "RestaurantSearchViewController.h"
 #import <YelpAPI/YLPLocation.h>
-//#import <YelpAPI/YLPCoordinate.h>
-//#import <YelpAPI/YLPQuery.h>
+#import <YelpAPI/YLPBusiness.h>
 
-@interface ComposeViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface ComposeViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *imageButton;
-@property (weak, nonatomic) IBOutlet UITextField *restaurantField;
 @property (weak, nonatomic) IBOutlet UITextField *dishField;
 @property (weak, nonatomic) IBOutlet UITextField *captionField;
 @property (weak, nonatomic) IBOutlet HCSStarRatingView *starRatingView;
+
+@property (weak, nonatomic) IBOutlet UIButton *restaurantButton;
 
 @property (nonatomic, strong) NSMutableArray *tags;
 
@@ -37,14 +32,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *tagButton4;
 @property (weak, nonatomic) IBOutlet UIButton *tagButton5;
 
-
 @property (nonatomic, strong) LocationManager *locationManager;
 @property (nonatomic, strong) YLPCoordinate *userCoordinate;
 
-@property (weak, nonatomic) IBOutlet UITableView *restaurantTableView;
-@property (weak, nonatomic) IBOutlet UISearchBar *restaurantSearchBar;
+@property(nonatomic, strong) YLPBusiness *selectedRestaurant;
 
-@property(nonatomic, strong) NSMutableArray *filteredRestaurants;
 
 @end
 
@@ -59,9 +51,6 @@
     self.locationManager.delegate = self;
     [self.locationManager setUpLocationManager];
     
-    self.restaurantTableView.delegate = self;
-    self.restaurantTableView.dataSource = self;
-    self.restaurantSearchBar.delegate = self;
 }
 
 - (void)LocationManager:(LocationManager *)locationManager
@@ -130,32 +119,13 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     return newImage;
 }
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    
-    [[APIManager shared] fetchYelpRestaurantWithName:searchText withUserCoordinate:self.userCoordinate withCompletion:^(YLPSearch *search, NSError *error) {
-        
-        self.filteredRestaurants = (NSMutableArray *) search.businesses;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.restaurantTableView performSelectorOnMainThread:@selector(reloadData)
-                                                       withObject:nil
-                                                    waitUntilDone:YES];
-        });
-    }];
+- (IBAction)didTapRestaurantButton:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"restaurantSearchSegue" sender:self];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.filteredRestaurants.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    RestaurantSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RestaurantSearchCell"];
-
-    cell.YLPRestaurant = self.filteredRestaurants[indexPath.row];
-    
-    return cell;
+- (void)RestaurantSearchViewController:(RestaurantSearchViewController *) controller selectedRestaurant:(YLPBusiness *) yelpRestaurant {
+    self.selectedRestaurant = yelpRestaurant;
+    [self.restaurantButton setTitle:yelpRestaurant.name forState:UIControlStateNormal];
 }
 
 - (IBAction)didTapCancel:(id)sender {
@@ -174,27 +144,19 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
-    [[APIManager shared] fetchYelpRestaurantWithName:self.restaurantField.text withUserCoordinate:self.userCoordinate withCompletion:^(YLPSearch *search, NSError *error) {
-        if (error != nil) {
-            NSLog(@"%@", [error localizedDescription]);
-            return;
-        }
-        YLPBusiness *business = search.businesses[0];
-        YLPLocation *location = business.location;
-        [self getOrCreateParseRestaurant:business withLocation:location withCompletion:^(Restaurant *restaurant) {
-            Dish *dish = [self getDish:restaurant];
-            [self createPost:dish withRestaurant:restaurant];
-        }];
+    
+    [self getOrCreateParseRestaurant:self.selectedRestaurant withCompletion:^(Restaurant *restaurant) {
+        Dish *dish = [self getDish:restaurant];
+        [self createPost:dish withRestaurant:restaurant];
     }];
     
 }
 
 - (BOOL) validPost {
-    return (self.imageButton.imageView.image && self.restaurantField.text.length > 0 && self.dishField.text.length > 0);
+    return (self.imageButton.imageView.image && ![self.restaurantButton.titleLabel.text  isEqual: @"select a restaurant"] && self.dishField.text.length > 0);
 }
 
 - (void)getOrCreateParseRestaurant:(YLPBusiness *) business
-                      withLocation:(YLPLocation *) location
                     withCompletion:(void(^)(Restaurant * restaurant)) completion {
     
     NSNumber *latitude = [NSNumber numberWithDouble:business.location.coordinate.latitude];
@@ -266,7 +228,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
 }
 
 - (void)clearFields {
-    self.restaurantField.text = @"";
+    [self.restaurantButton setTitle:@"select a restaurant" forState:UIControlStateNormal];
     self.dishField.text = @"";
     self.captionField.text = @"";
     self.starRatingView.value = 0;
@@ -282,6 +244,16 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     [self.tagButton5 setBackgroundColor:[UIColor colorWithRed:211/255.0 green:229/255.0 blue:227/255.0 alpha:1.0]];
     
     self.tags = [[NSMutableArray alloc] init];
+}
+
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"restaurantSearchSegue"]) {
+        RestaurantSearchViewController *restaurantSearchVC = [segue destinationViewController];
+        restaurantSearchVC.delegate = self;
+    }
 }
 
 @end
