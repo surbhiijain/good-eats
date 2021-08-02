@@ -8,6 +8,8 @@
 #ifndef APIManager_h
 #define APIManager_h
 #import "Restaurant.h"
+#import <YelpAPI/YLPSearch.h>
+#import <YelpAPI/YLPCoordinate.h>
 
 @interface APIManager : NSObject
 
@@ -29,6 +31,8 @@
                           withDish:(Dish *) dish
                 withSecondaryOrder:(NSString *) secondaryOrder
                     withCompletion:(void(^)(NSMutableArray *posts, NSError *error))completion;
+
+- (void) fetchYelpRestaurantWithName: (NSString *) name withUserCoordinate: (YLPCoordinate *) userCoordinate withCompletion: (void(^)(YLPSearch * search, NSError * error)) completion;
 
 @end
 

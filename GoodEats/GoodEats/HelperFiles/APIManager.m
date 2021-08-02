@@ -8,6 +8,11 @@
 #import <Foundation/Foundation.h>
 #import "APIManager.h"
 #import "Parse/Parse.h"
+#import <YelpAPI/YLPClient+Search.h>
+#import <YelpAPI/YLPSortType.h>
+#import <YelpAPI/YLPBusiness.h>
+#import <YelpAPI/YLPQuery.h>
+#import "AppDelegate.h"
 
 @implementation APIManager
 
@@ -84,6 +89,18 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         completion((NSMutableArray *) posts, error);
     }];
+}
+
+- (void) fetchYelpRestaurantWithName: (NSString *) name withUserCoordinate: (YLPCoordinate *) userCoordinate withCompletion: (void(^)(YLPSearch * search, NSError * error)) completion {
+    
+    YLPQuery *query = [[YLPQuery alloc] initWithCoordinate:userCoordinate];
+    query.limit = 5;
+    query.offset = 0;
+    [query setTerm:name];
+    [query setSort:YLPSortTypeDistance];
+    [query setCategoryFilter:@[@"restaurants"]];
+    
+    [[AppDelegate sharedClient] searchWithQuery:query completionHandler:completion];
 }
 
 @end
