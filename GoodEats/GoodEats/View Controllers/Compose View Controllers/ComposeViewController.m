@@ -73,7 +73,12 @@
     self.locationManager.delegate = self;
     [self.locationManager setUpLocationManager];
     
+    self.dishField.enabled = NO;
+    self.captionField.enabled = NO;
+    
 }
+
+# pragma mark - Dish Autocomplete
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
@@ -115,6 +120,8 @@
     [self.dishAutoCompleteTableView reloadData];
 }
 
+#pragma mark Dish TableView
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.autoCompleteDisplayedDishes.count;
 }
@@ -133,11 +140,16 @@
     self.dishAutoCompleteTableView.hidden = YES;
 }
 
+# pragma mark - Location Delegate Method
+
 - (void)LocationManager:(LocationManager *)locationManager
       setUpWithLocation:(CLLocation *)location {
     
     self.userCoordinate = [[YLPCoordinate alloc] initWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
 }
+
+
+#pragma mark - Select Photo
 
 - (IBAction)didTapPhoto:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
@@ -198,6 +210,9 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     return newImage;
 }
+
+#pragma mark - Restaurant Selection Methods
+
 - (IBAction)didTapRestaurantButton:(UIButton *)sender {
     [self performSegueWithIdentifier:@"restaurantSearchSegue" sender:self];
 }
@@ -216,7 +231,12 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
         self.autoCompleteDisplayedDishes = restaurantDishesCopy;
     }];
     
+    self.dishField.enabled = YES;
+    self.captionField.enabled = YES;
+    
 }
+
+#pragma mark - Post Creation Flow Methods
 
 - (IBAction)didTapCancel:(id)sender {
     self.tabBarController.selectedViewController
