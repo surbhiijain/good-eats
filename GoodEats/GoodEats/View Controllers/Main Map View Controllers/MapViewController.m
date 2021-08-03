@@ -220,8 +220,34 @@
     
 }
 
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if ([annotation.title isEqualToString:@"My Location"]) {
+        return nil;
+    }
+    
+    MKAnnotationView *annotationView = (RestaurantMKAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"RestaurantMKAnnotationView"];
+    
+    if (annotationView == nil) {
+        annotationView = [[MKMarkerAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MKMarkerAnnotationView"];
+        annotationView.clusteringIdentifier = @"cluster";
+    }
+    
+    return annotationView;
+}
+
 - (void) mapView:(MKMapView *)mapView
 didSelectAnnotationView:(MKAnnotationView *)view {
+    
+    NSString *annotationClass = NSStringFromClass(view.annotation.class);
+    if ([annotationClass isEqualToString:@"MKUserLocation"]) {
+        return;
+    }
+    if ([annotationClass isEqualToString:@"MKClusterAnnotation"]) {
+        MKClusterAnnotation *cluster = (MKClusterAnnotation *) view.annotation;
+        [mapView showAnnotations:cluster.memberAnnotations animated:YES];
+        return;
+    }
+    
     RestaurantMKAnnotationView *restaurantAnnotation = (RestaurantMKAnnotationView *) view.annotation;
     self.selectedRestaurant = restaurantAnnotation.restaurant;
     [self performSegueWithIdentifier:@"restaurantDetailsSegue" sender:self];
