@@ -1193,14 +1193,6 @@
                                     <constraint firstItem="ln3-zy-Lpx" firstAttribute="leading" secondItem="cRv-Fn-rWq" secondAttribute="leading" id="wrx-78-mJ7"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="a9f-Ut-G7d">
-                                <rect key="frame" x="15" y="104" width="100" height="98.666666666666671"/>
-                                <color key="tintColor" red="0.1804688871" green="0.41871958970000001" blue="0.45883160830000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="CWy-6x-TcP"/>
-                                    <constraint firstAttribute="height" constant="100" id="lcJ-7D-URY"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Most Recent Top Eats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="liL-cE-OzV">
                                 <rect key="frame" x="15" y="223" width="166" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1284,36 +1276,51 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmO-Cj-lmv">
+                                <rect key="frame" x="15" y="104" width="100" height="98.666666666666671"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="saM-DJ-cdG"/>
+                                    <constraint firstAttribute="width" constant="100" id="xhw-EM-fLl"/>
+                                </constraints>
+                                <color key="tintColor" red="0.1804688871" green="0.41871958970000001" blue="0.45883160830000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" backgroundImage="person.circle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="didTapProfilePhoto:" destination="tZg-sP-V0K" eventType="touchUpInside" id="tIB-oC-ElO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="obC-RM-t7U"/>
                         <color key="backgroundColor" red="0.99591690300000002" green="0.97654432059999996" blue="0.97254878280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="a9f-Ut-G7d" firstAttribute="top" secondItem="obC-RM-t7U" secondAttribute="top" constant="15" id="3ye-jQ-wx6"/>
                             <constraint firstItem="obC-RM-t7U" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yKu-NO-NLV" secondAttribute="trailing" constant="15" id="4PG-Pn-NQ3"/>
-                            <constraint firstItem="liL-cE-OzV" firstAttribute="leading" secondItem="a9f-Ut-G7d" secondAttribute="leading" id="53u-Io-giK"/>
+                            <constraint firstItem="iEG-YG-PMx" firstAttribute="leading" secondItem="CmO-Cj-lmv" secondAttribute="leading" id="6QQ-rI-tL8"/>
+                            <constraint firstItem="rZS-NW-urN" firstAttribute="leading" secondItem="CmO-Cj-lmv" secondAttribute="leading" id="6jF-S5-fuA"/>
+                            <constraint firstItem="cRv-Fn-rWq" firstAttribute="bottom" secondItem="CmO-Cj-lmv" secondAttribute="bottom" id="7yE-Vx-Am8"/>
                             <constraint firstItem="yKu-NO-NLV" firstAttribute="leading" secondItem="NYb-hE-zUj" secondAttribute="trailing" constant="8" id="9VU-gA-TsY"/>
                             <constraint firstItem="iEG-YG-PMx" firstAttribute="top" secondItem="NYb-hE-zUj" secondAttribute="bottom" constant="8" id="AOF-et-oUS"/>
                             <constraint firstItem="yzi-LK-Nh6" firstAttribute="leading" secondItem="rZS-NW-urN" secondAttribute="trailing" constant="8" id="IhE-Pu-cC4"/>
-                            <constraint firstItem="a9f-Ut-G7d" firstAttribute="leading" secondItem="obC-RM-t7U" secondAttribute="leading" constant="15" id="KXr-Vr-wr4"/>
                             <constraint firstItem="NYb-hE-zUj" firstAttribute="top" secondItem="liL-cE-OzV" secondAttribute="bottom" constant="8" id="KxG-Fs-WZ3"/>
                             <constraint firstItem="rZS-NW-urN" firstAttribute="firstBaseline" secondItem="yzi-LK-Nh6" secondAttribute="firstBaseline" id="OOn-hL-7QR"/>
+                            <constraint firstItem="CmO-Cj-lmv" firstAttribute="leading" secondItem="obC-RM-t7U" secondAttribute="leading" constant="15" id="P4t-3a-Fjo"/>
                             <constraint firstItem="iEG-YG-PMx" firstAttribute="leading" secondItem="NYb-hE-zUj" secondAttribute="leading" id="Ps8-c4-fdi"/>
-                            <constraint firstItem="cRv-Fn-rWq" firstAttribute="bottom" secondItem="a9f-Ut-G7d" secondAttribute="bottom" id="Tll-u8-L0Z"/>
+                            <constraint firstItem="liL-cE-OzV" firstAttribute="leading" secondItem="CmO-Cj-lmv" secondAttribute="leading" id="SiA-v7-74w"/>
                             <constraint firstItem="obC-RM-t7U" firstAttribute="trailing" secondItem="cRv-Fn-rWq" secondAttribute="trailing" constant="15" id="UaP-UP-b77"/>
                             <constraint firstItem="obC-RM-t7U" firstAttribute="trailing" secondItem="FCl-G0-AJG" secondAttribute="trailing" id="VJm-r6-6Mz"/>
                             <constraint firstItem="IXR-Lz-YVH" firstAttribute="leading" secondItem="iEG-YG-PMx" secondAttribute="trailing" constant="8" id="Y3z-oe-jLb"/>
                             <constraint firstItem="FCl-G0-AJG" firstAttribute="leading" secondItem="obC-RM-t7U" secondAttribute="leading" id="bBe-zM-ePH"/>
+                            <constraint firstItem="cRv-Fn-rWq" firstAttribute="leading" secondItem="CmO-Cj-lmv" secondAttribute="trailing" constant="8" id="dQg-af-0fz"/>
                             <constraint firstItem="liL-cE-OzV" firstAttribute="top" secondItem="cRv-Fn-rWq" secondAttribute="bottom" constant="20" id="dhq-bV-WUF"/>
                             <constraint firstItem="FCl-G0-AJG" firstAttribute="top" secondItem="yzi-LK-Nh6" secondAttribute="bottom" constant="15" id="eDI-Vq-4T0"/>
                             <constraint firstItem="obC-RM-t7U" firstAttribute="bottom" secondItem="FCl-G0-AJG" secondAttribute="bottom" id="eka-BA-Zd4"/>
+                            <constraint firstItem="liL-cE-OzV" firstAttribute="leading" secondItem="CmO-Cj-lmv" secondAttribute="leading" id="f7M-Rh-nvT"/>
                             <constraint firstItem="obC-RM-t7U" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yzi-LK-Nh6" secondAttribute="trailing" constant="15" id="fiF-UP-mRt"/>
-                            <constraint firstItem="cRv-Fn-rWq" firstAttribute="top" secondItem="a9f-Ut-G7d" secondAttribute="top" id="gF8-Dc-WU6"/>
+                            <constraint firstItem="cRv-Fn-rWq" firstAttribute="top" secondItem="CmO-Cj-lmv" secondAttribute="top" id="fih-GR-ewY"/>
                             <constraint firstItem="rZS-NW-urN" firstAttribute="leading" secondItem="NYb-hE-zUj" secondAttribute="leading" id="hvG-rS-Ffz"/>
+                            <constraint firstItem="CmO-Cj-lmv" firstAttribute="top" secondItem="obC-RM-t7U" secondAttribute="top" constant="15" id="iho-6D-nLm"/>
                             <constraint firstItem="rZS-NW-urN" firstAttribute="top" secondItem="iEG-YG-PMx" secondAttribute="bottom" constant="8" id="iir-kU-bwG"/>
+                            <constraint firstItem="NYb-hE-zUj" firstAttribute="leading" secondItem="CmO-Cj-lmv" secondAttribute="leading" id="jf6-eo-neW"/>
                             <constraint firstItem="obC-RM-t7U" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IXR-Lz-YVH" secondAttribute="trailing" constant="15" id="kEd-qa-m9u"/>
                             <constraint firstItem="iEG-YG-PMx" firstAttribute="firstBaseline" secondItem="IXR-Lz-YVH" secondAttribute="firstBaseline" id="kjN-pv-EE8"/>
-                            <constraint firstItem="cRv-Fn-rWq" firstAttribute="leading" secondItem="a9f-Ut-G7d" secondAttribute="trailing" constant="8" id="mHl-si-MAO"/>
-                            <constraint firstItem="NYb-hE-zUj" firstAttribute="leading" secondItem="a9f-Ut-G7d" secondAttribute="leading" id="pmy-qr-yn6"/>
                             <constraint firstItem="NYb-hE-zUj" firstAttribute="firstBaseline" secondItem="yKu-NO-NLV" secondAttribute="firstBaseline" id="rRo-st-Aqs"/>
                         </constraints>
                     </view>
@@ -1336,13 +1343,14 @@
                         <outlet property="mostRecentGoodEatButton2" destination="IXR-Lz-YVH" id="WdM-1u-D0N"/>
                         <outlet property="mostRecentGoodEatButton3" destination="yzi-LK-Nh6" id="NKL-Mr-7NT"/>
                         <outlet property="numCheckInsLabel" destination="h2u-tN-Mrt" id="1GH-3o-Qwn"/>
+                        <outlet property="profileImageButton" destination="CmO-Cj-lmv" id="CYA-c2-6ld"/>
                         <outlet property="usernameLabel" destination="ln3-zy-Lpx" id="WbC-zU-thb"/>
                         <segue destination="rNf-yc-9wT" kind="showDetail" identifier="postDetailSegue" id="uLV-6R-wkV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbP-QN-CnR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4582" y="1447"/>
+            <point key="canvasLocation" x="4581.538461538461" y="1446.6824644549763"/>
         </scene>
         <!--Filter-->
         <scene sceneID="DBU-Ou-TNM">
@@ -1975,7 +1983,7 @@
             <objects>
                 <viewController id="p4U-Nh-NLq" customClass="RestaurantTableViewFeedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2c5-YJ-uGm">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="613.66666666666663"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="614"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="posts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hz-bM-I3E">
@@ -2257,7 +2265,7 @@
             <objects>
                 <viewController id="yAd-ve-s7Y" customClass="RestaurantPopularDishesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ntN-Vx-XvM">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="613.66666666666663"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="614"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="107" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zQN-HK-FRD">
@@ -2393,7 +2401,7 @@
             <objects>
                 <viewController id="Efp-4k-RaJ" customClass="RestaurantCollectionFeedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2aK-Co-uBO">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="613.66666666666663"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="614"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Tg8-hx-4XU">

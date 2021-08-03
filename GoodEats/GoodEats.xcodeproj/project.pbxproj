@@ -240,16 +240,13 @@
 		76D01CE6269CC9C000288EF2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				76FBCE7626B99E0200225CE0 /* Compose View Controllers */,
 				76FF9ABC26B20D2900E03530 /* Main Map View Controllers */,
 				76FF9ABB26B20CF100E03530 /* Detail View Controllers */,
 				76D01CE9269CC9DD00288EF2 /* LoginViewController.h */,
 				76D01CEA269CC9DD00288EF2 /* LoginViewController.m */,
 				76E49E69269D1DBF00617E4F /* ProfileViewController.h */,
 				76E49E6A269D1DBF00617E4F /* ProfileViewController.m */,
-				76E49E75269E0AF700617E4F /* ComposeViewController.h */,
-				76E49E76269E0AF700617E4F /* ComposeViewController.m */,
-				7699D00C26B8928E0058B854 /* RestaurantSearchViewController.h */,
-				7699D00D26B8928E0058B854 /* RestaurantSearchViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -299,6 +296,17 @@
 				76FF9AC726B48EE900E03530 /* APIManager.m */,
 			);
 			path = HelperFiles;
+			sourceTree = "<group>";
+		};
+		76FBCE7626B99E0200225CE0 /* Compose View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				76E49E75269E0AF700617E4F /* ComposeViewController.h */,
+				76E49E76269E0AF700617E4F /* ComposeViewController.m */,
+				7699D00C26B8928E0058B854 /* RestaurantSearchViewController.h */,
+				7699D00D26B8928E0058B854 /* RestaurantSearchViewController.m */,
+			);
+			path = "Compose View Controllers";
 			sourceTree = "<group>";
 		};
 		76FF9ABA26B20C9000E03530 /* Restaurant Details */ = {
