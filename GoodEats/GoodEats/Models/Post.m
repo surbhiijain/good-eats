@@ -8,8 +8,6 @@
 #import "Post.h"
 @implementation Post
 
-@dynamic postID;
-@dynamic userID;
 @dynamic author;
 @dynamic caption;
 @dynamic image;

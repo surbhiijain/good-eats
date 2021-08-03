@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Restaurant : PFObject<PFSubclassing>
 
-@property (nonatomic, strong) NSString *restaurantID;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSMutableArray *dishes;
 @property (nonatomic, strong) NSNumber *latitude;

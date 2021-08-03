@@ -10,7 +10,6 @@
 
 @implementation Restaurant
 
-@dynamic restaurantID;
 @dynamic name;
 @dynamic dishes;
 @dynamic latitude;

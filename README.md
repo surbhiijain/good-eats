@@ -28,21 +28,25 @@ Keep track of and share with your friends the restaurants you're going to, what 
 
 **Required Must-have Stories**
 
-* User can register a new account
-* User can log in
-* User can search for and follow friends
-* User can check in to a restaurant
-* Users can view a list of places their friends have checked in at both in a table view and map view, filtered by distance
+[x] User can register a new account
+[x] User can log in
+[x] User can search for and follow friends
+[x] User can check in to a restaurant
+[x] Users can view a list of places their friends have checked in at both in a table view and map view
+[x] Users can upload an image of what they ordered and rate the food
+
 
 **Optional Nice-to-have Stories**
 
-* Users can upload an image of what they ordered and rate the food
-* Users can click to get directions to a restaurant
-* Users can filter and sort the list of restarants by rating, distance, frequency of vists, etc.
-* Users can star restaurants and view them in a seprate tab
-* Users can receive a custom generated "food tour" of the day based on friends' recommendations and distances
-* Users can receive recommendations periodically based on the types of food they generally enjoy as well as where friends who have similar tastes to them have enjoyed
-* Users can see how similar their tastes are to their friends
+[x] Users can filter and sort the list of restarants by rating, distance, frequency of vists, etc.
+[x] Users receive a recommendation of where to go based on their past orders and a couple of survey questions
+[x] Users can search for restaurants near them and select the correct one
+[x] Users can select the dish name out of an autocompleted list of previous dishes people have posted at that restaurant
+[ ] Users can click to get directions to a restaurant
+[ ] Users can star restaurants and view them in a separate tab
+[ ] Users can receive a custom generated "food tour" of the day based on friends' recommendations and distances
+[ ] Users can receive recommendations periodically based on the types of food they generally enjoy as well as where friends who have similar tastes to them have enjoyed
+[ ] Users can see how similar their tastes are to their friends
 
 ### 2. Screen Archetypes
 
@@ -98,8 +102,7 @@ Post
 |author| Pointer to User | author of post|
 | image | File | image that user posts|
 | rating | Number | number of stars for the meal |
-| restaurant | Restaurant model | the restaurant the user checked-in to |
-| food | String | name of the meal the user ordered|
+| dish | Dish model | dish the user is posting about ||
 | tags | Array of Tags | tagged descriptions of meal |
 | createdAt | DateTime| date when post is created (default field) |
 
@@ -107,24 +110,20 @@ Restaurant
 | Property | Type | Description |
 | ----------- | ----------- |   -----------  |
 | name | String | name of the restaurant|
-|location | Location model | where the restaurant is located |
-| tags | Array of Tags | tagged descriptions of the resturant |
-|posts | Array of Posts | all the posts at this restaurant |
+| dishes | Array of Dishes | all the dishes at this restaurant |
+| latitude | Number | lattitude location of the restaurant |
+| longitude | Number | longitude location of the restaurant |
+| abrevLocation | String | City, State location of restaurant |
+| numCheckIns | Number | total number of checkins that have been made at this restaurant |
 
-Location
+Dish
 | Property | Type | Description |
 | ----------- | ----------- |   -----------  |
-| streetAdress | String | street address of location |
-| city | String | city located in|
-|state| String | state located in |
-| latitude| Number | latitude for pinning to a map and directions|
-| longitute | Number | longitude for pinning to a map and directions|
-
-Tag
-| Property | Type | Description |
-| ----------- | ----------- |   -----------  |
-| name | String | name of the tag|
-| description | String| short description explaining the tag|
+| name | String | name of the dish|
+| restaurantName | String | name of the restaurant that sells this dish |
+| restaurantId | String | object Id of the restaurant that sells this dish |
+| avgRating | Number | average rating for this dish out of 5 |
+| numCheckIns | Number | total number of checkins that have been made at this restaurant |
 
 
 ### Networking

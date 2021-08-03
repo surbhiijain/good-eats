@@ -14,8 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Post : PFObject<PFSubclassing>
 
-@property (nonatomic, strong) NSString *postID;
-@property (nonatomic, strong) NSString *userID;
 @property (nonatomic, strong) PFUser *author;
 
 @property (nonatomic, strong) NSString *caption;
