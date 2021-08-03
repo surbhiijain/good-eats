@@ -13,6 +13,7 @@
 #import "Post.h"
 #import "PostDetailViewController.h"
 #import "APIManager.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -110,6 +111,8 @@
         
         NSString *text = [NSString stringWithFormat:@"%@ @ %@", post.dish.name, post.dish.restaurantName];
         [button setTitle:text forState:UIControlStateNormal];
+        [button setBackgroundColor:nil];
+        [button setTitleColor:FlatTeal forState:UIControlStateNormal];
     }
     for (UIButton *button in dishButtons) {
         [button setHidden:TRUE];

@@ -8,12 +8,14 @@
 #import "FeedPostCell.h"
 #import "Utils.h"
 #import "APIManager.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @implementation FeedPostCell
 
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    [self prepareForReuse];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -54,13 +56,19 @@
 
 - (void)prepareForReuse {
     [super prepareForReuse];
+    
     [self.postImage setImage:nil];
 //    [self.profileImage setImage:nil];
     
     self.usernameLabel.text = @"";
     [self.restaurantButton setTitle:@"" forState:UIControlStateNormal];
+    [self.restaurantButton setBackgroundColor:nil];
+    [self.restaurantButton setTitleColor:FlatTeal forState:UIControlStateNormal];
+    
     self.captionLabel.text = @"";
+    
     [self.dishButton setTitle:@"" forState:UIControlStateNormal];
+    [self.dishButton setBackgroundColor:FlatWatermelon];
     
     UIImage *star =  [UIImage systemImageNamed:@"star"];
     

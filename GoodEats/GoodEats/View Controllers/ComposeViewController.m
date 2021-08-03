@@ -14,6 +14,7 @@
 #import "RestaurantSearchViewController.h"
 #import <YelpAPI/YLPLocation.h>
 #import <YelpAPI/YLPBusiness.h>
+#import <ChameleonFramework/Chameleon.h>
 
 @interface ComposeViewController ()
 
@@ -44,6 +45,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self clearFields];
+    
     self.tags = [NSMutableArray new];
     [self.starRatingView setTintColor:[UIColor systemYellowColor]];
     
@@ -229,10 +233,16 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
 
 - (void)clearFields {
     [self.restaurantButton setTitle:@"select a restaurant" forState:UIControlStateNormal];
+    [self.restaurantButton setBackgroundColor:nil];
+    [self.restaurantButton setTitleColor:FlatTeal forState:UIControlStateNormal];
+    
     self.dishField.text = @"";
     self.captionField.text = @"";
     self.starRatingView.value = 0;
+    
     [self.imageButton setImage:nil forState:UIControlStateNormal];
+    [self.imageButton setBackgroundColor:nil];
+    [self.imageButton setTintColor:FlatTeal];
     
     UIImage *placeHolderImage =  [UIImage systemImageNamed:@"photo.fill.on.rectangle.fill"];
     [self.imageButton setBackgroundImage:placeHolderImage forState:UIControlStateNormal];

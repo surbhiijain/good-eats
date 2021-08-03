@@ -11,6 +11,7 @@
 #import "RestaurantDetailViewController.h"
 #import "Utils.h"
 #import "APIManager.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @interface PostDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *profileImage;
@@ -86,10 +87,19 @@
 - (void)setPlaceholdersToNil {
     [self.postImage setImage:nil];
     
+    [self.profileImage setBackgroundColor:nil];
+    [self.profileImage setTintColor:FlatTeal];
+    
     self.usernameLabel.text = @"";
     [self.restaurantLabel setTitle:@"" forState:(UIControlStateNormal)];
+    [self.restaurantLabel setBackgroundColor:nil];
+    [self.restaurantLabel setTitleColor:FlatTeal forState:UIControlStateNormal];
+    
     self.captionLabel.text = @"";
+    
     [self.dishButton setTitle:@"" forState:UIControlStateNormal];
+    [self.dishButton setBackgroundColor:nil];
+    [self.dishButton setTitleColor:FlatTeal forState:UIControlStateNormal];
     
     UIImage *star =  [UIImage systemImageNamed:@"star"];
     
