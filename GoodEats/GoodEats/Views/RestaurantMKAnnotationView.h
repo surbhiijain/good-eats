@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) Restaurant *restaurant;
 
 -(id)initWithRestaurant: (Restaurant *) restaurant;
-- (MKAnnotationView *) annotationView;
 
 @end
 

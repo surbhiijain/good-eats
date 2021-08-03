@@ -225,7 +225,7 @@
         return nil;
     }
     
-    MKAnnotationView *annotationView = (RestaurantMKAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"RestaurantMKAnnotationView"];
+    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"RestaurantMKAnnotationView"];
     
     if (annotationView == nil) {
         annotationView = [[MKMarkerAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MKMarkerAnnotationView"];
