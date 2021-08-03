@@ -12,11 +12,12 @@
 #import "HCSStarRatingView.h"
 #import "APIManager.h"
 #import "RestaurantSearchViewController.h"
+#import "DishAutocompleteCell.h"
 #import <YelpAPI/YLPLocation.h>
 #import <YelpAPI/YLPBusiness.h>
 #import <ChameleonFramework/Chameleon.h>
 
-@interface ComposeViewController ()
+@interface ComposeViewController () <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIButton *imageButton;
 @property (weak, nonatomic) IBOutlet UITextField *dishField;
@@ -36,7 +37,14 @@
 @property (nonatomic, strong) LocationManager *locationManager;
 @property (nonatomic, strong) YLPCoordinate *userCoordinate;
 
-@property(nonatomic, strong) YLPBusiness *selectedRestaurant;
+@property(nonatomic, strong) YLPBusiness *selectedYelpRestaurant;
+@property(nonatomic, strong) Restaurant *selectedRestaurant;
+
+
+@property (weak, nonatomic) IBOutlet UITableView *dishAutoCompleteTableView;
+@property(nonatomic, strong) NSMutableArray *allPotentialAutocompleteDishes;
+@property(nonatomic, strong) NSMutableArray *autoCompleteDisplayedDishes;
+
 
 
 @end
@@ -48,6 +56,13 @@
     
     [self clearFields];
     
+    self.dishField.delegate = self;
+    self.dishAutoCompleteTableView.delegate = self;
+    self.dishAutoCompleteTableView.dataSource = self;
+    self.dishAutoCompleteTableView.hidden = YES;
+    
+    self.autoCompleteDisplayedDishes = [[NSMutableArray alloc] init];
+        
     self.tags = [NSMutableArray new];
     [self.starRatingView setTintColor:[UIColor systemYellowColor]];
     
@@ -57,11 +72,50 @@
     
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    [self.dishAutoCompleteTableView setHidden:NO];
+    
+    if (string.length == 0) {
+        self.autoCompleteDisplayedDishes = self.allPotentialAutocompleteDishes;
+        [self.dishAutoCompleteTableView reloadData];
+        return YES;
+    }
+    NSString *substring = [NSString stringWithString:self.dishField.text];
+    substring = [substring
+                 stringByReplacingCharactersInRange:range withString:string];
+    [self searchAutocompleteEntriesWithSubstring:substring];
+    return YES;
+    
+}
+
+- (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
+    
+    [self.autoCompleteDisplayedDishes removeAllObjects];
+    for(Dish *dish in self.allPotentialAutocompleteDishes) {
+        if ([dish.name containsString:substring]) {
+            [self.autoCompleteDisplayedDishes addObject:dish];
+        }
+    }
+    [self.dishAutoCompleteTableView reloadData];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.autoCompleteDisplayedDishes.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    DishAutocompleteCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DishAutocompleteCell"];
+    
+    cell.dish = self.autoCompleteDisplayedDishes[indexPath.row];
+    
+    return cell;
+}
+
 - (void)LocationManager:(LocationManager *)locationManager
       setUpWithLocation:(CLLocation *)location {
     
     self.userCoordinate = [[YLPCoordinate alloc] initWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
-    
 }
 
 - (IBAction)didTapPhoto:(id)sender {
@@ -128,8 +182,19 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
 }
 
 - (void)RestaurantSearchViewController:(RestaurantSearchViewController *) controller selectedRestaurant:(YLPBusiness *) yelpRestaurant {
-    self.selectedRestaurant = yelpRestaurant;
+    self.selectedYelpRestaurant = yelpRestaurant;
     [self.restaurantButton setTitle:yelpRestaurant.name forState:UIControlStateNormal];
+    
+    [self getOrCreateParseRestaurant:yelpRestaurant withCompletion:^(Restaurant *restaurant) {
+        self.selectedRestaurant = restaurant;
+        self.allPotentialAutocompleteDishes = restaurant.dishes;
+        NSMutableArray *restaurantDishesCopy = [[NSMutableArray alloc] initWithCapacity:restaurant.dishes.count];
+        for (Dish *dish in restaurant.dishes) {
+            [restaurantDishesCopy addObject:dish];
+        }
+        self.autoCompleteDisplayedDishes = restaurantDishesCopy;
+    }];
+    
 }
 
 - (IBAction)didTapCancel:(id)sender {
@@ -149,7 +214,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
         return;
     }
     
-    [self getOrCreateParseRestaurant:self.selectedRestaurant withCompletion:^(Restaurant *restaurant) {
+    [self getOrCreateParseRestaurant:self.selectedYelpRestaurant withCompletion:^(Restaurant *restaurant) {
         Dish *dish = [self getDish:restaurant];
         [self createPost:dish withRestaurant:restaurant];
     }];
@@ -176,7 +241,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
         else {
             NSString *abrevLocation = [NSString stringWithFormat:@"%@, %@", business.location.city, business.location.stateCode];
             restaurant = [[Restaurant alloc] initWithName:business.name withLatitude:latitude withLongitude:longitude withLocation:abrevLocation];
-            [restaurant save];
+//            [restaurant save];
         }
         completion(restaurant);
     }];

@@ -42,6 +42,7 @@
 		76E49E71269E00AC00617E4F /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E49E70269E00AC00617E4F /* Restaurant.m */; };
 		76E49E74269E012000617E4F /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E49E73269E012000617E4F /* Dish.m */; };
 		76E49E77269E0AF800617E4F /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E49E76269E0AF700617E4F /* ComposeViewController.m */; };
+		76FBCE7926B9E4AB00225CE0 /* DishAutocompleteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FBCE7826B9E4AB00225CE0 /* DishAutocompleteCell.m */; };
 		76FF9AC226B2147000E03530 /* RestaurantMKAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FF9AC126B2147000E03530 /* RestaurantMKAnnotationView.m */; };
 		76FF9AC526B4772B00E03530 /* RecommendationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FF9AC426B4772B00E03530 /* RecommendationManager.m */; };
 		76FF9AC826B48EE900E03530 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FF9AC726B48EE900E03530 /* APIManager.m */; };
@@ -135,6 +136,8 @@
 		76E49E73269E012000617E4F /* Dish.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
 		76E49E75269E0AF700617E4F /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		76E49E76269E0AF700617E4F /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		76FBCE7726B9E4AB00225CE0 /* DishAutocompleteCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DishAutocompleteCell.h; sourceTree = "<group>"; };
+		76FBCE7826B9E4AB00225CE0 /* DishAutocompleteCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DishAutocompleteCell.m; sourceTree = "<group>"; };
 		76FF9AC026B2147000E03530 /* RestaurantMKAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestaurantMKAnnotationView.h; sourceTree = "<group>"; };
 		76FF9AC126B2147000E03530 /* RestaurantMKAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestaurantMKAnnotationView.m; sourceTree = "<group>"; };
 		76FF9AC326B4771D00E03530 /* RecommendationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendationManager.h; sourceTree = "<group>"; };
@@ -266,6 +269,8 @@
 				76FF9AC126B2147000E03530 /* RestaurantMKAnnotationView.m */,
 				7699D00926B85D1D0058B854 /* RestaurantSearchCell.h */,
 				7699D00A26B85D1D0058B854 /* RestaurantSearchCell.m */,
+				76FBCE7726B9E4AB00225CE0 /* DishAutocompleteCell.h */,
+				76FBCE7826B9E4AB00225CE0 /* DishAutocompleteCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -635,6 +640,7 @@
 				76E4576626A775CC0073AB8D /* RestaurantDetailViewController.m in Sources */,
 				76FF9AC226B2147000E03530 /* RestaurantMKAnnotationView.m in Sources */,
 				76D01CEB269CC9DD00288EF2 /* LoginViewController.m in Sources */,
+				76FBCE7926B9E4AB00225CE0 /* DishAutocompleteCell.m in Sources */,
 				76E49E68269D1A1800617E4F /* MapViewController.m in Sources */,
 				76E4577E26A9F69E0073AB8D /* LocationManager.m in Sources */,
 				76E4576926A880C70073AB8D /* RestaurantPopularDishesViewController.m in Sources */,
