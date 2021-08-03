@@ -11,6 +11,7 @@
 #import "LocationManager.h"
 #import "Post.h"
 #import "APIManager.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @interface FilterViewController () <LocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *distanceSegControl;
@@ -47,7 +48,17 @@
     
     self.tags = [[NSMutableArray alloc] init];
     
+    [self setTagButtonColors];
     
+    
+}
+
+- (void) setTagButtonColors {
+    [self.tagButton1 setBackgroundColor:[UIColor colorWithRed:211/255.0 green:229/255.0 blue:227/255.0 alpha:1.0]];
+    [self.tagButton2 setBackgroundColor:[UIColor colorWithRed:211/255.0 green:229/255.0 blue:227/255.0 alpha:1.0]];
+    [self.tagButton3 setBackgroundColor:[UIColor colorWithRed:211/255.0 green:229/255.0 blue:227/255.0 alpha:1.0]];
+    [self.tagButton4 setBackgroundColor:[UIColor colorWithRed:211/255.0 green:229/255.0 blue:227/255.0 alpha:1.0]];
+    [self.tagButton5 setBackgroundColor:[UIColor colorWithRed:211/255.0 green:229/255.0 blue:227/255.0 alpha:1.0]];
 }
 - (IBAction)didApplyFilters:(UIButton *)sender {
     
@@ -187,7 +198,7 @@
     }
     
     [self.tags addObject:tagName];
-    [sender setBackgroundColor:[UIColor colorWithRed:0/255.0 green:109/255.0 blue:119/255.0 alpha:1.0]];
+    [sender setBackgroundColor:FlatTeal];
 }
 
 @end

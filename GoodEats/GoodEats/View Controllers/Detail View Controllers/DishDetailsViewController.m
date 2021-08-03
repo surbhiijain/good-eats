@@ -12,6 +12,7 @@
 #import "RestaurantDetailViewController.h"
 #import "Utils.h"
 #import "APIManager.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @interface DishDetailsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -60,7 +61,10 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     
     self.dishLabel.text = self.dish.name;
+    
     [self.restaurantButton setTitle:self.dish.restaurantName forState:UIControlStateNormal];
+    [self.restaurantButton setBackgroundColor:nil];
+    [self.restaurantButton setTitleColor:FlatTeal forState:UIControlStateNormal];
     
     [[APIManager shared] fetchRestaurantWithId:self.dish.restaurantID withCompletion:^(Restaurant *restaurant, NSError *error) {
         if (!error) {

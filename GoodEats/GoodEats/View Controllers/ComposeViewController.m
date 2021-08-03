@@ -228,7 +228,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     }
     
     [self.tags addObject:tagName];
-    [sender setBackgroundColor:[UIColor colorWithRed:0/255.0 green:109/255.0 blue:119/255.0 alpha:1.0]];
+    [sender setBackgroundColor:FlatTeal];
 }
 
 - (void)clearFields {

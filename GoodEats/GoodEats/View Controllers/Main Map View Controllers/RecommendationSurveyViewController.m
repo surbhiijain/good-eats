@@ -51,6 +51,7 @@
             return;
         }
         self.dish = dish;
+        [self.navigationController popViewControllerAnimated:YES];
         [self performSegueWithIdentifier:@"dishDetailsSegue" sender:self];
         
     }];
