@@ -75,6 +75,8 @@
     } else {
         UIImage *image = [UIImage systemImageNamed:@"person.circle.filled"];
         [self.profileImageButton setImage:image forState:UIControlStateNormal];
+        [self.profileImageButton setBackgroundColor:nil];
+        [self.profileImageButton setTintColor:FlatTeal];
     }
 
     self.profileImageButton.layer.cornerRadius = 50;

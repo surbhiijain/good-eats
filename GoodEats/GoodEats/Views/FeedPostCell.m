@@ -35,6 +35,14 @@
         [self.postImage setImage:image] ;
     }];
     
+    PFFileObject *profilePic = user[@"image"];
+    if (profilePic) {
+        [profilePic getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+            UIImage *profileImage = [UIImage imageWithData:imageData];
+            [self.profileImage setImage:profileImage];
+        }];
+    }
+    
     [self.dishButton setTitle:post.dish.name forState:UIControlStateNormal];
     self.captionLabel.text = post.caption;
     
@@ -58,7 +66,13 @@
     [super prepareForReuse];
     
     [self.postImage setImage:nil];
-//    [self.profileImage setImage:nil];
+    
+    UIImage *image = [UIImage systemImageNamed:@"person.circle.filled"];
+    [self.profileImage setImage:image];
+    [self.profileImage setBackgroundColor:nil];
+    [self.profileImage setTintColor:FlatTeal];
+
+    self.profileImage.layer.cornerRadius = self.profileImage.bounds.size.width / 2;
     
     self.usernameLabel.text = @"";
     [self.restaurantButton setTitle:@"" forState:UIControlStateNormal];
