@@ -8,6 +8,7 @@
 #import "DishPostCell.h"
 #import "DateTools.h"
 #import "Utils.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @implementation DishPostCell
 
@@ -26,15 +27,21 @@
     PFUser *user = self.post.author;
     self.usernameLabel.text = user.username;
   
-    // set the post UIImageView based on the PFImage pased in through parse
     [self.post.image getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
         UIImage *image = [UIImage imageWithData:imageData];
         [self.postImage setImage:image] ;
     }];
     
+    PFFileObject *profilePic = user[@"image"];
+    if (profilePic) {
+        [profilePic getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+            UIImage *profileImage = [UIImage imageWithData:imageData];
+            [self.profileImage setImage:profileImage forState:UIControlStateNormal];
+        }];
+    }
+    
     self.captionLabel.text = self.post.caption;
     
-    // use DateTools pod to add time ago feature
     NSDate *timeNow = [NSDate date];
     NSInteger seconds = [timeNow secondsFrom:self.post.createdAt];
     NSDate *timeDate = [NSDate dateWithTimeIntervalSinceNow:seconds];
@@ -47,7 +54,13 @@
 - (void)prepareForReuse {
     [super prepareForReuse];
     [self.postImage setImage:nil];
-//    [self.profileImage setImage:nil];
+
+    UIImage *image = [UIImage systemImageNamed:@"person.circle.filled"];
+    [self.profileImage setImage:image forState:UIControlStateNormal];
+    [self.profileImage setBackgroundColor:nil];
+    [self.profileImage setTintColor:FlatTeal];
+    
+    self.profileImage.layer.cornerRadius = self.profileImage.bounds.size.width / 2;
     
     self.usernameLabel.text = @"";
     self.captionLabel.text = @"";
