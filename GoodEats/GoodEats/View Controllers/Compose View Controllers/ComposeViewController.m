@@ -39,6 +39,7 @@
 
 @property(nonatomic, strong) YLPBusiness *selectedYelpRestaurant;
 @property(nonatomic, strong) Restaurant *selectedRestaurant;
+@property(nonatomic, strong) Dish *selectedDish;
 
 
 @property (weak, nonatomic) IBOutlet UITableView *dishAutoCompleteTableView;
@@ -76,14 +77,17 @@
     
     [self.dishAutoCompleteTableView setHidden:NO];
     
-    if (string.length == 0) {
-        self.autoCompleteDisplayedDishes = self.allPotentialAutocompleteDishes;
-        [self.dishAutoCompleteTableView reloadData];
-        return YES;
-    }
+
     NSString *substring = [NSString stringWithString:self.dishField.text];
     substring = [substring
                  stringByReplacingCharactersInRange:range withString:string];
+    
+    if (substring.length == 0) {
+        self.autoCompleteDisplayedDishes = self.selectedRestaurant.dishes;
+        [self.dishAutoCompleteTableView reloadData];
+        return YES;
+    }
+    
     [self searchAutocompleteEntriesWithSubstring:substring];
     return YES;
     
@@ -91,7 +95,7 @@
 
 - (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
     
-    [self.autoCompleteDisplayedDishes removeAllObjects];
+    self.autoCompleteDisplayedDishes = [[NSMutableArray alloc] init];
     for(Dish *dish in self.allPotentialAutocompleteDishes) {
         if ([dish.name containsString:substring]) {
             [self.autoCompleteDisplayedDishes addObject:dish];
@@ -110,6 +114,12 @@
     cell.dish = self.autoCompleteDisplayedDishes[indexPath.row];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.selectedDish = self.autoCompleteDisplayedDishes[indexPath.row];
+    [self.dishField setText:self.selectedDish.name];
+    self.dishAutoCompleteTableView.hidden = YES;
 }
 
 - (void)LocationManager:(LocationManager *)locationManager
