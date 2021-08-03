@@ -10,6 +10,7 @@ target 'GoodEats' do
   pod 'HCSStarRatingView', '~> 1.5'
   pod 'DateTools'
   pod 'YelpAPI'
+  pod 'ChameleonFramework'
 
 
   target 'GoodEatsTests' do
