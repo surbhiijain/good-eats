@@ -39,7 +39,9 @@
 
 @property(nonatomic, strong) YLPBusiness *selectedYelpRestaurant;
 @property(nonatomic, strong) Restaurant *selectedRestaurant;
+
 @property(nonatomic, strong) Dish *selectedDish;
+@property(nonatomic) BOOL newDish;
 
 
 @property (weak, nonatomic) IBOutlet UITableView *dishAutoCompleteTableView;
@@ -63,7 +65,7 @@
     self.dishAutoCompleteTableView.hidden = YES;
     
     self.autoCompleteDisplayedDishes = [[NSMutableArray alloc] init];
-        
+    
     self.tags = [NSMutableArray new];
     [self.starRatingView setTintColor:[UIColor systemYellowColor]];
     
@@ -77,7 +79,7 @@
     
     [self.dishAutoCompleteTableView setHidden:NO];
     
-
+    
     NSString *substring = [NSString stringWithString:self.dishField.text];
     substring = [substring
                  stringByReplacingCharactersInRange:range withString:string];
@@ -91,6 +93,15 @@
     [self searchAutocompleteEntriesWithSubstring:substring];
     return YES;
     
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    Dish *d = [[Dish alloc] initWithName:self.dishField.text withRestaurant:self.selectedRestaurant.name withRestaurantID:self.selectedRestaurant.objectId];
+    self.newDish = TRUE;
+    [self.autoCompleteDisplayedDishes insertObject:d atIndex:0];
+    [self.dishAutoCompleteTableView reloadData];
+    [textField resignFirstResponder];
+    return NO;
 }
 
 - (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
@@ -224,10 +235,11 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
         return;
     }
     
-    [self getOrCreateParseRestaurant:self.selectedYelpRestaurant withCompletion:^(Restaurant *restaurant) {
-        Dish *dish = [self getDish:restaurant];
-        [self createPost:dish withRestaurant:restaurant];
-    }];
+    [self createPost:self.selectedDish withRestaurant:self.selectedRestaurant];
+    
+    if (self.newDish) {
+        [self.selectedRestaurant addDish:self.selectedDish];
+    }
     
 }
 
@@ -251,27 +263,11 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
         else {
             NSString *abrevLocation = [NSString stringWithFormat:@"%@, %@", business.location.city, business.location.stateCode];
             restaurant = [[Restaurant alloc] initWithName:business.name withLatitude:latitude withLongitude:longitude withLocation:abrevLocation];
-//            [restaurant save];
+            [restaurant save];
         }
         completion(restaurant);
     }];
 }
-
-- (Dish *) getDish:(Restaurant *) restaurant {
-    Dish *dish;
-    for (Dish *d in restaurant.dishes) {
-        if ([d.name isEqual:self.dishField.text]) {
-            dish = d;
-        }
-    }
-    if (!dish) {
-        dish = [[Dish alloc] initWithName:self.dishField.text withRestaurant:restaurant.name withRestaurantID:restaurant.objectId];
-        [restaurant addDish:dish];
-        [restaurant saveInBackground];
-    }
-    return dish;
-}
-
 
 - (void) createPost:(Dish *)dish
      withRestaurant:(Restaurant *) restaurant {
