@@ -346,12 +346,12 @@
 			children = (
 				76E49E66269D1A1800617E4F /* MapViewController.h */,
 				76E49E67269D1A1800617E4F /* MapViewController.m */,
-				76E4578126AA505B0073AB8D /* FilterViewController.h */,
-				76E4578226AA505B0073AB8D /* FilterViewController.m */,
-				76A95AC026AF1E9C005C8A04 /* RecommendationSurveyViewController.h */,
-				76A95AC126AF1E9C005C8A04 /* RecommendationSurveyViewController.m */,
 				76D01CEC269CD53000288EF2 /* TableFeedViewController.h */,
 				76D01CED269CD53000288EF2 /* TableFeedViewController.m */,
+				76A95AC026AF1E9C005C8A04 /* RecommendationSurveyViewController.h */,
+				76A95AC126AF1E9C005C8A04 /* RecommendationSurveyViewController.m */,
+				76E4578126AA505B0073AB8D /* FilterViewController.h */,
+				76E4578226AA505B0073AB8D /* FilterViewController.m */,
 			);
 			path = "Main Map View Controllers";
 			sourceTree = "<group>";

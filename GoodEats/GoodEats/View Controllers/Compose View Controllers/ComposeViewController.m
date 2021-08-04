@@ -63,6 +63,8 @@
     self.dishAutoCompleteTableView.delegate = self;
     self.dishAutoCompleteTableView.dataSource = self;
     self.dishAutoCompleteTableView.hidden = YES;
+    [self.dishAutoCompleteTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+
     
     self.autoCompleteDisplayedDishes = [[NSMutableArray alloc] init];
     
@@ -83,6 +85,7 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
     [self.dishAutoCompleteTableView setHidden:NO];
+    [self.dishField setTextColor:[UIColor blackColor]];
     
     
     NSString *substring = [NSString stringWithString:self.dishField.text];
@@ -103,9 +106,12 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     Dish *d = [[Dish alloc] initWithName:self.dishField.text withRestaurant:self.selectedRestaurant.name withRestaurantID:self.selectedRestaurant.objectId];
     self.newDish = TRUE;
-    [self.autoCompleteDisplayedDishes insertObject:d atIndex:0];
-    [self.dishAutoCompleteTableView reloadData];
+    self.selectedDish = d;
+    [self.dishField setText:self.selectedDish.name];
+    [self.dishField setTextColor:FlatTeal];
+    self.dishAutoCompleteTableView.hidden = YES;
     [textField resignFirstResponder];
+
     return NO;
 }
 
@@ -116,6 +122,10 @@
         if ([dish.name containsString:substring]) {
             [self.autoCompleteDisplayedDishes addObject:dish];
         }
+    }
+    
+    if (self.autoCompleteDisplayedDishes.count == 0) {
+        self.dishAutoCompleteTableView.hidden = YES;
     }
     [self.dishAutoCompleteTableView reloadData];
 }
@@ -137,6 +147,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.selectedDish = self.autoCompleteDisplayedDishes[indexPath.row];
     [self.dishField setText:self.selectedDish.name];
+    [self.dishField setTextColor:FlatTeal];
     self.dishAutoCompleteTableView.hidden = YES;
 }
 
