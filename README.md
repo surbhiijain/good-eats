@@ -30,16 +30,16 @@ Keep track of and share with your friends the restaurants you're going to, what 
 
 - [x] User can register a new account
 - [x] User can log in
-- [x] User can search for and follow friends
 - [x] User can check in to a restaurant
-- [x] Users can view a list of places their friends have checked in at both in a table view and map view
+- [x] Users can view a list of places their friends have checked in at in a map view with modally present table view
+- [x] Users can view all the dishes at a restaurant sorted by popularity
 - [x] Users can upload an image of what they ordered and rate the food
 
 
 **Optional Nice-to-have Stories**
 
 - [x] Users can filter and sort the list of restarants by rating, distance, frequency of vists, etc.
-- [x] Users receive a recommendation of where to go based on their past orders and a couple of survey questions
+- [x] Users receive a recommendation of where to go based on their past orders
 - [x] Users can search for restaurants near them and select the correct one
 - [x] Users can select the dish name out of an autocompleted list of previous dishes people have posted at that restaurant
 - [ ] Users can click to get directions to a restaurant
