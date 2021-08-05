@@ -16,8 +16,6 @@
 
 @property (nonatomic, strong) NSMutableArray *dishes;
 
-@property (nonatomic, strong) Dish *selectedDish;
-
 @end
 
 @implementation SavedDishesViewController
@@ -47,6 +45,28 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self performSegueWithIdentifier:@"dishDetailsSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
+}
+
+
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    UIContextualAction *unsave = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleNormal title:nil handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        
+        PFUser *currentUser = [PFUser currentUser];
+        NSString *dishId = self.dishes[indexPath.row];
+        
+        [self.dishes removeObject:dishId];
+        [currentUser removeObject:dishId forKey:@"savedDishes"];
+        [self.tableView reloadData];
+        [currentUser saveInBackground];
+        completionHandler(true);
+    }];
+    
+    unsave.image  = [UIImage systemImageNamed:@"star.slash"];
+    unsave.title = @"Unsave";
+    
+    UISwipeActionsConfiguration *actions = [UISwipeActionsConfiguration configurationWithActions:@[unsave]];
+    
+    return actions;
 }
 
 # pragma mark - Navigation
