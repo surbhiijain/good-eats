@@ -11,6 +11,8 @@
 #import "DishDetailsViewController.h"
 #import "RestaurantDetailViewController.h"
 #import "APIManager.h"
+#import <ChameleonFramework/Chameleon.h>
+#import <Toast/Toast.h>
 
 @interface TableFeedViewController () <UITableViewDelegate, UITableViewDataSource, FeedPostCellDelegate>
 
@@ -73,6 +75,38 @@
     cell.delegate = self;
     
     return cell;
+}
+
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    PFUser *currentUser = [PFUser currentUser];
+    Post *post = self.posts[indexPath.row];
+    NSString *dishId = post.dish.objectId;
+    NSMutableArray *savedDishes = currentUser[@"savedDishes"];
+    
+    UIContextualAction *saveDish = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleNormal title:nil handler:^(UIContextualAction* action, UIView* sourceView, void (^completionHandler)(BOOL)) {
+        
+        NSString *toastMessage;
+        
+        if ([savedDishes containsObject:dishId]) {
+            toastMessage = [NSString stringWithFormat:@"%@ is already saved!",post.dish.name];
+        } else {
+            [currentUser addObject:dishId forKey:@"savedDishes"];
+            [currentUser saveInBackground];
+            toastMessage = [NSString stringWithFormat:@"Saved %@!",post.dish.name];
+        }
+        [self.view makeToast:toastMessage duration:2.0 position:CSToastPositionCenter style:nil];
+        
+        completionHandler(true);
+    }];
+    
+    saveDish.image  = [UIImage systemImageNamed:@"star.circle"];
+    saveDish.backgroundColor = FlatWatermelon;
+    saveDish.title = [NSString stringWithFormat:@"Save %@",post.dish.name];
+    
+    UISwipeActionsConfiguration *actions = [UISwipeActionsConfiguration configurationWithActions:@[saveDish]];
+    
+    return actions;
 }
 
 - (void)callRestaurantSegueFromCell:(FeedPostCell *)cell {
