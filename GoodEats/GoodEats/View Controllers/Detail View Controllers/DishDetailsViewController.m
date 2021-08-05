@@ -186,7 +186,7 @@
 }
 
 - (void) setRatingStars {
-    self.ratingLabel.text = [NSString stringWithFormat:@"Overall Rating: %@/5", [self.dish.avgRating stringValue]];
+    self.ratingLabel.text = [NSString stringWithFormat:@"Overall Rating: %.2f/5", [self.dish.avgRating floatValue]];
     
     NSMutableArray *stars = [[NSMutableArray alloc] init];
     [stars addObject:self.reviewStar1];
@@ -202,6 +202,20 @@
     [self setRatingStars];
     [self setTags];
     self.numCheckInsLabel.text = [NSString stringWithFormat:@"%@ Total Check-Ins", self.dish.numCheckIns];
+}
+
+- (IBAction)didTapSaveButton:(UIButton *)sender {
+    
+    NSString *userId = [PFUser currentUser].objectId;
+    
+    if ([self.dish.saves containsObject:userId]) {
+        [self.saveButton setTintColor:[UIColor colorWithRed:255/255.0 green:221/255.0 blue:210/255.0 alpha:0.8]];
+        [self.dish removeObject:userId forKey:@"saves"];
+    } else {
+        [self.saveButton setTintColor:FlatWatermelon];
+        [self.dish addObject:userId forKey:@"saves"];
+    }
+    [self.dish saveInBackground];
 }
 
 #pragma mark - Navigation

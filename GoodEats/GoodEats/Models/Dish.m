@@ -15,6 +15,7 @@
 @dynamic restaurantID;
 @dynamic numCheckIns;
 @dynamic avgRating;
+@dynamic saves;
 
 + (nonnull NSString *)parseClassName {
     return @"Dish";
@@ -30,6 +31,7 @@
         self.restaurantID = restaurantID;
         self.numCheckIns = @0;
         self.avgRating = @0;
+        self.saves = [[NSMutableArray alloc] init];
     }
     return self;
 }

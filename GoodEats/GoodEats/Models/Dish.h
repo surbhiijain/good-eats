@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *restaurantID;
 @property (nonatomic, strong) NSNumber *numCheckIns;
 @property (nonatomic, strong) NSNumber *avgRating;
+@property (nonatomic, strong) NSMutableArray *saves;
+
 
 - (instancetype)initWithName:(NSString *)name
               withRestaurant:(NSString *)restaurantName
