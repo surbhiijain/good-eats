@@ -37,6 +37,8 @@
         [profilePic getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
             UIImage *profileImage = [UIImage imageWithData:imageData];
             [self.profileImage setImage:profileImage forState:UIControlStateNormal];
+            self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height / 2;
+
         }];
     }
     
@@ -60,7 +62,7 @@
     [self.profileImage setBackgroundColor:nil];
     [self.profileImage setTintColor:FlatTeal];
     
-    self.profileImage.layer.cornerRadius = self.profileImage.bounds.size.width / 2;
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height / 2;
     
     self.usernameLabel.text = @"";
     self.captionLabel.text = @"";

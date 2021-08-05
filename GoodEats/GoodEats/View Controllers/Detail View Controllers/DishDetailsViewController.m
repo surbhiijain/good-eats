@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numCheckInsLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+
 @property (weak, nonatomic) IBOutlet UIButton *tagButton1;
 @property (weak, nonatomic) IBOutlet UIButton *tagButton2;
 @property (weak, nonatomic) IBOutlet UIButton *tagButton3;
@@ -61,6 +63,9 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     
     self.dishLabel.text = self.dish.name;
+    
+    [self.saveButton setTintColor:[UIColor colorWithRed:255/255.0 green:221/255.0 blue:210/255.0 alpha:0.8]];
+    [self.saveButton setBackgroundColor:FlatWhite];
     
     [self.restaurantButton setTitle:self.dish.restaurantName forState:UIControlStateNormal];
     [self.restaurantButton setBackgroundColor:nil];
