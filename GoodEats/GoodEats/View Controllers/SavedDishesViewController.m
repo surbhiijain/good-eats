@@ -8,12 +8,15 @@
 #import "SavedDishesViewController.h"
 #import "SavedDishCell.h"
 #import "APIManager.h"
+#import "DishDetailsViewController.h"
 
 @interface SavedDishesViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *dishes;
+
+@property (nonatomic, strong) Dish *selectedDish;
 
 @end
 
@@ -40,6 +43,19 @@
         cell.dish = (Dish *) object;
     }];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"dishDetailsSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
+}
+
+# pragma mark - Navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"dishDetailsSegue"]) {
+        SavedDishCell *cell = (SavedDishCell *) sender;
+        DishDetailsViewController *detailsVC = [segue destinationViewController];
+        detailsVC.dish = cell.dish;
+    }
 }
 
 @end

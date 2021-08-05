@@ -46,7 +46,7 @@
     self.user = [PFUser currentUser];
     [self setProfilePhoto];
     
-    self.usernameLabel.text = self.user.username;
+    self.usernameLabel.text = [NSString stringWithFormat:@"@%@" , self.user.username];
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -79,7 +79,7 @@
         [self.profileImageButton setTintColor:FlatTeal];
     }
 
-    self.profileImageButton.layer.cornerRadius = 50;
+    self.profileImageButton.layer.cornerRadius = 40;
     self.profileImageButton.layer.masksToBounds = true;
 }
 
