@@ -65,8 +65,11 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     
     self.dishLabel.text = self.dish.name;
+        
+    PFUser *currUser = [PFUser currentUser];
     
-    [self.saveButton setTintColor:[UIColor colorWithRed:255/255.0 green:221/255.0 blue:210/255.0 alpha:0.8]];
+    UIColor *saveButtonColor = [currUser[@"savedDishes"] containsObject:self.dish.objectId] ? FlatWatermelon:  [UIColor colorWithRed:255/255.0 green:221/255.0 blue:210/255.0 alpha:0.8];
+    [self.saveButton setTintColor:saveButtonColor];
     [self.saveButton setBackgroundColor:FlatWhite];
     
     [self.restaurantButton setTitle:self.dish.restaurantName forState:UIControlStateNormal];
