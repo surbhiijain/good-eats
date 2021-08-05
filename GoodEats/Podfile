@@ -11,7 +11,8 @@ target 'GoodEats' do
   pod 'DateTools'
   pod 'YelpAPI'
   pod 'ChameleonFramework'
-  pod 'CWStatusBarNotification', '~> 2.3'
+  pod 'Toast', '~> 4.0.0'
+
 
 
   target 'GoodEatsTests' do

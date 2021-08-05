@@ -13,6 +13,7 @@
 #import "Utils.h"
 #import "APIManager.h"
 #import <ChameleonFramework/Chameleon.h>
+#import <Toast/Toast.h>
 
 @interface DishDetailsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -55,6 +56,7 @@
 @implementation DishDetailsViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     self.tableView.delegate = self;
@@ -208,13 +210,19 @@
     
     NSString *userId = [PFUser currentUser].objectId;
     
+    NSString *notifMessage;
+
     if ([self.dish.saves containsObject:userId]) {
         [self.saveButton setTintColor:[UIColor colorWithRed:255/255.0 green:221/255.0 blue:210/255.0 alpha:0.8]];
         [self.dish removeObject:userId forKey:@"saves"];
+        notifMessage = [NSString stringWithFormat:@"Removed %@ from your saved dishes", self.dish.name];
     } else {
         [self.saveButton setTintColor:FlatWatermelon];
         [self.dish addObject:userId forKey:@"saves"];
+        notifMessage = [NSString stringWithFormat:@"Saved %@", self.dish.name];
     }
+    
+    [self.view makeToast:notifMessage];
     [self.dish saveInBackground];
 }
 
