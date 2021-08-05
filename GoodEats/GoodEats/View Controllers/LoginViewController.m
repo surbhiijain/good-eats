@@ -38,6 +38,7 @@
     
     newUser.username = self.usernameField.text;
     newUser.password = self.passwordField.text;
+    newUser[@"savedDishes"] = [[NSMutableArray alloc] init];
     
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
