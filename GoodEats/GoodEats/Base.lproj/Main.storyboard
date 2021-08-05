@@ -1017,14 +1017,14 @@
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DishAutocompleteCell" id="f5A-3V-6pw" customClass="DishAutocompleteCell">
-                                        <rect key="frame" x="0.0" y="24.333333969116211" width="360" height="36.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="360" height="37"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f5A-3V-6pw" id="W15-94-xs3">
-                                            <rect key="frame" x="0.0" y="0.0" width="360" height="36.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="360" height="37"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1q1-S9-DMk">
-                                                    <rect key="frame" x="0.0" y="8.0000000000000018" width="345" height="20.666666666666671"/>
+                                                    <rect key="frame" x="0.0" y="8" width="345" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1223,7 +1223,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="1" green="0.97986656429999996" blue="0.97582834959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="h2u-tN-Mrt" firstAttribute="leading" secondItem="ln3-zy-Lpx" secondAttribute="leading" id="CKl-wQ-U5A"/>
                                     <constraint firstItem="h2u-tN-Mrt" firstAttribute="top" secondItem="ln3-zy-Lpx" secondAttribute="bottom" constant="8" id="XRG-h9-Vui"/>

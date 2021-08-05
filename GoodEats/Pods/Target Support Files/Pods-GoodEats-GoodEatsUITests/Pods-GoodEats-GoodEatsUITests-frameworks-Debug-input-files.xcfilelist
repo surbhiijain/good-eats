@@ -1,5 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-GoodEats-GoodEatsUITests/Pods-GoodEats-GoodEatsUITests-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework
+${BUILT_PRODUCTS_DIR}/CWStatusBarNotification/CWStatusBarNotification.framework
 ${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework
 ${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework
 ${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework
