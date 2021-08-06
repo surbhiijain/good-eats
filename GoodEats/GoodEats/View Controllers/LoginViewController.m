@@ -8,7 +8,8 @@
 #import "LoginViewController.h"
 #import "Parse/Parse.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () <UITextFieldDelegate>
+
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
@@ -18,7 +19,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.passwordField.delegate = self;
 }
+
 - (IBAction)didTapLogin:(id)sender {
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
@@ -46,6 +49,12 @@
         } else {
             [self performSegueWithIdentifier:@"loginSegue" sender:self];
         }
-    }];}
+    }];
+}
+
+-(BOOL) textFieldShouldReturn: (UITextField *) textField {
+    [textField resignFirstResponder];
+    return YES;
+}
 
 @end
