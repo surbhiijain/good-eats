@@ -52,7 +52,7 @@
     }
     
     [[APIManager shared] fetchYelpRestaurantWithName:searchText withUserCoordinate:self.userCoordinate withCompletion:^(YLPSearch *search, NSError *error) {
-        if (!search || !search.businesses.count) {
+        if (error || !search || !search.businesses.count) {
             self.filteredRestaurants = [[NSMutableArray alloc] init];
         } else {
             self.filteredRestaurants = (NSMutableArray *) search.businesses;

@@ -34,7 +34,7 @@
         UIImage *image = [UIImage imageWithData:imageData];
         [self.postImage setImage:image] ;
     }];
-    
+
     PFFileObject *profilePic = user[@"image"];
     if (profilePic) {
         [profilePic getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
@@ -68,6 +68,7 @@
     [self.postImage setImage:nil];
     
     UIImage *image = [UIImage systemImageNamed:@"person.circle.filled"];
+    self.profileImage.image = image;
     [self.profileImage setImage:image];
     [self.profileImage setBackgroundColor:nil];
     [self.profileImage setTintColor:FlatTeal];

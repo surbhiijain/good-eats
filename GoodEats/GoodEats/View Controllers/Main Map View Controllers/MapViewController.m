@@ -256,6 +256,7 @@ didSelectAnnotationView:(MKAnnotationView *)view {
 - (void) ComposeViewController:(ComposeViewController *)controller
               postedRestaurant:(Restaurant *)restaurant {
     [self.restaurants addObject:restaurant];
+    [self.modalTableFeedViewController fetchPosts];
     [self displayPinForRestaurant:restaurant];
 }
 

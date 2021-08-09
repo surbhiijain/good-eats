@@ -270,6 +270,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     if (self.newDish) {
         [self.selectedRestaurant addDish:self.selectedDish];
+        [self.selectedRestaurant saveInBackground];
     }
     
 }
@@ -356,6 +357,8 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     [self.tagButton5 setBackgroundColor:[UIColor colorWithRed:211/255.0 green:229/255.0 blue:227/255.0 alpha:1.0]];
     
     self.tags = [[NSMutableArray alloc] init];
+    
+    self.newDish = false;
 }
 
 

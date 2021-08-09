@@ -22,7 +22,9 @@
     _YLPRestaurant = YLPRestaurant;
     
     self.nameLabel.text = YLPRestaurant.name;
-    self.addressLabel.text = YLPRestaurant.location.address[0];
+    if (YLPRestaurant.location.address && YLPRestaurant.location.address.count) {
+        self.addressLabel.text = YLPRestaurant.location.address[0];
+    }
 }
 
 @end
