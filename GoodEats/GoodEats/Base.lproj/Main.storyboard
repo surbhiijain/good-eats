@@ -705,6 +705,18 @@
                                     <segue destination="Efp-4k-RaJ" kind="embed" identifier="restaurantCollectionFeedSegue" id="3XA-YU-mgW"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2lx-dH-C0R">
+                                <rect key="frame" x="117" y="57.666666666666657" width="253" height="30"/>
+                                <state key="normal" title="Get Directions"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapDirections:" destination="r1S-Wv-aaX" eventType="touchUpInside" id="tz8-Gq-h0B"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cf0-jC-fdV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -713,6 +725,7 @@
                             <constraint firstItem="08a-kW-Vkl" firstAttribute="leading" secondItem="cf0-jC-fdV" secondAttribute="leading" constant="15" id="4Gx-6M-O2D"/>
                             <constraint firstItem="vKH-Vx-VBu" firstAttribute="leading" secondItem="08a-kW-Vkl" secondAttribute="leading" id="6Y7-j5-s99"/>
                             <constraint firstItem="vKH-Vx-VBu" firstAttribute="top" secondItem="Fef-tv-L6t" secondAttribute="bottom" constant="15" id="9LS-QG-KAC"/>
+                            <constraint firstItem="2lx-dH-C0R" firstAttribute="firstBaseline" secondItem="e2x-O6-xI5" secondAttribute="firstBaseline" id="FZ7-sc-qvd"/>
                             <constraint firstItem="SlT-uP-Hwz" firstAttribute="top" secondItem="vKH-Vx-VBu" secondAttribute="bottom" id="GEt-Ah-NtZ"/>
                             <constraint firstAttribute="bottom" secondItem="bYl-Bv-tlG" secondAttribute="bottom" id="GPt-Ja-xnT"/>
                             <constraint firstItem="bYl-Bv-tlG" firstAttribute="trailing" secondItem="cf0-jC-fdV" secondAttribute="trailing" id="Mbb-ji-Cn9"/>
@@ -721,11 +734,13 @@
                             <constraint firstItem="08a-kW-Vkl" firstAttribute="top" secondItem="cf0-jC-fdV" secondAttribute="top" constant="15" id="R2K-ed-8KP"/>
                             <constraint firstItem="SlT-uP-Hwz" firstAttribute="trailing" secondItem="cf0-jC-fdV" secondAttribute="trailing" id="RaS-Vy-9rN"/>
                             <constraint firstItem="e2x-O6-xI5" firstAttribute="top" secondItem="08a-kW-Vkl" secondAttribute="bottom" constant="8" id="bjw-T5-6DZ"/>
+                            <constraint firstItem="2lx-dH-C0R" firstAttribute="leading" secondItem="e2x-O6-xI5" secondAttribute="trailing" constant="20" id="d1q-y7-zEw"/>
                             <constraint firstItem="cf0-jC-fdV" firstAttribute="trailing" secondItem="vKH-Vx-VBu" secondAttribute="trailing" constant="15" id="eAM-5o-FuW"/>
                             <constraint firstItem="e2x-O6-xI5" firstAttribute="leading" secondItem="08a-kW-Vkl" secondAttribute="leading" id="ePF-i3-Ol1"/>
                             <constraint firstItem="bYl-Bv-tlG" firstAttribute="top" secondItem="vKH-Vx-VBu" secondAttribute="bottom" id="jwP-ki-sd7"/>
                             <constraint firstItem="SlT-uP-Hwz" firstAttribute="leading" secondItem="cf0-jC-fdV" secondAttribute="leading" id="n2k-lh-6Mb"/>
                             <constraint firstAttribute="bottom" secondItem="SlT-uP-Hwz" secondAttribute="bottom" id="qVn-0O-KBv"/>
+                            <constraint firstItem="cf0-jC-fdV" firstAttribute="trailing" secondItem="2lx-dH-C0R" secondAttribute="trailing" constant="20" id="sBE-T4-U3Z"/>
                             <constraint firstItem="E5y-hE-KbM" firstAttribute="trailing" secondItem="cf0-jC-fdV" secondAttribute="trailing" id="sUE-KL-Emh"/>
                             <constraint firstAttribute="bottom" secondItem="E5y-hE-KbM" secondAttribute="bottom" id="wOF-kc-auf"/>
                             <constraint firstItem="E5y-hE-KbM" firstAttribute="top" secondItem="vKH-Vx-VBu" secondAttribute="bottom" id="xXO-9L-jA5"/>
@@ -1018,14 +1033,14 @@
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DishAutocompleteCell" id="f5A-3V-6pw" customClass="DishAutocompleteCell">
-                                        <rect key="frame" x="0.0" y="24.333333969116211" width="360" height="37.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="360" height="37.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f5A-3V-6pw" id="W15-94-xs3">
-                                            <rect key="frame" x="0.0" y="0.0" width="360" height="37.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="360" height="37.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1q1-S9-DMk">
-                                                    <rect key="frame" x="0.0" y="8.0000000000000018" width="345" height="21.666666666666671"/>
+                                                    <rect key="frame" x="0.0" y="7.9999999999999982" width="345" height="21.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2257,7 +2272,7 @@
             <objects>
                 <viewController id="p4U-Nh-NLq" customClass="RestaurantTableViewFeedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2c5-YJ-uGm">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="628.66666666666663"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="629"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="posts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hz-bM-I3E">
@@ -2544,7 +2559,7 @@
             <objects>
                 <viewController id="yAd-ve-s7Y" customClass="RestaurantPopularDishesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ntN-Vx-XvM">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="628.66666666666663"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="629"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="107" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zQN-HK-FRD">
@@ -2686,7 +2701,7 @@
             <objects>
                 <viewController id="Efp-4k-RaJ" customClass="RestaurantCollectionFeedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2aK-Co-uBO">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="628.66666666666663"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="629"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Tg8-hx-4XU">
@@ -2787,8 +2802,8 @@
         <image name="photo.fill.on.rectangle.fill" catalog="system" width="128" height="96"/>
         <image name="photo.on.rectangle" catalog="system" width="128" height="96"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="star" catalog="system" width="128" height="116"/>
         <image name="star" width="128" height="128"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="star.circle.fill" catalog="system" width="128" height="121"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="star.leadinghalf.fill" catalog="system" width="128" height="116"/>

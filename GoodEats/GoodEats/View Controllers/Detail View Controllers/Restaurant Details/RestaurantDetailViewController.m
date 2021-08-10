@@ -21,8 +21,6 @@
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segControl;
 
-
-
 @end
 
 @implementation RestaurantDetailViewController
@@ -60,6 +58,10 @@
         default:
             break;
     }
+}
+- (IBAction)didTapDirections:(UIButton *)sender {
+    NSString *directionsURL = [NSString stringWithFormat: @"http://maps.apple.com/?daddr=%@,%@", self.restaurant.latitude, self.restaurant.longitude];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:directionsURL] options:@{} completionHandler:nil];
 }
 
 #pragma mark - Navigation
