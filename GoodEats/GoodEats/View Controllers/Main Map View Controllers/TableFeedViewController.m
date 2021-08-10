@@ -14,7 +14,7 @@
 #import <ChameleonFramework/Chameleon.h>
 #import <Toast/Toast.h>
 
-@interface TableFeedViewController () <UITableViewDelegate, UITableViewDataSource, FeedPostCellDelegate>
+@interface TableFeedViewController () <UITableViewDelegate, UITableViewDataSource, FeedPostCellDelegate, DishDetailsViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -22,6 +22,8 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @property (nonatomic, strong) Restaurant *selectedRestaurant;
+@property (nonatomic, strong) FeedPostCell *selectedCell;
+
 
 @end
 
@@ -115,14 +117,20 @@
     [self performSegueWithIdentifier:@"restaurantDetailsSegue" sender:cell];
 }
 
+- (void)dishDetailVCSavedDish {
+    [self.selectedCell setDishButtonTitle];
+}
+
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"dishDetailsSegue"]) {
         DishDetailsViewController *dishDetailsVC = [segue destinationViewController];
         FeedPostCell* cell = (FeedPostCell*)[[sender superview] superview];
+        self.selectedCell = cell;
         NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
         Post *post = self.posts[indexPath.row];
+        dishDetailsVC.delegate = self;
         dishDetailsVC.dish = post.dish;
     }
     if ([segue.identifier isEqualToString:@"restaurantDetailsSegue"]) {

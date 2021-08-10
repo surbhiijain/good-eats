@@ -229,6 +229,7 @@
         notifMessage = [NSString stringWithFormat:@"Saved %@", self.dish.name];
     }
     
+    [self.delegate dishDetailVCSavedDish];
     [self.view makeToast:notifMessage duration:1.5 position:CSToastPositionTop style:nil];
 
     [currUser saveInBackground];
