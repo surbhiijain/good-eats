@@ -111,6 +111,9 @@
     [self.dishField setTextColor:FlatTeal];
     self.dishAutoCompleteTableView.hidden = YES;
     [textField resignFirstResponder];
+    
+    self.captionField.enabled = YES;
+    [self.captionField becomeFirstResponder];
 
     return NO;
 }
@@ -149,6 +152,9 @@
     [self.dishField setText:self.selectedDish.name];
     [self.dishField setTextColor:FlatTeal];
     self.dishAutoCompleteTableView.hidden = YES;
+    
+    self.captionField.enabled = YES;
+    [self.captionField becomeFirstResponder];
 }
 
 # pragma mark - Location Delegate Method
@@ -240,10 +246,16 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
             [restaurantDishesCopy addObject:dish];
         }
         self.autoCompleteDisplayedDishes = restaurantDishesCopy;
+        
+        self.dishField.enabled = YES;
+        [self.dishField becomeFirstResponder];
+        
+        [self.dishAutoCompleteTableView setHidden:NO];
+        [self.dishField setTextColor:[UIColor blackColor]];
+        [self.dishAutoCompleteTableView reloadData];
     }];
     
-    self.dishField.enabled = YES;
-    self.captionField.enabled = YES;
+
     
 }
 
