@@ -26,8 +26,8 @@
     
     _post = post;
             
-    PFUser *user = post.author;
-    self.usernameLabel.text = user.username;
+    PFUser *postAuthor = post.author;
+    self.usernameLabel.text = postAuthor.username;
     [self.restaurantButton setTitle:post.dish.restaurantName forState:UIControlStateNormal];
   
     [post.image getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
@@ -35,21 +35,36 @@
         [self.postImage setImage:image] ;
     }];
 
-    PFFileObject *profilePic = user[@"image"];
+    PFFileObject *profilePic = postAuthor[@"image"];
     if (profilePic) {
         [profilePic getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
             UIImage *profileImage = [UIImage imageWithData:imageData];
             [self.profileImage setImage:profileImage];
         }];
     }
-    
-    [self.dishButton setTitle:post.dish.name forState:UIControlStateNormal];
+        
     self.captionLabel.text = post.caption;
     
+    [self setDishButtonTitle];
     [self setStars];
     [self setTags];
 
 }
+
+- (void) setDishButtonTitle {
+    
+    PFUser *currentUser = [PFUser currentUser];
+    NSArray *savedDishes = currentUser[@"savedDishes"];
+    
+    NSString *dishName = self.post.dish.name;
+    if ([savedDishes containsObject:self.post.dish.objectId]) {
+        dishName = [dishName stringByAppendingString:@"🌟"];
+    }
+
+    [self.dishButton setTitle:dishName forState:UIControlStateNormal];
+    
+}
+
 - (IBAction)didTapRestaurant:(UIButton *)sender {
     
     [[APIManager shared] fetchRestaurantWithId:self.post.dish.restaurantID withCompletion:^(Restaurant *restaurant, NSError *error) {

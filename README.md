@@ -41,7 +41,7 @@ Keep track of and share with your friends the restaurants you're going to, what 
 - [x] Users receive a recommendation of where to go based on their past orders
 - [x] Users can search for restaurants near them and select the correct one
 - [x] Users can select the dish name out of an autocompleted list of previous dishes people have posted at that restaurant
-- [ ] Users can click to get directions to a restaurant
+- [x ] Users can click to get directions to a restaurant
 - [x] Users can star restaurants and view them in a separate tab
 - [ ] Users can receive a custom generated "food tour" of the day based on friends' recommendations and distances
 - [ ] Users can receive recommendations periodically based on the types of food they generally enjoy as well as where friends who have similar tastes to them have enjoyed

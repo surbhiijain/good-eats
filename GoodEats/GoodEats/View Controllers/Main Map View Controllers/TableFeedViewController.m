@@ -94,6 +94,8 @@
             [currentUser addObject:dishId forKey:@"savedDishes"];
             [currentUser saveInBackground];
             toastMessage = [NSString stringWithFormat:@"Saved %@!",post.dish.name];
+            FeedPostCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            [cell setDishButtonTitle];
         }
         [self.view makeToast:toastMessage duration:2.0 position:CSToastPositionCenter style:nil];
         
