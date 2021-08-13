@@ -5,13 +5,14 @@ Original App Design Project - README Template
 
 ## Table of Contents
 1. [Overview](#Overview)
-1. [Product Spec](#Product-Spec)
-1. [Wireframes](#Wireframes)
-2. [Schema](#Schema)
+2. [Demo](#Demo)
+3. [Product Spec](#Product-Spec)
+4. [Wireframes](#Wireframes)
+5. [Schema](#Schema)
 
 ## Overview
 ### Description
-Keep track of and share with your friends the restaurants you're going to, what you're getting, and what you thought! 
+GoodEats is a food discovery iOS app that helps you discover new food near you and show off all the amazing food you’ve been eating! You can filter restaurants near you, see what’s popular or trendy at a restaurant, and you can even let the app decide what you should eat with a recommendation algorithm.
 
 ### App Evaluation
 - **Category:** Social / Food & Drink
@@ -20,6 +21,18 @@ Keep track of and share with your friends the restaurants you're going to, what 
 - **Market:** Anyone who enjoys eating out and trying new and popular food
 - **Habit:** Everytime users are looking for somewhere to eat or are eating out somewhere, they can pull out this app. Also acts as a social media that users can explore through a "feed-like" view so see where their friends have been going
 - **Scope:** Posting and viewing feeds
+
+## Demo
+
+### Main Map View + Feed with recommendation, filters, and saving
+![mainView](https://user-images.githubusercontent.com/30298846/129426450-d46823c4-3931-4541-93b0-4d22515eee63.gif)
+
+### Compose Page with Yelp API to search for restaurants and Dish autocomplete
+![composePage](https://user-images.githubusercontent.com/30298846/129426934-84a4f253-cfda-4f53-a1c5-7d520ebb223f.gif)
+
+### Profile Page withrecent highlights, user's posts, and saved dishes
+![profile](https://user-images.githubusercontent.com/30298846/129426937-3f4325c7-dbd5-4bc4-a562-fd35b02ec067.gif)
+
 
 ## Product Spec
 
@@ -43,9 +56,8 @@ Keep track of and share with your friends the restaurants you're going to, what 
 - [x] Users can select the dish name out of an autocompleted list of previous dishes people have posted at that restaurant
 - [x ] Users can click to get directions to a restaurant
 - [x] Users can star restaurants and view them in a separate tab
-- [ ] Users can receive a custom generated "food tour" of the day based on friends' recommendations and distances
+- [ ] Users can receive a custom generated "food tour" of the day based on other users' recommendations and distances
 - [ ] Users can receive recommendations periodically based on the types of food they generally enjoy as well as where friends who have similar tastes to them have enjoyed
-- [ ] Users can see how similar their tastes are to their friends
 
 ### 2. Screen Archetypes
 
